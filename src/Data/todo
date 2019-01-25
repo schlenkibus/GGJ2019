@@ -1,10 +1,29 @@
+Mieter
+ID - instead of photo when choosing to kick out
+Picture
+(Sad Sound)
+Rent Payed each Month
+Rent due
+sad story
+
 House:
-Number of Max Mieter
+Money
+Reputation
 Aktuelle Mieter <Mieter>
 
-Anwärter
+Anwärter:
+Picture
+Name
+Age
+Sad Message (When Kicked out / Refused)
+
+
 Info Text
 Picture
 Sound
-Hidden:
-    Possible Damage
+Impact on House
+
+
+Effects Text:
+Sad Story
+Effect on Money and Reputation

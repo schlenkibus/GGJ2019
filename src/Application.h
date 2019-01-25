@@ -1,9 +1,13 @@
 #pragma once
 
 
+#include <SFML/Graphics/RenderWindow.hpp>
+
 class Application {
 protected:
-    Application() = default;
+    Application();
+    sf::RenderWindow window;
 public:
-    static Application& get() const;
+    static Application& get();
+    void run();
 };
