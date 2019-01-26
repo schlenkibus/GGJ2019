@@ -24,7 +24,8 @@ void Button::draw(sf::RenderWindow &window)
   window.draw(m_text);
 }
 
-void Button::setTexture(sf::Texture& tex) {
+void Button::setTexture(sf::Texture &tex)
+{
   sprite.setTexture(tex);
 }
 

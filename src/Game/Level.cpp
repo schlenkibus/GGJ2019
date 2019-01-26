@@ -15,10 +15,12 @@ Level::Level()
   auto &rm = ResourceManager::get();
   auto &testTexture = rm.getTexture("test.png");
 
-  m_objects.emplace_back(
-      std::make_unique<Button>(sf::Vector2f(300, 200), [&]() {
-        m_objects.clear();
-        GameStateManager::get().start(); }, "Start"));
+  m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(300, 200),
+                                                  [&]() {
+                                                    m_objects.clear();
+                                                    GameStateManager::get().start();
+                                                  },
+                                                  "Start"));
 
   m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(300, 300),
                                                   []() { Application::get().getLevel().testChoose(); }, "Choose!"));
