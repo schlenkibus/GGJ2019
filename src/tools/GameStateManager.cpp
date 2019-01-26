@@ -10,8 +10,17 @@ GameStateManager &GameStateManager::get()
 
 void GameStateManager::acceptTenant()
 {
+    if (m_acceptedTenants.size() > 0)
+    {
+        auto it = std::next(m_acceptedTenants.begin());
+
+        std::move(m_acceptedTenants.begin(), it, std::back_inserter(m_thrownOutTenants));
+
+        m_acceptedTenants.erase(it);
+    }
+
     m_acceptedTenants.push_back(m_currentTenant);
-    payNewTenantFee();
+    newTenantFee();
     nextDay();
 }
 
@@ -38,12 +47,12 @@ void GameStateManager::generateNewTenant()
 
 void GameStateManager::listenForTenantChanged(TenantChangedCallback function)
 {
-    m_tenantChangedCallback = function;
+    m_tenantChangedCallback = std::move(function);
 }
 
-void GameStateManager::payNewTenantFee()
+void GameStateManager::newTenantFee()
 {
-    changeCurrentMoney(newTenantFee);
+    changeCurrentMoney(newTenantCost);
 }
 
 void GameStateManager::changeCurrentMoney(int amount)

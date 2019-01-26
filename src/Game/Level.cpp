@@ -6,22 +6,12 @@
 #include "../UI/ChooseWindow.h"
 #include "../Data/TenantData.h"
 #include "../Data/TenantFactory.h"
+#include "../tools/GameStateManager.h"
 
 Level::Level()
 {
   auto &rm = ResourceManager::get();
   auto &testTexture = rm.getTexture("test.png");
-  TenantFactory fac;
-  TenantData data = fac.getTenant();
-
-  m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(300, 400),
-                                                  []() {
-                                                    Application::get().getLevel().pushYesNoMessage(
-                                                        ,
-                                                        []() {Application::get().getLevel().closeMessage();},
-                                                        []() {Application::get().getLevel().pushMessage("You are shit");});
-                                                  },
-                                                  "Test"));
 
   m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(300, 300),
                                                   []() { Application::get().getLevel().testChoose(); }, "Choose!"));

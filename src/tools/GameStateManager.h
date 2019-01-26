@@ -11,7 +11,7 @@ class TenantData;
 class GameStateManager {
 public:
     using TenantChangedCallback = std::function<void(std::shared_ptr<TenantData>)>;
-    GameStateManager &get();
+    static GameStateManager &get();
 
     void acceptTenant();
     void declineTenant();
@@ -22,24 +22,26 @@ public:
     int getCurrentMoney() { return m_currentMoneyEarned; };
     int getCurrentkarma() { return m_currentKarmaEarned; };
 
+    int getTotalMoneyEarn() { return m_totalMoneyEarned; };
+    int getTotalkarmaEarn() { return m_totalKarmaEarned; };
 
 private:
-    const size_t newTenantFee = 100;
+    const size_t newTenantCost = 100;
 
     void nextDay();
     void generateNewTenant();
-    void payNewTenantFee();
+    void newTenantFee();
 
     void changeCurrentMoney(int amount);
 
     std::shared_ptr<TenantData> m_currentTenant;
     std::vector<std::shared_ptr<TenantData>> m_acceptedTenants{};
     std::vector<std::shared_ptr<TenantData>> m_declinedTenants{};
+    std::vector<std::shared_ptr<TenantData>> m_thrownOutTenants{};
 
     TenantChangedCallback m_tenantChangedCallback;
 
     size_t m_days = 0;
-    size_t m_tenantCount = 0;
 
     int m_currentMoneyEarned = 0;
     int m_totalMoneyEarned = 0;
