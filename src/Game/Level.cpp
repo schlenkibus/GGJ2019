@@ -4,6 +4,7 @@
 #include "../UI/Button.h"
 #include <iostream>
 #include "../UI/ChooseWindow.h"
+#include "../tools/GameStateManager.h"
 
 Level::Level()
 {
@@ -37,6 +38,13 @@ Level::Level()
   m_objects.emplace_back(
       std::make_unique<DrawableObject>(testTexture, sf::Vector2f(300, 100), nullptr,
                                        [](float delta, DrawableObject &o) { o.setPos(sf::Vector2f(delta, delta)); }));
+}
+
+void Level::start()
+{
+ GameStateManager::get().listenForTenantChanged([](auto tenantData){
+   // push new page
+ });
 }
 
 void Level::update(float delta)
