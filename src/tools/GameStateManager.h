@@ -22,6 +22,8 @@ public:
     int getCurrentMoney() { return m_currentMoneyEarned; };
     int getCurrentkarma() { return m_currentKarmaEarned; };
 
+    int getTotalMoneyEarn() { return m_totalMoneyEarned; };
+    int getTotalkarmaEarn() { return m_totalKarmaEarned; };
 
 private:
     const size_t newTenantCost = 100;
