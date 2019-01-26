@@ -20,7 +20,7 @@ void GameStateManager::acceptTenant()
     }
 
     m_acceptedTenants.push_back(m_currentTenant);
-    payNewTenantFee();
+    newTenantFee();
     nextDay();
 }
 
