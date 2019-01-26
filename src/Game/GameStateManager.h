@@ -17,7 +17,7 @@ class GameStateManager
   void acceptTenant();
   void declineTenant();
   void kickTenant(TenantData* tenant);
-  std::array<TenantData*, 3> getKickCandidates() const;
+  std::array<TenantData*, 3> getKickCandidates();
   void listenForTenantChanged(TenantChangedCallback);
   std::shared_ptr<TenantData> getTenant();
   size_t getDay()

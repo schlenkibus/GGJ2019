@@ -4,9 +4,10 @@ TenantKickScreen::TenantKickScreen()
     : GenericWindow("You have to throw one Tenant out to make room for the new one!", "DECIDE!",
                     ResourceManager::get().getTexture("message_3times.png"))
 {
-  int i = 0;
-  for(auto data: GameStateManager::get().getKickCandidates()) {
-      m_candidates[i] = std::make_unique<TenantKickEntry>(data, Application::get().getMidPoint() + sf::Vector2f((-300 + i*150), 0));
+
+  auto data = GameStateManager::get().getKickCandidates();
+  for(int i = 0; i < 3; i++) {
+      m_candidates[i] = std::make_unique<TenantKickEntry>(data[i], Application::get().getMidPoint() + sf::Vector2f((-300 + i*150), 0));
   }
 }
 

@@ -29,8 +29,8 @@ void GameStateManager::acceptTenant()
 
   Application::get().getLevel().install(std::make_unique<TenantKickScreen>());
 
-  newTenantFee();
-  nextDay();
+  //newTenantFee();
+  //nextDay();
 }
 
 void GameStateManager::declineTenant()
@@ -44,11 +44,15 @@ void GameStateManager::kickTenant(TenantData* tenant)
 {
 }
 
-std::array<TenantData*, 3> GameStateManager::getKickCandidates() const
+std::array<TenantData*, 3> GameStateManager::getKickCandidates()
 {
+  static auto t1 = TenantFactory::getTenant();
+  static auto t2 = TenantFactory::getTenant();
+  static auto t3 = TenantFactory::getTenant();
+
   return
   {
-    m_acceptedTenants[0].get(), m_acceptedTenants[1].get(), m_acceptedTenants[2].get()
+          &t1, &t2, &t3
   };
 }
 

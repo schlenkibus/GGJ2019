@@ -19,5 +19,5 @@ class AnimalData
   sf::Texture& getSound(bool isHappy);
 
  protected:
-  ResourceManager::tPath prefix;
+  ResourceManager::tPath prefix{};
 };

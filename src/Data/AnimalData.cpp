@@ -6,6 +6,7 @@ AnimalData::AnimalData(AnimalData::AnimalType type)
   switch(type)
   {
     case AnimalType::Bunny:
+    default:
       prefix += "bunny_";
       break;
     case Cat:

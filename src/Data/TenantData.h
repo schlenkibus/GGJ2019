@@ -4,11 +4,15 @@
 #include "AnimalData.h"
 #include "TenantCharacteristics.h"
 #include <string>
+#include <memory>
 
-class TenantData
+class TenantData : public std::enable_shared_from_this<TenantData>
 {
  public:
   TenantData() = default;
+    std::shared_ptr<TenantData> shared() {
+        return shared_from_this();
+    }
   std::string toString() const;
   const std::string& getOutcome() const;
   std::string getStats() const;
