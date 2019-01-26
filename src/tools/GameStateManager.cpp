@@ -12,7 +12,7 @@ GameStateManager &GameStateManager::get()
 
 void GameStateManager::acceptTenant()
 {
-
+    //get Audio of Tenant(true)
   AudioOneShotEngine::get().play("happyTenant.wav");
   if(!m_acceptedTenants.empty())
   {

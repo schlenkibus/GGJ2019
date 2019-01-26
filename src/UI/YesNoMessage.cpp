@@ -23,13 +23,13 @@ bool YesNoMessage::onEvent(sf::Event &e)
 {
   if(yes.onEvent(e))
   {
-    AudioOneShotEngine::get().play("acceptedTenant.wav");
+    AudioOneShotEngine::get().play("yes.wav");
     return true;
   }
 
   if(no.onEvent(e))
   {
-    AudioOneShotEngine::get().play("declineTenant.wav");
+    AudioOneShotEngine::get().play("no.wav");
     return true;
   }
 

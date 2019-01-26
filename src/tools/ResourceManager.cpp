@@ -45,7 +45,7 @@ ResourceManager::ResourceManager()
   }
 
   m_music.setLoop(true);
-  m_music.setVolume(20);
+  m_music.setVolume(10);
 }
 
 sf::Music &ResourceManager::getMusic()
