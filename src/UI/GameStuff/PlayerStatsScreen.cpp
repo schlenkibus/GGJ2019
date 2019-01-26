@@ -3,7 +3,7 @@
 #include "../../Game/GameStateManager.h"
 
 PlayerStatsScreen::PlayerStatsScreen()
-    : GenericOkayWindowWithCallback{ "Weekly roundup", "Okay",
+    : GenericOkayWindowWithCallback{ "Weekly Roundup \n" + GameStateManager::get().getWeeklyReport(), "Okay",
                                      [] { GameStateManager::get().setScreenState(ScreenState::NewTenant); } }
 {
 }

@@ -6,6 +6,7 @@
 #include <array>
 #include <functional>
 #include <memory>
+#include <string>
 
 class TenantData;
 
@@ -34,6 +35,7 @@ class GameStateManager
   void kickTenant(TenantData* tenant);
   std::array<TenantData*, 3> getKickCandidates();
   void listenForTenantChanged(TenantChangedCallback);
+  std::string getWeeklyReport();
   std::shared_ptr<TenantData> getTenant();
   size_t getDay()
   {
@@ -87,4 +89,8 @@ class GameStateManager
   int m_totalMoneyEarned = 0;
   int m_currentKarmaEarned = 0;
   int m_totalKarmaEarned = 0;
+
+  // Weekly roundup data
+  int m_netIncome = 0;
+  size_t m_tenantsKickedOut = 0;
 };

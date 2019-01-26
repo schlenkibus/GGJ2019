@@ -9,6 +9,7 @@
 #include "../UI/GameStuff/DenyTenantScreen.h"
 #include <random>
 #include <assert.h>
+#include <sstream>
 
 GameStateManager::GameStateManager()
 {
@@ -52,6 +53,17 @@ void GameStateManager::kickTenant(TenantData* tenant)
   }
 
   newTenantFee();
+}
+
+std::string GameStateManager::getWeeklyReport()
+{
+  std::stringstream ss;
+  ss << "Net Income: " << m_netIncome - static_cast<int>(m_tenantsKickedOut * newTenantCost) << '\n';
+  ss << "Tenants Replaced: " << m_tenantsKickedOut << '\n';
+  ss << "Total Money: " << m_currentMoneyEarned << '\n';
+  m_netIncome = 0;
+  m_tenantsKickedOut = 0;
+  return ss.str();
 }
 
 std::array<TenantData*, 3> GameStateManager::getKickCandidates()
@@ -108,9 +120,9 @@ void GameStateManager::calculateWeek()
     totalIncome += calculateTenantPayment(tenant);
   }
 
-  int netIncome = static_cast<int>(totalIncome - monthlyExpenses);
+  m_netIncome = static_cast<int>(totalIncome - monthlyExpenses);
 
-  changeCurrentMoney(netIncome);
+  changeCurrentMoney(m_netIncome);
 }
 
 size_t GameStateManager::calculateTenantPayment(std::shared_ptr<TenantData> tentant)
@@ -122,11 +134,11 @@ size_t GameStateManager::calculateTenantPayment(std::shared_ptr<TenantData> tent
     switch(recommendationRating)
     {
       case Recommendation::High:
-        return 0.5f;
+        return 0.42f;
       case Recommendation::Medium:
-        return 0.3f;
+        return 0.2f;
       case Recommendation::Low:
-        return 0.1f;
+        return 0.05f;
       default:
         std::cerr << "recommendationRating unknown" << '\n';
         return 0.f;
@@ -137,11 +149,11 @@ size_t GameStateManager::calculateTenantPayment(std::shared_ptr<TenantData> tent
     switch(salaryRating)
     {
       case Salary::High:
-        return 0.5f;
+        return 0.4f;
       case Salary::Medium:
-        return 0.3f;
+        return 0.2f;
       case Salary::Low:
-        return 0.1f;
+        return 0.05f;
       default:
         std::cerr << "salaryRating unknown" << '\n';
         return 0.f;
@@ -197,6 +209,7 @@ void GameStateManager::setScreenState(ScreenState newScreenState)
     }
     case ScreenState::KickTenant:
     {
+      m_tenantsKickedOut++;
       Application::get().getLevel().install(std::make_unique<TenantKickScreen>());
       break;
     }

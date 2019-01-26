@@ -4,10 +4,10 @@
 std::string TenantData::toString() const
 {
   std::stringstream ss;
-  ss << "Name:" << name << '\n';
-  ss << "Age:" << age << '\n';
-  ss << "Profession:" << profession << '\n';
-  ss << "Salary:" << salary << '\n';
+  ss << "Name: " << name << '\n';
+  ss << "Age: " << age << '\n';
+  ss << "Profession: " << profession << '\n';
+  ss << "Salary: " << salary << '\n';
   ss << "Recommendation:\n" << recommendation << '\n';
   return ss.str();
 }
