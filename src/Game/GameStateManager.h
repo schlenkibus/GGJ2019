@@ -64,7 +64,7 @@ protected:
   const size_t newTenantCost = 100;
   const size_t rentAmount = 1000;
 
-  void nextDay();
+  size_t nextDay();
   void generateNewTenant();
   void newTenantFee();
   void calculateWeek();

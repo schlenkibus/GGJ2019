@@ -58,14 +58,10 @@ std::array<TenantData*, 3> GameStateManager::getKickCandidates()
   };
 }
 
-void GameStateManager::nextDay()
+size_t GameStateManager::nextDay()
 {
-  m_days++;
-  if (m_days != 0 && m_days % 7 == 0) {
-    calculateWeek();
-  }
-
   generateNewTenant();
+  return ++m_days;
 }
 
 void GameStateManager::generateNewTenant()
@@ -184,8 +180,14 @@ void GameStateManager::setScreenState(ScreenState newScreenState)
     }
     case ScreenState::NewTenant:
     {
-      nextDay();
-      Application::get().getLevel().pushTenant(*m_currentTenant);
+      if (m_days != 0 && m_days % 7 == 0) {
+        setScreenState(ScreenState::PlayerStats);
+      }
+      else
+      {
+        nextDay();
+        Application::get().getLevel().pushTenant(*m_currentTenant);
+      }
 
       break;
     }
@@ -201,6 +203,7 @@ void GameStateManager::setScreenState(ScreenState newScreenState)
     }
     case ScreenState::PlayerStats:
     {
+      calculateWeek();
 //      Application::get().getLevel().install(std::make_unique<PlayerStatsScreen>());
       break;
     }
