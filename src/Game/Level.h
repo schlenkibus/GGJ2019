@@ -25,4 +25,5 @@ class Level
  protected:
   std::vector<std::unique_ptr<DrawableObject>> m_objects;
   std::unique_ptr<GenericWindow> m_message;
+  bool firstUpdate;
 };

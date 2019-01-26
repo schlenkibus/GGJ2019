@@ -10,19 +10,19 @@
 #include "../UI/GenericOkayWindowWithCallback.h"
 #include "../UI/TenantView.h"
 
-Level::Level()
+Level::Level() : firstUpdate {true}
 {
   auto &rm = ResourceManager::get();
   auto &testTexture = rm.getTexture("test.png");
 
-  m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(300, 200),
+  m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(600, 325),
                                                   [&]() {
                                                     m_objects.clear();
                                                     GameStateManager::get().start();
                                                   },
                                                   "Start"));
 
-  m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(300, 300),
+  /*m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(300, 300),
                                                   []() { Application::get().getLevel().testChoose(); }, "Choose!"));
 
   m_objects.emplace_back(
@@ -41,15 +41,23 @@ Level::Level()
   m_objects.emplace_back(
       std::make_unique<DrawableObject>(testTexture, sf::Vector2f(300, 100), nullptr,
                                        [](float delta, DrawableObject &o) { o.setPos(sf::Vector2f(delta, delta)); }));
+  */
 }
 
 void Level::start()
 {
   ResourceManager::get().getMusic().play();
+
 }
 
 void Level::update(float delta)
 {
+    if (firstUpdate) {
+      firstUpdate = false;
+      auto &element = m_objects.front();
+      auto refButton = dynamic_cast<Button*>(element.get());
+      refButton->setPos(Application::get().getMidPoint());
+    }
   for(auto &obj : m_objects)
   {
     obj->update(delta);
