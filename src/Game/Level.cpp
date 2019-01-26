@@ -16,33 +16,7 @@ Level::Level()
   auto &rm = ResourceManager::get();
   auto &testTexture = rm.getTexture("test.png");
 
-  m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(600, 325),
-                                                  [&]() {
-                                                    m_objects.clear();
-                                                    GameStateManager::get().start();
-                                                  },
-                                                  "Start"));
-
-  /*m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(300, 300),
-                                                  []() { Application::get().getLevel().testChoose(); }, "Choose!"));
-
-  m_objects.emplace_back(
-      std::make_unique<Button>(sf::Vector2f(300, 500),
-                               []() {
-                                 Application::get().getLevel().pushYesNoMessage(
-                                     "Do you realy want to do that? Are you absolutely sure this is "
-                                     "neccessarry?? If so why? And Why do we exist in the first place. "
-                                     "Do you Agree?",
-                                     []() { Application::get().getLevel().pushMessage("Yes is a good Answer!"); },
-                                     []() { Application::get().getLevel().pushMessage("No also is a good Answer!"); });
-                               },
-                               "Yes Or No?"));
-
-  m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(300, 600), []() { Application::get().quit(); }, "Quit"));
-  m_objects.emplace_back(
-      std::make_unique<DrawableObject>(testTexture, sf::Vector2f(300, 100), nullptr,
-                                       [](float delta, DrawableObject &o) { o.setPos(sf::Vector2f(delta, delta)); }));
-  */
+  setMenuScene();
 }
 
 void Level::start()
@@ -129,4 +103,29 @@ void Level::pushGenericMessage(std::string message, std::function<void(void)> ok
 void Level::install(std::unique_ptr<GenericWindow> &&window)
 {
   m_message.reset(window.release());
+}
+
+void Level::setMenuScene() {
+    m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(600, 325),
+                                                    [&]() {
+                                                        m_objects.clear();
+                                                        GameStateManager::get().start();
+                                                    },
+                                                    "Start"));
+}
+
+void Level::setGameScene() {
+  auto &rm = ResourceManager::get();
+  auto &exitTexture = rm.getTexture("exitbutton.png");
+
+  m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(100, 100),
+                                                  [&]() {
+                                                      m_objects.clear();
+                                                      Application::get().getLevel().closeMessage();
+                                                      Application::get().getLevel().setMenuScene();
+                                                  },
+                                                  ""));
+  auto &element = m_objects.front();
+  auto refButton = dynamic_cast<Button*>(element.get());
+  refButton->setTexture(exitTexture);
 }

@@ -163,6 +163,7 @@ size_t GameStateManager::calculateTenantPayment(std::shared_ptr<TenantData> tent
 
 void GameStateManager::start()
 {
+  Application::get().getLevel().setGameScene();
   listenForTenantChanged([](std::shared_ptr<TenantData> ptr) { Application::get().getLevel().pushTenant(*ptr); });
   nextDay();
 }
