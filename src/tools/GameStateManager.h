@@ -42,7 +42,6 @@ private:
     TenantChangedCallback m_tenantChangedCallback;
 
     size_t m_days = 0;
-    size_t m_tenantCount = 0;
 
     int m_currentMoneyEarned = 0;
     int m_totalMoneyEarned = 0;
