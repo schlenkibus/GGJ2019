@@ -2,6 +2,7 @@
 
 #include "DataManager.h"
 #include "AnimalData.h"
+#include "TenantCharacteristics.h"
 #include <string>
 
 class TenantData
@@ -17,9 +18,11 @@ class TenantData
   std::string profession;
   int age{};
   int factor{};
-  std::string reccomendation;
+  Recommendation recommendationValue;
+  std::string recommendation;
   std::string outcome;
   int salary{};
+  Salary salaryValue;
   AnimalData animaldata;
   bool happy = true;
 
