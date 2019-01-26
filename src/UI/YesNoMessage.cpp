@@ -1,6 +1,7 @@
 #include "YesNoMessage.h"
 #include "../Application.h"
 #include "../tools/ResourceManager.h"
+#include "../tools/AudioOneShotEngine.h"
 
 YesNoMessage::YesNoMessage(YesNoMessage::tAction yes, YesNoMessage::tAction no, const std::string &message)
     : GenericWindow(message, "Decide!", ResourceManager::get().getTexture("message.png"))
@@ -20,11 +21,13 @@ bool YesNoMessage::onEvent(sf::Event &e)
 {
   if(yes.onEvent(e))
   {
+    AudioOneShotEngine::get().play("acceptedTenant.wav");
     return true;
   }
 
   if(no.onEvent(e))
   {
+    AudioOneShotEngine::get().play("declineTenant.wav");
     return true;
   }
 

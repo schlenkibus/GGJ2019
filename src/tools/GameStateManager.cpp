@@ -1,6 +1,7 @@
 #include "GameStateManager.h"
 
 #include "../Data/TenantFactory.h"
+#include "../tools/AudioOneShotEngine.h"
 
 GameStateManager &GameStateManager::get()
 {
@@ -10,6 +11,7 @@ GameStateManager &GameStateManager::get()
 
 void GameStateManager::acceptTenant()
 {
+    AudioOneShotEngine::get().play("happyTenant.wav");
     if (m_acceptedTenants.size() > 0)
     {
         auto it = std::next(m_acceptedTenants.begin());
@@ -26,6 +28,7 @@ void GameStateManager::acceptTenant()
 
 void GameStateManager::declineTenant()
 {
+    AudioOneShotEngine::get().play("sadTenant.wav");
     m_declinedTenants.push_back(m_currentTenant);
     nextDay();
 }
