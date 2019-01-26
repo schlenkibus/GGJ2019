@@ -1,4 +1,4 @@
-Mieter
+tenant
 ID - instead of photo when choosing to kick out
 Picture
 (Sad Sound)
@@ -9,9 +9,9 @@ sad story
 House:
 Money
 Reputation
-Aktuelle Mieter <Mieter>
+current tenants <tenant>
 
-Anwärter:
+tenant:
 Picture
 Name
 Age
