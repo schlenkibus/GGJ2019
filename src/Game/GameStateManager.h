@@ -11,17 +11,18 @@ class TenantData;
 
 enum class ScreenState
 {
-    Start,
-    NewTenant,
-    KickTenant,
-    DenyTenant,
-    PlayerStats
+  Start,
+  NewTenant,
+  KickTenant,
+  DenyTenant,
+  PlayerStats
 };
 
 class GameStateManager
 {
-protected:
-    GameStateManager();
+ protected:
+  GameStateManager();
+
  public:
   using TenantChangedCallback = std::function<void(std::shared_ptr<TenantData>)>;
   static GameStateManager& get();

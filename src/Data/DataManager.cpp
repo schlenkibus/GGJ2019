@@ -98,7 +98,7 @@ std::string DataManager::getRandomDeleting(std::set<std::string>& in)
   std::vector<std::string> out;
   std::sample(in.begin(), in.end(), std::back_inserter(out), 1, std::mt19937{ std::random_device{}() });
   auto it = in.find(*out.begin());
-  if (it != in.end())
+  if(it != in.end())
   {
     in.erase(it);
   }
@@ -112,7 +112,7 @@ std::string DataManager::getProfession() const
 
 std::string DataManager::getRecommendationBad()
 {
-  if (m_recommendationsNegDepleting.size() <= 0)
+  if(m_recommendationsNegDepleting.size() <= 0)
   {
     m_recommendationsNegDepleting.insert(m_recommendationsNegImmutable.begin(), m_recommendationsNegImmutable.end());
   }
@@ -122,7 +122,7 @@ std::string DataManager::getRecommendationBad()
 
 std::string DataManager::getRecommendationGood()
 {
-  if (m_recommendationsPosDepleting.size() <= 0)
+  if(m_recommendationsPosDepleting.size() <= 0)
   {
     m_recommendationsPosDepleting.insert(m_recommendationsPosImmutable.begin(), m_recommendationsPosImmutable.end());
   }
@@ -137,7 +137,7 @@ std::string DataManager::getRecommendationNeural() const
 
 std::string DataManager::getOutcome()
 {
-  if (m_outcomesDepleting.size() <= 0)
+  if(m_outcomesDepleting.size() <= 0)
   {
     m_outcomesDepleting.insert(m_outcomesImmutable.begin(), m_outcomesImmutable.end());
   }

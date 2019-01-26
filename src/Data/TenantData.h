@@ -10,15 +10,25 @@ class TenantData : public std::enable_shared_from_this<TenantData>
 {
  public:
   TenantData() = default;
-    std::shared_ptr<TenantData> shared() {
-        return shared_from_this();
-    }
+  std::shared_ptr<TenantData> shared()
+  {
+    return shared_from_this();
+  }
   std::string toString() const;
   const std::string& getOutcome() const;
   std::string getStats() const;
   sf::Texture& getTexture();
-  Recommendation getRecommendationRating() { return recommendationRating; };
-  Salary getSalaryRating() { return salaryRating; };
+  Recommendation getRecommendationRating()
+  {
+    return recommendationRating;
+  };
+  Salary getSalaryRating()
+  {
+    return salaryRating;
+  };
+  void setHappy(bool h) {
+    happy = h;
+  }
 
  protected:
   std::string name;

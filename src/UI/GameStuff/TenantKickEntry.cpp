@@ -6,17 +6,19 @@
 TenantKickEntry::TenantKickEntry(TenantData *data, sf::Vector2f pos)
     : DrawableObject{ (data != nullptr ? data->getTexture() : TenantFactory::getTenant().getTexture()), pos }
     , info{ data }
-    , kick{ pos + sf::Vector2f(0, 250), [&]() {
-      GameStateManager::get().kickTenant(data);
-      GameStateManager::get().setScreenState(ScreenState::NewTenant);
-    }, "Throw Out!" }
+    , kick{ pos + sf::Vector2f(0, 250),
+            [&]() {
+              GameStateManager::get().kickTenant(data);
+              GameStateManager::get().setScreenState(ScreenState::NewTenant);
+            },
+            "Throw Out!" }
 {
   auto proto = TenantFactory::getTenant();
   if(data == nullptr)
     data = &proto;
 
   text.setPosition(pos - sf::Vector2f(0, -250));
-    text.setString(data->getStats());
+  text.setString(data->getStats());
   text.setFont(ResourceManager::get().getFont());
 }
 
