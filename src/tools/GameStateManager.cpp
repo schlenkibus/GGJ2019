@@ -127,11 +127,11 @@ size_t GameStateManager::calculateTenantPayment(std::shared_ptr<TenantData> tent
       }
   }();
 
-  const auto likelyhood = (recommendationPercentage + salaryPercentage) * 100;
+  const auto likelihood = (recommendationPercentage + salaryPercentage) * 100;
   auto& dm = DataManager::get();
   auto randomNumber =  dm.getRandomNumber(0, 100);
 
-  if (likelyhood > randomNumber)
+  if (likelihood > randomNumber)
   {
     return rentAmount;
   }
