@@ -10,5 +10,4 @@ public:
 protected:
     sf::Text m_header;
     sf::Text m_message;
-    Button closeButton;
 };

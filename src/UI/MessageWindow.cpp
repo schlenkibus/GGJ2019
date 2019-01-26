@@ -5,10 +5,7 @@
 MessageWindow::MessageWindow(const std::string &message, const std::string& header) :
 DrawableObject(ResourceManager::get().getTexture("message.png"), Application::get().getMidPoint()),
 m_header{header, ResourceManager::get().getFont()},
-m_message{message, ResourceManager::get().getFont()},
-closeButton{Application::get().getMidPoint() + sf::Vector2f(0, 250), [](){
-        Application::get().getLevel().closeMessage();
-    }, "Okay!"} {
+m_message{message, ResourceManager::get().getFont()} {
 
     std::string perm;
     auto lastInsertAgo = 0;
@@ -38,9 +35,8 @@ void MessageWindow::draw(sf::RenderWindow &window) {
     DrawableObject::draw(window);
     window.draw(m_header);
     window.draw(m_message);
-    closeButton.draw(window);
 }
 
 void MessageWindow::onEvent(sf::Event &e) {
-    closeButton.onEvent(e);
+
 }

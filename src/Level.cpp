@@ -11,6 +11,16 @@ Level::Level() {
     m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(300, 500), [](){
         Application::get().getLevel().pushMessage("I'm just an annoying Message! I don't care if this annoys you! :)");
     }, "Test"));
+
+    m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(300, 500), [](){
+        Application::get().getLevel().pushYesNoMessage("Do you realy want to do that? Are you absolutely sure this is neccessarry?? If so why? And Why do we exist in the first place. Do you Agree?",
+                []() {
+            Application::get().getLevel().pushMessage("Yes is a good Answer!");
+        }, [](){
+            Application::get().getLevel().pushMessage("No also is a good Answer!");
+        });
+    }, "Yes Or No?"));
+
     m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(300, 600), [](){
         Application::get().quit();
     }, "Quit"));
@@ -47,4 +57,8 @@ void Level::pushMessage(const std::string &message) {
 
 void Level::closeMessage() {
     m_message.reset(nullptr);
+}
+
+void Level::pushYesNoMessage(const std::string &message, YesNoMessage::tAction yes, YesNoMessage::tAction no) {
+    m_message = std::make_unique<YesNoMessage>(std::move(yes), std::move(no), message);
 }
