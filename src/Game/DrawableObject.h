@@ -17,6 +17,8 @@ class DrawableObject
   virtual void onEvent(sf::Event &e);
   virtual void update(float delta);
 
+  bool contains(sf::Vector2i pos) const;
+
  protected:
   sf::Sprite sprite;
   sf::Texture &tex;

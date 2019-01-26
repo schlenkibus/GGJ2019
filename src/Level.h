@@ -16,6 +16,7 @@ class Level
   void pushMessage(const std::string &message);
   void pushYesNoMessage(const std::string &message, YesNoMessage::tAction yes, YesNoMessage::tAction no);
   void closeMessage();
+  void testChoose();
 
  protected:
   std::vector<std::unique_ptr<DrawableObject>> m_objects;
