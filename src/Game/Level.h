@@ -10,6 +10,7 @@ class Level
 {
  public:
   Level();
+  void start();
   void update(float delta);
   void onEvent(sf::Event &e);
   void draw(sf::RenderWindow &w);
