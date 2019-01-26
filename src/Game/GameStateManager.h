@@ -19,6 +19,8 @@ enum class ScreenState
 
 class GameStateManager
 {
+protected:
+    GameStateManager();
  public:
   using TenantChangedCallback = std::function<void(std::shared_ptr<TenantData>)>;
   static GameStateManager& get();
@@ -56,7 +58,7 @@ class GameStateManager
   void start();
 
  private:
-  const size_t maxAmountOfTenants = 10;
+  static constexpr const size_t maxAmountOfTenants = 10;
   const size_t monthlyExpenses = 5000;
   const size_t newTenantCost = 100;
   const size_t rentAmount = 1000;
@@ -70,7 +72,7 @@ class GameStateManager
   size_t calculateTenantPayment(std::shared_ptr<TenantData>);
 
   std::shared_ptr<TenantData> m_currentTenant;
-  std::vector<std::shared_ptr<TenantData>> m_acceptedTenants{};
+  std::array<std::shared_ptr<TenantData>, maxAmountOfTenants> m_acceptedTenants{};
   std::vector<std::shared_ptr<TenantData>> m_declinedTenants{};
   std::vector<std::shared_ptr<TenantData>> m_thrownOutTenants{};
 

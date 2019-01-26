@@ -5,6 +5,17 @@
 #include "../Application.h"
 #include "../tools/AudioOneShotEngine.h"
 #include "../UI/GameStuff/TenantKickScreen.h"
+#include <assert.h>
+
+GameStateManager::GameStateManager() {
+  for(auto i = 0; i < m_acceptedTenants.max_size(); i++) {
+    m_acceptedTenants[i] = std::make_shared<TenantData>(TenantFactory::getTenant());
+  }
+
+  for(auto& e: m_acceptedTenants) {
+    assert(e.get() != nullptr);
+  }
+}
 
 GameStateManager& GameStateManager::get()
 {
@@ -15,19 +26,6 @@ GameStateManager& GameStateManager::get()
 void GameStateManager::acceptTenant()
 {
   AudioOneShotEngine::get().play("happyTenant.wav");
-
-  if (m_acceptedTenants.size() >= maxAmountOfTenants)
-  {
-    auto it = std::next(m_acceptedTenants.begin());
-
-    std::move(m_acceptedTenants.begin(), std::next(m_acceptedTenants.begin()), std::back_inserter(m_thrownOutTenants));
-
-    m_acceptedTenants.erase(m_acceptedTenants.begin());
-  }
-
-  m_acceptedTenants.push_back(m_currentTenant);
-
-  newTenantFee();
 }
 
 void GameStateManager::declineTenant()
@@ -39,17 +37,24 @@ void GameStateManager::declineTenant()
 
 void GameStateManager::kickTenant(TenantData* tenant)
 {
+  for(auto& e: m_acceptedTenants) {
+    if(e.get() == tenant) {
+      e.reset(m_currentTenant.get());
+      break;
+    }
+  }
+
+  newTenantFee();
+  setScreenState(ScreenState::NewTenant);
 }
 
 std::array<TenantData*, 3> GameStateManager::getKickCandidates()
 {
-  static auto t1 = TenantFactory::getTenant();
-  static auto t2 = TenantFactory::getTenant();
-  static auto t3 = TenantFactory::getTenant();
-
   return
   {
-          &t1, &t2, &t3
+          m_acceptedTenants[0].get(),
+          m_acceptedTenants[1].get(),
+          m_acceptedTenants[2].get()
   };
 }
 
