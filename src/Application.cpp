@@ -25,11 +25,8 @@ Application::Application()
 void Application::run()
 {
   auto &d = DataManager::get();
-
   sf::Event event{};
-
   sf::Clock clock;
-
   level.start();
 
   while(window.isOpen())
@@ -67,13 +64,7 @@ Level &Application::getLevel()
   return level;
 }
 
-void Application::quit()
-{
-  window.close();
-  exit(6);
-}
-
 const sf::Vector2f Application::getMidPoint() const
 {
-  return sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2);
+  return sf::Vector2f(window.getSize().x / 2.f, window.getSize().y / 2.f);
 }

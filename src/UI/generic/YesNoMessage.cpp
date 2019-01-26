@@ -1,7 +1,7 @@
 #include "YesNoMessage.h"
-#include "../Application.h"
-#include "../tools/ResourceManager.h"
-#include "../tools/AudioOneShotEngine.h"
+#include "../../Application.h"
+#include "../../tools/ResourceManager.h"
+#include "../../tools/AudioOneShotEngine.h"
 
 YesNoMessage::YesNoMessage(YesNoMessage::tAction yes, YesNoMessage::tAction no, const std::string &message)
     : GenericWindow(message, "Decide!", ResourceManager::get().getTexture("message.png"))

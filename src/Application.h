@@ -9,7 +9,6 @@ class Application
   void run();
   sf::Vector2i getMouse() const;
   Level &getLevel();
-  void quit();
   const sf::Vector2f getMidPoint() const;
 
  protected:

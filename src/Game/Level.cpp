@@ -1,14 +1,14 @@
 #include "Level.h"
 #include "../Application.h"
 #include "../tools/ResourceManager.h"
-#include "../UI/Button.h"
+#include "../UI/generic/Button.h"
 #include <iostream>
-#include "../UI/ChooseWindow.h"
+#include "../UI/GameStuff/ChooseWindow.h"
 #include "../Data/TenantData.h"
 #include "../Data/TenantFactory.h"
-#include "../tools/GameStateManager.h"
-#include "../UI/GenericOkayWindowWithCallback.h"
-#include "../UI/TenantView.h"
+#include "GameStateManager.h"
+#include "../UI/generic/GenericOkayWindowWithCallback.h"
+#include "../UI/GameStuff/TenantView.h"
 
 Level::Level() : firstUpdate {true}
 {

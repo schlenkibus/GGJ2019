@@ -1,6 +1,6 @@
 #pragma once
-#include "GenericWindow.h"
-#include "../tools/ResourceManager.h"
+#include "../generic/GenericWindow.h"
+#include "../../tools/ResourceManager.h"
 
 template <class Option> class ChooseWindow : public GenericWindow
 {

@@ -1,6 +1,6 @@
 #include "TenantView.h"
-#include "../Application.h"
-#include "../tools/GameStateManager.h"
+#include "../../Application.h"
+#include "../../Game/GameStateManager.h"
 
 TenantView::TenantView(TenantData& ref)
     : YesNoMessage(

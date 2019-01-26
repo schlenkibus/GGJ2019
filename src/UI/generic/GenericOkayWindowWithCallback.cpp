@@ -1,6 +1,6 @@
 #include "GenericOkayWindowWithCallback.h"
-#include "../tools/ResourceManager.h"
-#include "../Application.h"
+#include "../../tools/ResourceManager.h"
+#include "../../Application.h"
 
 GenericOkayWindowWithCallback::GenericOkayWindowWithCallback(std::string message, std::string buttonText,
                                                              std::function<void(void)> okayAction)

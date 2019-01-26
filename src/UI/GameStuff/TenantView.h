@@ -1,7 +1,7 @@
 #pragma once
 
-#include "YesNoMessage.h"
-#include "../Data/TenantData.h"
+#include "../generic/YesNoMessage.h"
+#include "../../Data/TenantData.h"
 
 class TenantView : public YesNoMessage
 {

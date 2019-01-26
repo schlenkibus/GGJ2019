@@ -10,7 +10,7 @@
 
 DataManager::DataManager()
 {
-  auto names = std::ifstream("../src/Data/names_formatted");
+  auto names = std::ifstream("../resources/data/names_formatted");
   std::string line;
   while(std::getline(names, line))
   {
@@ -50,7 +50,7 @@ DataManager::DataManager()
     return strings;
   };
 
-  auto dataFile = std::ifstream("../src/Data/characters.tsv");
+  auto dataFile = std::ifstream("../resources/data/characters.tsv");
   bool first = true;
   while(std::getline(dataFile, line))
   {

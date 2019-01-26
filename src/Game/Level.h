@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../UI/DrawableObject.h"
-#include "../UI/YesNoMessage.h"
+#include "../UI/generic/DrawableObject.h"
+#include "../UI/generic/YesNoMessage.h"
 #include "../Data/TenantData.h"
-#include "../UI/GenericWindow.h"
+#include "../UI/generic/GenericWindow.h"
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 

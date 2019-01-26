@@ -1,7 +1,7 @@
 #include "Button.h"
-#include "../Application.h"
-#include "../tools/ResourceManager.h"
-#include "../tools/AudioOneShotEngine.h"
+#include "../../Application.h"
+#include "../../tools/ResourceManager.h"
+#include "../../tools/AudioOneShotEngine.h"
 #include <iostream>
 #include <utility>
 

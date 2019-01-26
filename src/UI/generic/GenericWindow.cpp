@@ -1,7 +1,7 @@
 
 #include "GenericWindow.h"
-#include "../Application.h"
-#include "../tools/ResourceManager.h"
+#include "../../Application.h"
+#include "../../tools/ResourceManager.h"
 
 GenericWindow::GenericWindow(const std::string &message, const std::string &header, sf::Texture &tex)
     : DrawableObject(tex, Application::get().getMidPoint())
