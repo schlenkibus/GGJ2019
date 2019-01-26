@@ -22,3 +22,14 @@ sf::Texture &ResourceManager::getTexture(tPath path) {
         return tex;
     }
 }
+
+sf::Font &ResourceManager::getFont() {
+    return m_font;
+}
+
+ResourceManager::ResourceManager() {
+    if(!m_font.loadFromFile(std::string(prefix) + "BitCasual.ttf")) {
+        std::cerr << std::experimental::filesystem::current_path() << std::endl;
+        std::cerr << "could not load texture from: BitCasual.ttf" << '\n';
+    }
+}

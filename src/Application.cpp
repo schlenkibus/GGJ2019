@@ -7,13 +7,12 @@ Application& Application::get() {
     return app;
 }
 
-Application::Application() : window{sf::VideoMode(1366, 768), "GGJ19", sf::Style::Fullscreen} {
+Application::Application() : window{sf::VideoMode(1366, 768), "GGJ19", sf::Style::Fullscreen}, level{} {
 }
 
 void Application::run() {
     sf::Event event{};
 
-    Level level;
     sf::Clock clock;
 
     while(window.isOpen()) {
@@ -22,7 +21,6 @@ void Application::run() {
                 case sf::Event::Closed:
                     window.close();
                     exit(0);
-                    break;
                 default:
                     level.onEvent(event);
                     break;
@@ -37,4 +35,17 @@ void Application::run() {
         level.draw(window);
         window.display();
     }
+}
+
+sf::Vector2i Application::getMouse() const {
+    return sf::Mouse::getPosition(window);
+}
+
+Level &Application::getLevel() {
+    return level;
+}
+
+void Application::quit() {
+    window.close();
+    exit(6);
 }

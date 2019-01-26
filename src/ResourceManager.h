@@ -10,7 +10,9 @@ public:
     typedef std::string tPath;
     static ResourceManager& get();
     sf::Texture& getTexture(tPath path);
+    sf::Font& getFont();
 protected:
-    ResourceManager() = default;
+    ResourceManager();
     std::unordered_map<tPath, sf::Texture> m_texture;
+    sf::Font m_font;
 };

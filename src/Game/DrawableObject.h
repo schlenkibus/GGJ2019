@@ -12,9 +12,9 @@ public:
 
     DrawableObject(sf::Texture& tex, sf::Vector2f pos);
     DrawableObject(sf::Texture& tex, sf::Vector2f pos, tEventCB onEventCB, tUpdateCB onUpdateCB);
-    void draw(sf::RenderWindow& window);
-    void onEvent(sf::Event& e);
-    void update(float delta);
+    virtual void draw(sf::RenderWindow& window);
+    virtual void onEvent(sf::Event& e);
+    virtual void update(float delta);
 protected:
     sf::Sprite sprite;
     sf::Texture& tex;

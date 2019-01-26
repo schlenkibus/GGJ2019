@@ -8,6 +8,7 @@
 
 DrawableObject::DrawableObject(sf::Texture &tex, sf::Vector2f pos) : tex{tex}, onEventCB{nullptr}, updateCB{nullptr} {
     sprite.setTexture(tex);
+    sprite.setOrigin(tex.getSize().x / 2.f, tex.getSize().y / 2.f);
     sprite.setPosition(pos);
 }
 
@@ -15,6 +16,7 @@ DrawableObject::DrawableObject(sf::Texture &tex, sf::Vector2f pos, DrawableObjec
                                DrawableObject::tUpdateCB onUpdateCB) : tex{tex}, updateCB{std::move(onUpdateCB)}, onEventCB{
         std::move(onEventCB)} {
     sprite.setTexture(tex);
+    sprite.setOrigin(tex.getSize().x / 2.f, tex.getSize().y / 2.f);
     sprite.setPosition(pos);
 }
 
