@@ -6,6 +6,7 @@
 #include "../UI/generic/GenericWindow.h"
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
+#include "../UI/generic/CashView.h"
 
 class Level
 {
@@ -28,4 +29,5 @@ class Level
   bool firstUpdate;
   std::unique_ptr<DrawableObject> m_desk;
   std::unique_ptr<DrawableObject> m_background;
+  CashView m_cash;
 };

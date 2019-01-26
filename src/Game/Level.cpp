@@ -66,6 +66,7 @@ void Level::draw(sf::RenderWindow &w)
 
   m_background->draw(w);
   m_desk->draw(w);
+  w.draw(m_cash);
 
   for(auto &obj : m_objects)
   {
@@ -113,10 +114,14 @@ void Level::setGameScene()
   m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(100, 100),
                                                   [&]() {
                                                     m_objects.clear();
+                                                    m_cash.setString("");
                                                     Application::get().getLevel().closeMessage();
                                                     Application::get().getLevel().setMenuScene();
                                                   },
                                                   ""));
+  m_cash.setPosition(1000, 0);
+  m_cash.setCash(GameStateManager::get().getCurrentMoney());
+
   auto &element = m_objects.front();
   auto refButton = dynamic_cast<Button *>(element.get());
   refButton->setTexture(exitTexture);
