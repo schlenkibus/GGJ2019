@@ -35,6 +35,7 @@ private:
     std::shared_ptr<TenantData> m_currentTenant;
     std::vector<std::shared_ptr<TenantData>> m_acceptedTenants{};
     std::vector<std::shared_ptr<TenantData>> m_declinedTenants{};
+    std::vector<std::shared_ptr<TenantData>> m_thrownOutTenants{};
 
     TenantChangedCallback m_tenantChangedCallback;
 
