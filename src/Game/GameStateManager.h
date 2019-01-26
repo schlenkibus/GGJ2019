@@ -80,6 +80,7 @@ protected:
   TenantChangedCallback m_tenantChangedCallback;
 
   size_t m_days = 0;
+  size_t lastCalculatedDay = 0;
 
   int m_currentMoneyEarned = 5000;
   int m_totalMoneyEarned = 0;

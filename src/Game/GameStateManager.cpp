@@ -5,6 +5,7 @@
 #include "../Application.h"
 #include "../tools/AudioOneShotEngine.h"
 #include "../UI/GameStuff/TenantKickScreen.h"
+#include "../UI/GameStuff/PlayerStatsScreen.h"
 #include <assert.h>
 
 GameStateManager::GameStateManager() {
@@ -45,7 +46,6 @@ void GameStateManager::kickTenant(TenantData* tenant)
   }
 
   newTenantFee();
-  setScreenState(ScreenState::NewTenant);
 }
 
 std::array<TenantData*, 3> GameStateManager::getKickCandidates()
@@ -180,7 +180,7 @@ void GameStateManager::setScreenState(ScreenState newScreenState)
     }
     case ScreenState::NewTenant:
     {
-      if (m_days != 0 && m_days % 7 == 0) {
+      if ((m_days != 0) && (m_days % 7 == 0) && (m_days != lastCalculatedDay)) {
         setScreenState(ScreenState::PlayerStats);
       }
       else
@@ -203,8 +203,9 @@ void GameStateManager::setScreenState(ScreenState newScreenState)
     }
     case ScreenState::PlayerStats:
     {
+      lastCalculatedDay = m_days;
       calculateWeek();
-//      Application::get().getLevel().install(std::make_unique<PlayerStatsScreen>());
+      Application::get().getLevel().install(std::make_unique<PlayerStatsScreen>());
       break;
     }
   }
