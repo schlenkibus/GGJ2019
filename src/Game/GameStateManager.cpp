@@ -7,7 +7,9 @@
 #include "../UI/GameStuff/TenantKickScreen.h"
 #include "../UI/GameStuff/PlayerStatsScreen.h"
 #include "../UI/GameStuff/DenyTenantScreen.h"
+
 #include <assert.h>
+#include <sstream>
 
 GameStateManager::GameStateManager()
 {
@@ -51,6 +53,17 @@ void GameStateManager::kickTenant(TenantData* tenant)
   }
 
   newTenantFee();
+}
+
+std::string GameStateManager::getWeeklyReport()
+{
+  std::stringstream ss;
+  ss << "Net Income: " << m_netIncome - static_cast<int>(m_tenantsKickedOut * newTenantCost) << '\n';
+  ss << "Tenants Replaced: " << m_tenantsKickedOut << '\n';
+  ss << "Total Money: " << m_currentMoneyEarned << '\n';
+  m_netIncome = 0;
+  m_tenantsKickedOut = 0;
+  return ss.str();
 }
 
 std::array<TenantData*, 3> GameStateManager::getKickCandidates()
@@ -105,9 +118,9 @@ void GameStateManager::calculateWeek()
     totalIncome += calculateTenantPayment(tenant);
   }
 
-  int netIncome = static_cast<int>(totalIncome - monthlyExpenses);
+  m_netIncome = static_cast<int>(totalIncome - monthlyExpenses);
 
-  changeCurrentMoney(netIncome);
+  changeCurrentMoney(m_netIncome);
 }
 
 size_t GameStateManager::calculateTenantPayment(std::shared_ptr<TenantData> tentant)
@@ -193,6 +206,7 @@ void GameStateManager::setScreenState(ScreenState newScreenState)
     }
     case ScreenState::KickTenant:
     {
+      m_tenantsKickedOut++;
       Application::get().getLevel().install(std::make_unique<TenantKickScreen>());
       break;
     }
