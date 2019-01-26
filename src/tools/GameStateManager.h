@@ -11,7 +11,7 @@ class TenantData;
 class GameStateManager {
 public:
     using TenantChangedCallback = std::function<void(std::shared_ptr<TenantData>)>;
-    GameStateManager &get();
+    static GameStateManager &get();
 
     void acceptTenant();
     void declineTenant();
