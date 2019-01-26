@@ -45,7 +45,7 @@ class GameStateManager
 
  private:
   const size_t maxAmountOfTenants = 10;
-  const size_t montlyExpences = 5000;
+  const size_t monthlyExpenses = 5000;
   const size_t newTenantCost = 100;
   const size_t rentAmount = 1000;
 

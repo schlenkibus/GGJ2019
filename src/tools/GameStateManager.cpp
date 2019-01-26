@@ -87,7 +87,7 @@ void GameStateManager::calculateWeek()
     totalIncome += calculateTenantPayment(tenant);
   }
 
-  int netIncome = totalIncome - montlyExpences;
+  int netIncome = static_cast<int>(totalIncome - monthlyExpenses);
 
   changeCurrentMoney(netIncome);
 }
@@ -129,7 +129,7 @@ size_t GameStateManager::calculateTenantPayment(std::shared_ptr<TenantData> tent
 
   const auto likelihood = (recommendationPercentage + salaryPercentage) * 100;
   auto& dm = DataManager::get();
-  auto randomNumber =  dm.getRandomNumber(0, 100);
+  auto randomNumber = dm.getRandomNumber(0, 100);
 
   if (likelihood > randomNumber)
   {
@@ -143,6 +143,6 @@ size_t GameStateManager::calculateTenantPayment(std::shared_ptr<TenantData> tent
 
 void GameStateManager::start()
 {
-  listenForTenantChanged([](std::shared_ptr<TenantData> ptr) { Application::get().getLevel().pushTenant(*ptr.get()); });
+  listenForTenantChanged([](std::shared_ptr<TenantData> ptr) { Application::get().getLevel().pushTenant(*ptr); });
   nextDay();
 }
