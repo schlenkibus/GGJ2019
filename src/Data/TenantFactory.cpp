@@ -12,22 +12,22 @@ TenantData TenantFactory::getTenant()
   tenant.outcome = dm.getOutcome();
   tenant.profession = dm.getProfession();
 
-  std::string reccomendation;
+  std::string recommendation;
 
   switch(tenant.factor)
   {
     case -1:
-      reccomendation = dm.getRecommendationBad();
+      recommendation = dm.getRecommendationBad();
       break;
     case 1:
-      reccomendation = dm.getRecommendationGood();
+      recommendation = dm.getRecommendationGood();
       break;
     case 0:
     default:
-      reccomendation = dm.getRecommendationNeural();
+      recommendation = dm.getRecommendationNeural();
       break;
   }
 
-  tenant.reccomendation = reccomendation;
+  tenant.recommendation = recommendation;
   return tenant;
 }
