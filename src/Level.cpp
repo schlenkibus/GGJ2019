@@ -8,7 +8,7 @@ Level::Level() {
     auto& rm = ResourceManager::get();
     auto& testTexture = rm.getTexture("test.png");
 
-    m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(300, 500), [](){
+    m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(300, 400), [](){
         Application::get().getLevel().pushMessage("I'm just an annoying Message! I don't care if this annoys you! :)");
     }, "Test"));
 
@@ -52,7 +52,7 @@ void Level::draw(sf::RenderWindow &w) {
 }
 
 void Level::pushMessage(const std::string &message) {
-    m_message = std::make_unique<MessageWindow>(message, "Common Message");
+    m_message = std::make_unique<CommonMessageWindow>(message, "Common Message");
 }
 
 void Level::closeMessage() {

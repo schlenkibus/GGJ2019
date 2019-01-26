@@ -1,7 +1,7 @@
 #pragma once
-#include "MessageWindow.h"
+#include "CommonMessageWindow.h"
 
-class YesNoMessage : public MessageWindow {
+class YesNoMessage : public GenericWindow {
 public:
     typedef std::function<void(void)> tAction;
     YesNoMessage(tAction yes, tAction no, const std::string& message);

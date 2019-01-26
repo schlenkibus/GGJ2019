@@ -3,7 +3,7 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "Game/DrawableObject.h"
-#include "UI/MessageWindow.h"
+#include "UI/CommonMessageWindow.h"
 #include "UI/YesNoMessage.h"
 
 class Level {
@@ -17,5 +17,5 @@ public:
     void closeMessage();
 protected:
     std::vector<std::unique_ptr<DrawableObject>> m_objects;
-    std::unique_ptr<MessageWindow> m_message;
+    std::unique_ptr<GenericWindow> m_message;
 };

@@ -1,10 +1,9 @@
 #pragma once
 #include "../Game/DrawableObject.h"
-#include "Button.h"
 
-class MessageWindow : public DrawableObject {
+class GenericWindow : public DrawableObject {
 public:
-    MessageWindow(const std::string &message, const std::string& header);
+    GenericWindow(const std::string& message, const std::string& header, sf::Texture& tex);
     void draw(sf::RenderWindow& window) override;
     void onEvent(sf::Event& e) override;
 protected:

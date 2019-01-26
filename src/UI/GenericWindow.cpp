@@ -1,11 +1,12 @@
-#include "MessageWindow.h"
+
+#include "GenericWindow.h"
 #include "../ResourceManager.h"
 #include "../Application.h"
 
-MessageWindow::MessageWindow(const std::string &message, const std::string& header) :
-DrawableObject(ResourceManager::get().getTexture("message.png"), Application::get().getMidPoint()),
-m_header{header, ResourceManager::get().getFont()},
-m_message{message, ResourceManager::get().getFont()} {
+GenericWindow::GenericWindow(const std::string &message, const std::string& header, sf::Texture& tex) :
+        DrawableObject(tex, Application::get().getMidPoint()),
+        m_header{header, ResourceManager::get().getFont()},
+        m_message{message, ResourceManager::get().getFont()} {
 
     std::string perm;
     auto lastInsertAgo = 0;
@@ -31,12 +32,12 @@ m_message{message, ResourceManager::get().getFont()} {
     m_message.setFillColor(sf::Color::White);
 }
 
-void MessageWindow::draw(sf::RenderWindow &window) {
+void GenericWindow::draw(sf::RenderWindow &window) {
     DrawableObject::draw(window);
     window.draw(m_header);
     window.draw(m_message);
 }
 
-void MessageWindow::onEvent(sf::Event &e) {
+void GenericWindow::onEvent(sf::Event &e) {
 
 }
