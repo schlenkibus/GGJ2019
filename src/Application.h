@@ -9,6 +9,7 @@ public:
     sf::Vector2i getMouse() const;
     Level& getLevel();
     void quit();
+    const sf::Vector2f getMidPoint() const;
 protected:
     Application();
     sf::RenderWindow window;
