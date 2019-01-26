@@ -45,4 +45,5 @@ void GenericWindow::draw(sf::RenderWindow &window)
 
 bool GenericWindow::onEvent(sf::Event &e)
 {
+  return false;
 }

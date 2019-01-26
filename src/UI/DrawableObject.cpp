@@ -38,6 +38,7 @@ bool DrawableObject::onEvent(sf::Event &e)
   {
     return onEventCB(e, *this);
   }
+  return false;
 }
 
 void DrawableObject::update(float delta)
