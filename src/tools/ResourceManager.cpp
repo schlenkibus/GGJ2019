@@ -36,6 +36,39 @@ ResourceManager::ResourceManager()
 {
   if(!m_font.loadFromFile(std::string(prefix) + "BitCasual.ttf"))
   {
-    std::cerr << "could not load texture from: BitCasual.ttf" << '\n';
+    std::cerr << "could not load font from: BitCasual.ttf" << '\n';
+  }
+
+  if (!m_music.openFromFile(std::string(prefix) + std::string(audioDir) + "music.wav"))
+  {
+    std::cerr << "could not load music from: music.wav" << '\n';
+  }
+
+  m_music.setLoop(true);
+  m_music.setVolume(20);
+}
+
+sf::Music& ResourceManager::getMusic()
+{
+  return m_music;
+}
+
+sf::SoundBuffer& ResourceManager::getSoundBuffer(ResourceManager::tPath path)
+{
+  path = std::string(prefix) + std::string(audioDir) + path;
+  try
+  {
+    return m_soundBuffer.at(path);
+  }
+  catch(...)
+  {
+    auto &soundBuffer = m_soundBuffer[path];
+    auto ret = soundBuffer.loadFromFile(path);
+    if(!ret)
+    {
+      std::cerr << "could not load sound from: " << path << '\n';
+      exit(60);
+    }
+    return soundBuffer;
   }
 }

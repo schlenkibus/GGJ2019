@@ -39,6 +39,11 @@ Level::Level()
                                        [](float delta, DrawableObject &o) { o.setPos(sf::Vector2f(delta, delta)); }));
 }
 
+void Level::start()
+{
+  ResourceManager::get().getMusic().play();
+}
+
 void Level::update(float delta)
 {
   for(auto &obj : m_objects)

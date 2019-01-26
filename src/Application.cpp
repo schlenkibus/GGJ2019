@@ -23,6 +23,8 @@ void Application::run()
 
   sf::Clock clock;
 
+  level.start();
+
   while(window.isOpen())
   {
     while(window.pollEvent(event))
