@@ -38,6 +38,10 @@ void GameStateManager::declineTenant()
 
 void GameStateManager::nextDay()
 {
+  if (m_days != 0 && m_days % 7 == 0) {
+    calculateWeek();
+  }
+
   m_days++;
   generateNewTenant();
 }
@@ -79,4 +83,9 @@ void GameStateManager::start()
 {
   listenForTenantChanged([](std::shared_ptr<TenantData> ptr) { Application::get().getLevel().pushTenant(*ptr.get()); });
   nextDay();
+}
+
+void GameStateManager::calculateWeek()
+{
+
 }

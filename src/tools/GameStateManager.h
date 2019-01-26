@@ -50,6 +50,7 @@ class GameStateManager
   void nextDay();
   void generateNewTenant();
   void newTenantFee();
+  void calculateWeek();
 
   void changeCurrentMoney(int amount);
 
