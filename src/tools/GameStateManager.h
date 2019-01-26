@@ -63,7 +63,6 @@ class GameStateManager
 
   int m_currentMoneyEarned = 0;
   int m_totalMoneyEarned = 0;
-
   int m_currentKarmaEarned = 0;
   int m_totalKarmaEarned = 0;
 };
