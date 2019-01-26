@@ -38,7 +38,7 @@ void GameStateManager::generateNewTenant()
 
 void GameStateManager::listenForTenantChanged(TenantChangedCallback function)
 {
-    m_tenantChangedCallback = function;
+    m_tenantChangedCallback = std::move(function);
 }
 
 void GameStateManager::newTenantFee()
