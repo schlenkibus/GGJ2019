@@ -8,7 +8,7 @@ std::string TenantData::toString() const
   ss << "Age:" << age << '\n';
   ss << "Profession:" << profession << '\n';
   ss << "Salary:" << salary << '\n';
-  ss << "Reccomendation:\n" << reccomendation << '\n';
+  ss << "Recommendation:\n" << recommendation << '\n';
   return ss.str();
 }
 
@@ -24,5 +24,5 @@ sf::Texture& TenantData::getTexture()
 
 std::string TenantData::getStats() const
 {
-  return std::string("STATS:\n") + std::to_string(salary) + " " + reccomendation;
+  return std::string("STATS:\n") + std::to_string(salary) + " " + recommendation;
 }

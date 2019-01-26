@@ -1,5 +1,6 @@
 #include "TenantFactory.h"
 #include "TenantData.h"
+#include "TenantCharacteristics.h"
 
 TenantData TenantFactory::getTenant()
 {
@@ -12,22 +13,45 @@ TenantData TenantFactory::getTenant()
   tenant.outcome = dm.getOutcome();
   tenant.profession = dm.getProfession();
 
-  std::string reccomendation;
+  std::string recommendation;
+  Recommendation recommendationRating;
 
   switch(tenant.factor)
   {
     case -1:
-      reccomendation = dm.getRecommendationBad();
+      recommendation = dm.getRecommendationBad();
+      recommendationRating = Recommendation::Low;
       break;
     case 1:
-      reccomendation = dm.getRecommendationGood();
+      recommendation = dm.getRecommendationGood();
+      recommendationRating = Recommendation::High;
       break;
     case 0:
     default:
-      reccomendation = dm.getRecommendationNeural();
+      recommendation = dm.getRecommendationNeural();
+      recommendationRating = Recommendation::Medium;
       break;
   }
 
-  tenant.reccomendation = reccomendation;
+  tenant.recommendation = recommendation;
+  tenant.recommendationRating = recommendationRating;
+
+  Salary salaryRating;
+  switch(dm.getRandomNumber(-1, 1))
+  {
+    case -1:
+      salaryRating = Salary::Low;
+      break;
+    case 1:
+      salaryRating = Salary::High;
+      break;
+    case 0:
+    default:
+      salaryRating = Salary::Medium;
+      break;
+  }
+
+  tenant.salaryRating = salaryRating;
+
   return tenant;
 }

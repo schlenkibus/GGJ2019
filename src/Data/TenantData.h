@@ -2,6 +2,7 @@
 
 #include "DataManager.h"
 #include "AnimalData.h"
+#include "TenantCharacteristics.h"
 #include <string>
 
 class TenantData
@@ -12,15 +13,19 @@ class TenantData
   const std::string& getOutcome() const;
   std::string getStats() const;
   sf::Texture& getTexture();
+  Recommendation getRecommendationRating() { return recommendationRating; };
+  Salary getSalaryRating() { return salaryRating; };
 
  protected:
   std::string name;
   std::string profession;
   int age{};
   int factor{};
-  std::string reccomendation;
+  Recommendation recommendationRating;
+  std::string recommendation;
   std::string outcome;
   int salary{};
+  Salary salaryRating;
   AnimalData animaldata;
   bool happy = true;
 
