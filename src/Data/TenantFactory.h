@@ -3,9 +3,8 @@
 #include <sstream>
 #include "TenantData.h"
 
-class TenantFactory {
-public:
-    static TenantData getTenant();
+class TenantFactory
+{
+ public:
+  static TenantData getTenant();
 };
-
-

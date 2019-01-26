@@ -1,5 +1,6 @@
 #pragma once
-#include "CommonMessageWindow.h"
+#include "GenericWindow.h"
+#include "Button.h"
 
 class YesNoMessage : public GenericWindow
 {

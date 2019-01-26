@@ -15,7 +15,7 @@ class DataManager
   std::string getRecommendationNeural() const;
   std::string getRandom(const std::vector<std::string>& in) const;
 
-protected:
+ protected:
   DataManager();
   std::vector<std::string> m_names;
   std::vector<std::string> m_professions;
@@ -23,6 +23,4 @@ protected:
   std::vector<std::string> m_recommendationsPos;
   std::vector<std::string> m_recommendationsNeg;
   std::vector<std::string> m_recommendationsNeutral;
-
-
 };

@@ -7,11 +7,18 @@
 #include "../Data/TenantData.h"
 #include "../Data/TenantFactory.h"
 #include "../tools/GameStateManager.h"
+#include "../UI/GenericOkayWindowWithCallback.h"
+#include "../UI/TenantView.h"
 
 Level::Level()
 {
   auto &rm = ResourceManager::get();
   auto &testTexture = rm.getTexture("test.png");
+
+  m_objects.emplace_back(
+      std::make_unique<Button>(sf::Vector2f(300, 200), [&]() {
+        m_objects.clear();
+        GameStateManager::get().start(); }, "Start"));
 
   m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(300, 300),
                                                   []() { Application::get().getLevel().testChoose(); }, "Choose!"));
@@ -74,7 +81,7 @@ void Level::draw(sf::RenderWindow &w)
 
 void Level::pushMessage(const std::string &message)
 {
-  m_message = std::make_unique<CommonMessageWindow>(message, "Common Message");
+  std::cout << message << std::endl;
 }
 
 void Level::closeMessage()
@@ -128,4 +135,14 @@ void Level::testChoose()
                                        return false;
                                      },
                                      nullptr)));
+}
+
+void Level::pushTenant(TenantData &data)
+{
+  m_message = std::make_unique<TenantView>(data);
+}
+
+void Level::pushGenericMessage(std::string message, std::function<void(void)> okayAction)
+{
+  m_message = std::make_unique<GenericOkayWindowWithCallback>(message, "okay", std::move(okayAction));
 }

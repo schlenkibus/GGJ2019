@@ -3,8 +3,8 @@
 #include "YesNoMessage.h"
 #include "../Data/TenantData.h"
 
-
-class TenantView : public YesNoMessage {
-public:
-    TenantView(TenantData& ref);
+class TenantView : public YesNoMessage
+{
+ public:
+  TenantView(TenantData& ref);
 };
