@@ -34,13 +34,11 @@ bool Button::onEvent(sf::Event &e)
     {
       sprite.setScale(1.1, 1.1);
       m_text.setCharacterSize(45);
-      ret = true;
     }
     else
     {
       m_text.setCharacterSize(40);
       sprite.setScale(1, 1);
-      ret = true;
     }
   }
   if(e.type == sf::Event::MouseButtonReleased && e.mouseButton.button == sf::Mouse::Button::Left)
@@ -58,7 +56,6 @@ bool Button::onEvent(sf::Event &e)
     if(sprite.getGlobalBounds().contains(mousePos.x, mousePos.y))
     {
       sprite.setColor(sf::Color::Green);
-      ret = true;
     }
   }
   return ret;
