@@ -1,5 +1,6 @@
 #include "Application.h"
 #include "Game/Level.h"
+#include "Data/DataManager.h"
 #include <SFML/Window/Event.hpp>
 
 Application &Application::get()
@@ -16,6 +17,8 @@ Application::Application()
 
 void Application::run()
 {
+  auto &d = DataManager::get();
+
   sf::Event event{};
 
   sf::Clock clock;
