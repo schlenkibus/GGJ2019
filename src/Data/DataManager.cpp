@@ -73,42 +73,6 @@ DataManager::DataManager()
       m_recommendationsNeutral.emplace_back(strings[4]);
   }
   dataFile.close();
-
-  std::cout << "\nNames:\n";
-  for(auto& name : m_names)
-  {
-    std::cout << name << '\n';
-  }
-
-  std::cout << "\nOutcomes:\n";
-  for(auto& outcome : m_outcomes)
-  {
-    std::cout << outcome << '\n';
-  }
-
-  std::cout << "\nProfession:\n";
-  for(auto& profession : m_professions)
-  {
-    std::cout << profession << '\n';
-  }
-
-  std::cout << "\nRecommendations Good:\n";
-  for(auto& rec : m_recommendationsPos)
-  {
-    std::cout << rec << '\n';
-  }
-
-  std::cout << "\nRecommendations Bad:\n";
-  for(auto& rec : m_recommendationsNeg)
-  {
-    std::cout << rec << '\n';
-  }
-
-  std::cout << "\nRecommendations Neural:\n";
-  for(auto& rec : m_recommendationsNeutral)
-  {
-    std::cout << rec << '\n';
-  }
 }
 
 DataManager& DataManager::get()

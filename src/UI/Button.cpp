@@ -24,6 +24,10 @@ void Button::draw(sf::RenderWindow &window)
   window.draw(m_text);
 }
 
+void Button::setTexture(sf::Texture& tex) {
+  sprite.setTexture(tex);
+}
+
 bool Button::onEvent(sf::Event &e)
 {
   bool ret = false;
