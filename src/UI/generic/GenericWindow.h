@@ -9,6 +9,7 @@ class GenericWindow : public DrawableObject
   bool onEvent(sf::Event &e) override;
 
  protected:
+  const size_t charactersToNewLine();
   sf::Text m_header;
   sf::Text m_message;
 };

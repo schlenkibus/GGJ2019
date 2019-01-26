@@ -180,7 +180,8 @@ void GameStateManager::setScreenState(ScreenState newScreenState)
     }
     case ScreenState::NewTenant:
     {
-      if ((m_days != 0) && (m_days % 7 == 0) && (m_days != lastCalculatedDay)) {
+      if((m_days != 0) && (m_days % 7 == 0) && (m_days != lastCalculatedDay))
+      {
         setScreenState(ScreenState::PlayerStats);
       }
       else

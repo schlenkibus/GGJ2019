@@ -17,9 +17,13 @@ TenantKickEntry::TenantKickEntry(TenantData *data, sf::Vector2f pos)
   if(data == nullptr)
     data = &proto;
 
-  text.setPosition(pos - sf::Vector2f(0, -250));
+
+  text.setPosition(pos + sf::Vector2f(-100, 80));
   text.setString(data->getStats());
   text.setFont(ResourceManager::get().getFont());
+  text.setCharacterSize(50);
+  text.setOutlineColor(sf::Color::Black);
+  text.setOutlineThickness(1.2);
 }
 
 void TenantKickEntry::draw(sf::RenderWindow &window)

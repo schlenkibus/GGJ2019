@@ -6,6 +6,7 @@ class DenyTenantScreen : public GenericOkayWindowWithCallback
  public:
   DenyTenantScreen();
   void draw(sf::RenderWindow& window) override;
-protected:
-    DrawableObject pic;
+
+ protected:
+  DrawableObject pic;
 };

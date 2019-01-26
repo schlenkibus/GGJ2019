@@ -16,7 +16,7 @@ GenericWindow::GenericWindow(const std::string &message, const std::string &head
   {
     if(std::isspace(c))
     {
-      if(lastInsertAgo >= 15)
+      if(lastInsertAgo >= charactersToNewLine())
       {
         perm += '\n';
         lastInsertAgo = 0;
@@ -46,4 +46,9 @@ void GenericWindow::draw(sf::RenderWindow &window)
 bool GenericWindow::onEvent(sf::Event &e)
 {
   return false;
+}
+
+const size_t GenericWindow::charactersToNewLine()
+{
+  return static_cast<const size_t>(sprite.getGlobalBounds().width / 20);
 }

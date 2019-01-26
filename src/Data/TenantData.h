@@ -26,7 +26,8 @@ class TenantData : public std::enable_shared_from_this<TenantData>
   {
     return salaryRating;
   };
-  void setHappy(bool h) {
+  void setHappy(bool h)
+  {
     happy = h;
   }
 

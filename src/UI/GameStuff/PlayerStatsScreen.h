@@ -6,6 +6,6 @@
 
 class PlayerStatsScreen : public GenericOkayWindowWithCallback
 {
-public:
-    PlayerStatsScreen();
+ public:
+  PlayerStatsScreen();
 };

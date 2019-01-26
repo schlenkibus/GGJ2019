@@ -24,5 +24,29 @@ sf::Texture& TenantData::getTexture()
 
 std::string TenantData::getStats() const
 {
-  return std::string("STATS:\n") + std::to_string(salary) + " " + recommendation;
+  std::string ret;
+  switch(recommendationRating) {
+      case Recommendation::High:
+        ret += ":)";
+        break;
+      case Recommendation::Medium:
+        ret += ":|";
+        break;
+      case Recommendation::Low:
+        ret += ":(";
+        break;
+  }
+  ret += '\n';
+  switch(salaryRating) {
+    case Salary::High:
+      ret += "$$$";
+          break;
+    case Salary::Medium:
+      ret += "$$";
+          break;
+    case Salary::Low:
+      ret += "$";
+          break;
+  }
+  return ret;
 }
