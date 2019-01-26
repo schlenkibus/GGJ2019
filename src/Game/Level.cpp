@@ -14,14 +14,20 @@ Level::Level()
     : firstUpdate{ true }
 {
   auto &rm = ResourceManager::get();
-  auto &testTexture = rm.getTexture("test.png");
+  auto &background = rm.getTexture("Desk_try.png");
 
-  setMenuScene();
+  m_background = std::make_unique<DrawableObject>(background, sf::Vector2f(0, 0));
+
+
 }
 
 void Level::start()
 {
   ResourceManager::get().getMusic().play();
+
+  m_background->setPos(Application::get().getMidPoint());
+
+  setMenuScene();
 }
 
 void Level::update(float delta)
@@ -56,6 +62,9 @@ void Level::onEvent(sf::Event &e)
 
 void Level::draw(sf::RenderWindow &w)
 {
+
+  m_background->draw(w);
+
   for(auto &obj : m_objects)
   {
     obj->draw(w);
