@@ -1,6 +1,7 @@
 #include "Button.h"
 #include "../Application.h"
 #include "../tools/ResourceManager.h"
+#include "../tools/AudioOneShotEngine.h"
 #include <iostream>
 #include <utility>
 
@@ -45,6 +46,7 @@ bool Button::onEvent(sf::Event &e)
   {
     if(sprite.getGlobalBounds().contains(mousePos.x, mousePos.y))
     {
+      AudioOneShotEngine::get().play("testSound.wav");
       m_action();
       ret = true;
     }

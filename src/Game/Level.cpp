@@ -45,6 +45,8 @@ void Level::start()
  GameStateManager::get().listenForTenantChanged([](auto tenantData){
    // push new page
  });
+
+  ResourceManager::get().getMusic().play();
 }
 
 void Level::update(float delta)
