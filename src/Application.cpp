@@ -1,5 +1,5 @@
 #include "Application.h"
-#include "Level.h"
+#include "Game/Level.h"
 #include <SFML/Window/Event.hpp>
 
 Application &Application::get()

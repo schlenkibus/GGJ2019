@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/DrawableObject.h"
-#include "UI/CommonMessageWindow.h"
-#include "UI/YesNoMessage.h"
+#include "../UI/DrawableObject.h"
+#include "../UI/CommonMessageWindow.h"
+#include "../UI/YesNoMessage.h"
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 

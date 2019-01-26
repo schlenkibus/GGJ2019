@@ -1,5 +1,5 @@
 #pragma once
-#include "../Game/DrawableObject.h"
+#include "DrawableObject.h"
 
 class GenericWindow : public DrawableObject
 {

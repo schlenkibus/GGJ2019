@@ -1,5 +1,5 @@
 #pragma once
-#include "Level.h"
+#include "Game/Level.h"
 #include <SFML/Graphics/RenderWindow.hpp>
 
 class Application

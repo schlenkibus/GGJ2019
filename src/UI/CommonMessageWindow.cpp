@@ -1,6 +1,6 @@
 #include "CommonMessageWindow.h"
 #include "../Application.h"
-#include "../ResourceManager.h"
+#include "../tools/ResourceManager.h"
 
 CommonMessageWindow::CommonMessageWindow(const std::string &message, const std::string &header)
     : GenericWindow(message, header, ResourceManager::get().getTexture("message.png"))

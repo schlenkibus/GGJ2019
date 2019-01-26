@@ -1,6 +1,6 @@
 #include "YesNoMessage.h"
 #include "../Application.h"
-#include "../ResourceManager.h"
+#include "../tools/ResourceManager.h"
 
 YesNoMessage::YesNoMessage(YesNoMessage::tAction yes, YesNoMessage::tAction no, const std::string &message)
     : GenericWindow(message, "Decide!", ResourceManager::get().getTexture("message.png"))

@@ -1,9 +1,9 @@
 #include "Level.h"
-#include "Application.h"
-#include "ResourceManager.h"
-#include "UI/Button.h"
+#include "../Application.h"
+#include "../tools/ResourceManager.h"
+#include "../UI/Button.h"
 #include <iostream>
-#include "UI/ChooseWindow.h"
+#include "../UI/ChooseWindow.h"
 
 Level::Level()
 {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Game/DrawableObject.h"
+#include "DrawableObject.h"
 #include <functional>
 
 class Button : public DrawableObject
