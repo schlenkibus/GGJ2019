@@ -6,6 +6,7 @@ TenantView::TenantView(TenantData& ref)
     : YesNoMessage(
           []() {
             GameStateManager::get().acceptTenant();
+            GameStateManager::get().setScreenState(ScreenState::KickTenant);
           },
           [&]() {
             Application::get().getLevel().pushGenericMessage(ref.getOutcome(),
