@@ -64,30 +64,9 @@ void Level::draw(sf::RenderWindow &w)
     m_message->draw(w);
 }
 
-void Level::pushMessage(const std::string &message)
-{
-  std::cout << message << std::endl;
-}
-
 void Level::closeMessage()
 {
   m_message.reset(nullptr);
-}
-
-void Level::pushYesNoMessage(const std::string &message, YesNoMessage::tAction yes, YesNoMessage::tAction no)
-{
-  m_message = std::make_unique<YesNoMessage>(std::move(yes), std::move(no), message);
-}
-
-void Level::testChoose()
-{
-  auto &rs = ResourceManager::get();
-  auto mid = Application::get().getMidPoint();
-
-  auto clickedOnDrawable = [](sf::Event &e, DrawableObject &o) -> bool {
-    return e.type == sf::Event::MouseButtonReleased && e.mouseButton.button == sf::Mouse::Left
-        && o.contains(Application::get().getMouse());
-  };
 }
 
 void Level::pushTenant(TenantData &data)
@@ -102,7 +81,7 @@ void Level::pushGenericMessage(std::string message, std::function<void(void)> ok
 
 void Level::install(std::unique_ptr<GenericWindow> &&window)
 {
-  m_message.reset(window.release());
+  m_message = std::move(window);
 }
 
 void Level::setMenuScene() {

@@ -15,10 +15,7 @@ class Level
   void update(float delta);
   void onEvent(sf::Event &e);
   void draw(sf::RenderWindow &w);
-  void pushMessage(const std::string &message);
-  void pushYesNoMessage(const std::string &message, YesNoMessage::tAction yes, YesNoMessage::tAction no);
   void closeMessage();
-  void testChoose();
   void pushTenant(TenantData &data);
   void pushGenericMessage(std::string message, std::function<void(void)> okayAction);
   void install(std::unique_ptr<GenericWindow> &&window);
