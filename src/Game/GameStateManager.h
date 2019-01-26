@@ -3,6 +3,7 @@
 #include "../Data/TenantData.h"
 
 #include <vector>
+#include <array>
 #include <functional>
 #include <memory>
 
