@@ -17,9 +17,8 @@ Level::Level()
   auto &desk = rm.getTexture("Desk_try.png");
   auto &background = rm.getTexture("Background.png");
 
-  m_desk = std::make_unique<DrawableObject>(desk, sf::Vector2f(0,0));
+  m_desk = std::make_unique<DrawableObject>(desk, sf::Vector2f(0, 0));
   m_background = std::make_unique<DrawableObject>(background, sf::Vector2f(0, 0));
-
 }
 
 void Level::start()
@@ -96,27 +95,29 @@ void Level::install(std::unique_ptr<GenericWindow> &&window)
   m_message = std::move(window);
 }
 
-void Level::setMenuScene() {
-    m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(600, 325),
-                                                    [&]() {
-                                                        m_objects.clear();
-                                                        GameStateManager::get().start();
-                                                    },
-                                                    "Start"));
+void Level::setMenuScene()
+{
+  m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(600, 325),
+                                                  [&]() {
+                                                    m_objects.clear();
+                                                    GameStateManager::get().start();
+                                                  },
+                                                  "Start"));
 }
 
-void Level::setGameScene() {
+void Level::setGameScene()
+{
   auto &rm = ResourceManager::get();
   auto &exitTexture = rm.getTexture("exitbutton.png");
 
   m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(100, 100),
                                                   [&]() {
-                                                      m_objects.clear();
-                                                      Application::get().getLevel().closeMessage();
-                                                      Application::get().getLevel().setMenuScene();
+                                                    m_objects.clear();
+                                                    Application::get().getLevel().closeMessage();
+                                                    Application::get().getLevel().setMenuScene();
                                                   },
                                                   ""));
   auto &element = m_objects.front();
-  auto refButton = dynamic_cast<Button*>(element.get());
+  auto refButton = dynamic_cast<Button *>(element.get());
   refButton->setTexture(exitTexture);
 }

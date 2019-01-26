@@ -6,8 +6,10 @@ TenantKickScreen::TenantKickScreen()
 {
 
   auto data = GameStateManager::get().getKickCandidates();
-  for(int i = 0; i < 3; i++) {
-      m_candidates[i] = std::make_unique<TenantKickEntry>(data[i], Application::get().getMidPoint() + sf::Vector2f((-300 + i*150), 0));
+  for(int i = 0; i < 3; i++)
+  {
+    m_candidates[i] = std::make_unique<TenantKickEntry>(data[i], Application::get().getMidPoint()
+                                                            + sf::Vector2f((-300 + i * 150), 0));
   }
 }
 

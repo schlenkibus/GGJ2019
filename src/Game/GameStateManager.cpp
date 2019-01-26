@@ -6,14 +6,18 @@
 #include "../tools/AudioOneShotEngine.h"
 #include "../UI/GameStuff/TenantKickScreen.h"
 #include "../UI/GameStuff/PlayerStatsScreen.h"
+#include "../UI/GameStuff/DenyTenantScreen.h"
 #include <assert.h>
 
-GameStateManager::GameStateManager() {
-  for(auto i = 0; i < m_acceptedTenants.max_size(); i++) {
+GameStateManager::GameStateManager()
+{
+  for(auto i = 0; i < m_acceptedTenants.max_size(); i++)
+  {
     m_acceptedTenants[i] = std::make_shared<TenantData>(TenantFactory::getTenant());
   }
 
-  for(auto& e: m_acceptedTenants) {
+  for(auto& e : m_acceptedTenants)
+  {
     assert(e.get() != nullptr);
   }
 }
@@ -33,13 +37,14 @@ void GameStateManager::declineTenant()
 {
   AudioOneShotEngine::get().play("sadTenant.wav");
   m_declinedTenants.push_back(m_currentTenant);
-  nextDay();
 }
 
 void GameStateManager::kickTenant(TenantData* tenant)
 {
-  for(auto& e: m_acceptedTenants) {
-    if(e.get() == tenant) {
+  for(auto& e : m_acceptedTenants)
+  {
+    if(e.get() == tenant)
+    {
       e.reset(m_currentTenant.get());
       break;
     }
@@ -50,12 +55,7 @@ void GameStateManager::kickTenant(TenantData* tenant)
 
 std::array<TenantData*, 3> GameStateManager::getKickCandidates()
 {
-  return
-  {
-          m_acceptedTenants[0].get(),
-          m_acceptedTenants[1].get(),
-          m_acceptedTenants[2].get()
-  };
+  return { m_acceptedTenants[0].get(), m_acceptedTenants[1].get(), m_acceptedTenants[2].get() };
 }
 
 size_t GameStateManager::nextDay()
@@ -100,7 +100,7 @@ std::shared_ptr<TenantData> GameStateManager::getTenant()
 void GameStateManager::calculateWeek()
 {
   size_t totalIncome = 0;
-  for (auto& tenant : m_acceptedTenants)
+  for(auto& tenant : m_acceptedTenants)
   {
     totalIncome += calculateTenantPayment(tenant);
   }
@@ -116,40 +116,40 @@ size_t GameStateManager::calculateTenantPayment(std::shared_ptr<TenantData> tent
   auto salaryRating = tentant->getSalaryRating();
 
   const auto recommendationPercentage = [recommendationRating] {
-      switch(recommendationRating)
-      {
-        case Recommendation::High:
-          return 0.5f;
-        case Recommendation::Medium:
-          return 0.3f;
-        case Recommendation::Low:
-          return 0.1f;
-        default:
-          std::cerr << "recommendationRating unknown" << '\n';
-          return 0.f;
-      }
+    switch(recommendationRating)
+    {
+      case Recommendation::High:
+        return 0.5f;
+      case Recommendation::Medium:
+        return 0.3f;
+      case Recommendation::Low:
+        return 0.1f;
+      default:
+        std::cerr << "recommendationRating unknown" << '\n';
+        return 0.f;
+    }
   }();
 
   const auto salaryPercentage = [salaryRating] {
-      switch(salaryRating)
-      {
-        case Salary::High:
-          return 0.5f;
-        case Salary::Medium:
-          return 0.3f;
-        case Salary::Low:
-          return 0.1f;
-        default:
-          std::cerr << "salaryRating unknown" << '\n';
-          return 0.f;
-      }
+    switch(salaryRating)
+    {
+      case Salary::High:
+        return 0.5f;
+      case Salary::Medium:
+        return 0.3f;
+      case Salary::Low:
+        return 0.1f;
+      default:
+        std::cerr << "salaryRating unknown" << '\n';
+        return 0.f;
+    }
   }();
 
   const auto likelihood = (recommendationPercentage + salaryPercentage) * 100;
   auto& dm = DataManager::get();
   auto randomNumber = dm.getRandomNumber(0, 100);
 
-  if (likelihood > randomNumber)
+  if(likelihood > randomNumber)
   {
     return rentAmount;
   }
@@ -167,11 +167,11 @@ void GameStateManager::start()
 
 void GameStateManager::setScreenState(ScreenState newScreenState)
 {
-  static ScreenState screenState{ScreenState::Start};
+  static ScreenState screenState{ ScreenState::Start };
 
   screenState = newScreenState;
 
-  switch (screenState)
+  switch(screenState)
   {
     case ScreenState::Start:
     {
@@ -198,7 +198,8 @@ void GameStateManager::setScreenState(ScreenState newScreenState)
     }
     case ScreenState::DenyTenant:
     {
-//      Application::get().getLevel().install(std::make_unique<DenyTenantScreen>());
+      m_currentTenant->setHappy(false);
+      Application::get().getLevel().install(std::make_unique<DenyTenantScreen>());
       break;
     }
     case ScreenState::PlayerStats:
