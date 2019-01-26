@@ -119,11 +119,11 @@ size_t GameStateManager::calculateTenantPayment(std::shared_ptr<TenantData> tent
     switch(recommendationRating)
     {
       case Recommendation::High:
-        return 0.5f;
+        return 0.42f;
       case Recommendation::Medium:
-        return 0.3f;
+        return 0.2f;
       case Recommendation::Low:
-        return 0.1f;
+        return 0.05f;
       default:
         std::cerr << "recommendationRating unknown" << '\n';
         return 0.f;
@@ -134,11 +134,11 @@ size_t GameStateManager::calculateTenantPayment(std::shared_ptr<TenantData> tent
     switch(salaryRating)
     {
       case Salary::High:
-        return 0.5f;
+        return 0.4f;
       case Salary::Medium:
-        return 0.3f;
+        return 0.2f;
       case Salary::Low:
-        return 0.1f;
+        return 0.05f;
       default:
         std::cerr << "salaryRating unknown" << '\n';
         return 0.f;
