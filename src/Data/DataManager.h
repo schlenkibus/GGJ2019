@@ -22,10 +22,10 @@ class DataManager
   std::vector<std::string> m_names;
   std::vector<std::string> m_professions;
   std::vector<std::string> m_outcomesImmutable;
-  std::set<std::string> m_outcomesDepleting{};
+  std::set<std::string> m_outcomesDepleting;
   std::vector<std::string> m_recommendationsPosImmutable;
-  std::set<std::string> m_recommendationsPosDepleting{};
+  std::set<std::string> m_recommendationsPosDepleting;
   std::vector<std::string> m_recommendationsNegImmutable;
-  std::set<std::string> m_recommendationsNegDepleting{};
+  std::set<std::string> m_recommendationsNegDepleting;
   std::vector<std::string> m_recommendationsNeutral;
 };

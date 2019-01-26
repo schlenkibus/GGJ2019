@@ -114,8 +114,7 @@ std::string DataManager::getRecommendationBad()
 {
   if (m_recommendationsNegDepleting.size() <= 0)
   {
-    copy(m_recommendationsNegImmutable.begin(), m_recommendationsNegImmutable.end(),
-         inserter(m_recommendationsNegDepleting, m_recommendationsNegDepleting.begin()));
+    m_recommendationsNegDepleting.insert(m_recommendationsNegImmutable.begin(), m_recommendationsNegImmutable.end());
   }
 
   return getRandomDeleting(m_recommendationsNegDepleting);
@@ -138,10 +137,9 @@ std::string DataManager::getRecommendationNeural() const
 
 std::string DataManager::getOutcome()
 {
-  if(m_outcomesDepleting.size() <= 0)
+  if (m_outcomesDepleting.size() <= 0)
   {
-    copy(m_outcomesImmutable.begin(), m_outcomesImmutable.end(),
-         inserter(m_outcomesDepleting, m_outcomesDepleting.begin()));
+    m_outcomesDepleting.insert(m_outcomesImmutable.begin(), m_outcomesImmutable.end());
   }
 
   return getRandomDeleting(m_outcomesDepleting);
