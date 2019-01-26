@@ -62,13 +62,13 @@ DataManager::DataManager()
 
     auto strings = splitStringOnAnyDelimiter(line, '\t');
     if(!strings[0].empty())
-      m_outcomes.emplace_back(strings[0]);
+      m_outcomesImmutable.emplace_back(strings[0]);
     if(!strings[1].empty())
       m_professions.emplace_back(strings[1]);
     if(!strings[2].empty())
-      m_recommendationsPos.emplace_back(strings[2]);
+      m_recommendationsPosImmutable.emplace_back(strings[2]);
     if(!strings[3].empty())
-      m_recommendationsNeg.emplace_back(strings[3]);
+      m_recommendationsNegImmutable.emplace_back(strings[3]);
     if(!strings[4].empty())
       m_recommendationsNeutral.emplace_back(strings[4]);
   }
@@ -93,29 +93,58 @@ std::string DataManager::getRandom(const std::vector<std::string>& in) const
   return *out.begin();
 }
 
+std::string DataManager::getRandomDeleting(std::set<std::string>& in)
+{
+  std::vector<std::string> out;
+  std::sample(in.begin(), in.end(), std::back_inserter(out), 1, std::mt19937{ std::random_device{}() });
+  auto it = in.find(*out.begin());
+  if (it != in.end())
+  {
+    in.erase(it);
+  }
+  return *out.begin();
+}
+
 std::string DataManager::getProfession() const
 {
   return getRandom(m_professions);
 }
 
-std::string DataManager::getRecommendationBad() const
+std::string DataManager::getRecommendationBad()
 {
-  return getRandom(m_recommendationsNeg);
+  if (m_recommendationsNegDepleting.size() <= 0)
+  {
+    copy(m_recommendationsNegImmutable.begin(), m_recommendationsNegImmutable.end(),
+         inserter(m_recommendationsNegDepleting, m_recommendationsNegDepleting.begin()));
+  }
+
+  return getRandomDeleting(m_recommendationsNegDepleting);
 }
 
-std::string DataManager::getRecommendationGood() const
+std::string DataManager::getRecommendationGood()
 {
-  return getRandom(m_recommendationsPos);
+  if (m_recommendationsPosDepleting.size() <= 0)
+  {
+    m_recommendationsPosDepleting.insert(m_recommendationsPosImmutable.begin(), m_recommendationsPosImmutable.end());
+  }
+
+  return getRandomDeleting(m_recommendationsPosDepleting);
 }
 
 std::string DataManager::getRecommendationNeural() const
 {
-  return getRandom(m_recommendationsNeg);
+  return getRandom(m_recommendationsNegImmutable);
 }
 
-std::string DataManager::getOutcome() const
+std::string DataManager::getOutcome()
 {
-  return getRandom(m_outcomes);
+  if(m_outcomesDepleting.size() <= 0)
+  {
+    copy(m_outcomesImmutable.begin(), m_outcomesImmutable.end(),
+         inserter(m_outcomesDepleting, m_outcomesDepleting.begin()));
+  }
+
+  return getRandomDeleting(m_outcomesDepleting);
 }
 
 static auto seed = time(0);
