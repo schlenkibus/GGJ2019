@@ -11,7 +11,7 @@ Button::Button(sf::Vector2f pos, std::function<void(void)> action, const std::st
 {
   m_text.setPosition(pos.x - tex.getSize().x / 3.5f, pos.y - tex.getSize().y / 2.f);
   m_text.setString(text);
-  m_text.setCharacterSize(40);
+  m_text.setCharacterSize(30);
   m_text.setFillColor(sf::Color::White);
   m_text.setOutlineThickness(2);
   m_text.setOutlineColor(sf::Color::Black);
@@ -27,6 +27,8 @@ void Button::draw(sf::RenderWindow &window)
 void Button::setTexture(sf::Texture &tex)
 {
   sprite.setTexture(tex);
+  sprite.setOrigin(tex.getSize().x / 2.f, tex.getSize().y / 2.f);
+  sprite.setTextureRect(sf::Rect<int>(0,0, tex.getSize().x, tex.getSize().y));
 }
 
 bool Button::onEvent(sf::Event &e)
@@ -39,11 +41,11 @@ bool Button::onEvent(sf::Event &e)
     if(sprite.getGlobalBounds().contains(mousePos.x, mousePos.y))
     {
       sprite.setScale(1.1, 1.1);
-      m_text.setCharacterSize(45);
+      m_text.setCharacterSize(35);
     }
     else
     {
-      m_text.setCharacterSize(40);
+      m_text.setCharacterSize(35);
       sprite.setScale(1, 1);
     }
   }

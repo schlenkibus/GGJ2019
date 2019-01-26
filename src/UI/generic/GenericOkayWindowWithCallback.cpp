@@ -4,7 +4,7 @@
 
 GenericOkayWindowWithCallback::GenericOkayWindowWithCallback(std::string message, std::string buttonText,
                                                              std::function<void(void)> okayAction)
-    : GenericWindow{ message, "", ResourceManager::get().getTexture("message.png") }
+    : GenericWindow{ message, "", ResourceManager::get().getTexture("Paper.png") }
     , ok{ Application::get().getMidPoint() + sf::Vector2f(0, 250), std::move(okayAction), buttonText }
 {
 }

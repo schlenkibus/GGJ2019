@@ -9,6 +9,7 @@ GenericWindow::GenericWindow(const std::string &message, const std::string &head
     , m_message{ message, ResourceManager::get().getFont() }
 {
 
+  scale(1.25);
   std::string perm;
   auto lastInsertAgo = 0;
 
@@ -22,6 +23,8 @@ GenericWindow::GenericWindow(const std::string &message, const std::string &head
         lastInsertAgo = 0;
         continue;
       }
+    } else if(c == '\n') {
+      lastInsertAgo = 0;
     }
     perm += c;
     lastInsertAgo++;

@@ -13,7 +13,7 @@ TenantView::TenantView(TenantData& ref)
             GameStateManager::get().setScreenState(ScreenState::DenyTenant);
           },
           ref.toString())
-    , picture{ ref.getTexture(), Application::get().getMidPoint() + sf::Vector2f(300, 0) }
+    , picture{ ref.getTexture(), Application::get().getMidPoint() + sf::Vector2f(-400, 0) }
 {
   picture.scale(0.5);
 }
