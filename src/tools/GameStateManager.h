@@ -45,7 +45,9 @@ class GameStateManager
 
  private:
   const size_t maxAmountOfTenants = 10;
+  const size_t montlyExpences = 5000;
   const size_t newTenantCost = 100;
+  const size_t rentAmount = 1000;
 
   void nextDay();
   void generateNewTenant();
@@ -53,6 +55,7 @@ class GameStateManager
   void calculateWeek();
 
   void changeCurrentMoney(int amount);
+  size_t calculateTenantPayment(std::shared_ptr<TenantData>);
 
   std::shared_ptr<TenantData> m_currentTenant;
   std::vector<std::shared_ptr<TenantData>> m_acceptedTenants{};
@@ -63,7 +66,7 @@ class GameStateManager
 
   size_t m_days = 0;
 
-  int m_currentMoneyEarned = 0;
+  int m_currentMoneyEarned = 5000;
   int m_totalMoneyEarned = 0;
   int m_currentKarmaEarned = 0;
   int m_totalKarmaEarned = 0;

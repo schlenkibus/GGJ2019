@@ -14,44 +14,44 @@ TenantData TenantFactory::getTenant()
   tenant.profession = dm.getProfession();
 
   std::string recommendation;
-  Recommendation recommendationValue;
+  Recommendation recommendationRating;
 
   switch(tenant.factor)
   {
     case -1:
       recommendation = dm.getRecommendationBad();
-      recommendationValue = Recommendation::Low;
+      recommendationRating = Recommendation::Low;
       break;
     case 1:
       recommendation = dm.getRecommendationGood();
-      recommendationValue = Recommendation::High;
+      recommendationRating = Recommendation::High;
       break;
     case 0:
     default:
       recommendation = dm.getRecommendationNeural();
-      recommendationValue = Recommendation::Medium;
+      recommendationRating = Recommendation::Medium;
       break;
   }
 
   tenant.recommendation = recommendation;
-  tenant.recommendationValue = recommendationValue;
+  tenant.recommendationRating = recommendationRating;
 
-  Salary salaryValue;
+  Salary salaryRating;
   switch(dm.getRandomNumber(-1, 1))
   {
     case -1:
-      salaryValue = Salary::Low;
+      salaryRating = Salary::Low;
       break;
     case 1:
-      salaryValue = Salary::High;
+      salaryRating = Salary::High;
       break;
     case 0:
     default:
-      salaryValue = Salary::Medium;
+      salaryRating = Salary::Medium;
       break;
   }
 
-  tenant.salaryValue = salaryValue;
+  tenant.salaryRating = salaryRating;
 
   return tenant;
 }
