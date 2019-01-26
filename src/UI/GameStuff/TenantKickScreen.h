@@ -6,6 +6,8 @@
 #include "../../Game/GameStateManager.h"
 #include "TenantKickEntry.h"
 
+#include <array>
+
 class TenantKickScreen : public GenericWindow
 {
  public:

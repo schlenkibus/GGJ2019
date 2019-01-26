@@ -3,16 +3,30 @@
 #include "../Data/TenantData.h"
 
 #include <vector>
+#include <array>
 #include <functional>
 #include <memory>
 
 class TenantData;
 
+enum class ScreenState
+{
+    Start,
+    NewTenant,
+    KickTenant,
+    DenyTenant,
+    PlayerStats
+};
+
 class GameStateManager
 {
+protected:
+    GameStateManager();
  public:
   using TenantChangedCallback = std::function<void(std::shared_ptr<TenantData>)>;
   static GameStateManager& get();
+
+  void setScreenState(ScreenState);
 
   void acceptTenant();
   void declineTenant();
@@ -45,12 +59,12 @@ class GameStateManager
   void start();
 
  private:
-  const size_t maxAmountOfTenants = 10;
+  static constexpr const size_t maxAmountOfTenants = 10;
   const size_t monthlyExpenses = 5000;
   const size_t newTenantCost = 100;
   const size_t rentAmount = 1000;
 
-  void nextDay();
+  size_t nextDay();
   void generateNewTenant();
   void newTenantFee();
   void calculateWeek();
@@ -59,7 +73,7 @@ class GameStateManager
   size_t calculateTenantPayment(std::shared_ptr<TenantData>);
 
   std::shared_ptr<TenantData> m_currentTenant;
-  std::vector<std::shared_ptr<TenantData>> m_acceptedTenants{};
+  std::array<std::shared_ptr<TenantData>, maxAmountOfTenants> m_acceptedTenants{};
   std::vector<std::shared_ptr<TenantData>> m_declinedTenants{};
   std::vector<std::shared_ptr<TenantData>> m_thrownOutTenants{};
 

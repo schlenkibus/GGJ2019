@@ -5,6 +5,17 @@
 #include "../Application.h"
 #include "../tools/AudioOneShotEngine.h"
 #include "../UI/GameStuff/TenantKickScreen.h"
+#include <assert.h>
+
+GameStateManager::GameStateManager() {
+  for(auto i = 0; i < m_acceptedTenants.max_size(); i++) {
+    m_acceptedTenants[i] = std::make_shared<TenantData>(TenantFactory::getTenant());
+  }
+
+  for(auto& e: m_acceptedTenants) {
+    assert(e.get() != nullptr);
+  }
+}
 
 GameStateManager& GameStateManager::get()
 {
@@ -15,22 +26,6 @@ GameStateManager& GameStateManager::get()
 void GameStateManager::acceptTenant()
 {
   AudioOneShotEngine::get().play("happyTenant.wav");
-
-  if (m_acceptedTenants.size() >= maxAmountOfTenants)
-  {
-    auto it = std::next(m_acceptedTenants.begin());
-
-    std::move(m_acceptedTenants.begin(), std::next(m_acceptedTenants.begin()), std::back_inserter(m_thrownOutTenants));
-
-    m_acceptedTenants.erase(m_acceptedTenants.begin());
-  }
-
-  m_acceptedTenants.push_back(m_currentTenant);
-
-  Application::get().getLevel().install(std::make_unique<TenantKickScreen>());
-
-  //newTenantFee();
-  //nextDay();
 }
 
 void GameStateManager::declineTenant()
@@ -42,28 +37,31 @@ void GameStateManager::declineTenant()
 
 void GameStateManager::kickTenant(TenantData* tenant)
 {
+  for(auto& e: m_acceptedTenants) {
+    if(e.get() == tenant) {
+      e.reset(m_currentTenant.get());
+      break;
+    }
+  }
+
+  newTenantFee();
+  setScreenState(ScreenState::NewTenant);
 }
 
 std::array<TenantData*, 3> GameStateManager::getKickCandidates()
 {
-  static auto t1 = TenantFactory::getTenant();
-  static auto t2 = TenantFactory::getTenant();
-  static auto t3 = TenantFactory::getTenant();
-
   return
   {
-          &t1, &t2, &t3
+          m_acceptedTenants[0].get(),
+          m_acceptedTenants[1].get(),
+          m_acceptedTenants[2].get()
   };
 }
 
-void GameStateManager::nextDay()
+size_t GameStateManager::nextDay()
 {
-  if (m_days != 0 && m_days % 7 == 0) {
-    calculateWeek();
-  }
-
-  m_days++;
   generateNewTenant();
+  return ++m_days;
 }
 
 void GameStateManager::generateNewTenant()
@@ -164,6 +162,50 @@ size_t GameStateManager::calculateTenantPayment(std::shared_ptr<TenantData> tent
 void GameStateManager::start()
 {
   Application::get().getLevel().setGameScene();
-  listenForTenantChanged([](std::shared_ptr<TenantData> ptr) { Application::get().getLevel().pushTenant(*ptr); });
-  nextDay();
+  setScreenState(ScreenState::NewTenant);
+}
+
+void GameStateManager::setScreenState(ScreenState newScreenState)
+{
+  static ScreenState screenState{ScreenState::Start};
+
+  screenState = newScreenState;
+
+  switch (screenState)
+  {
+    case ScreenState::Start:
+    {
+
+      break;
+    }
+    case ScreenState::NewTenant:
+    {
+      if (m_days != 0 && m_days % 7 == 0) {
+        setScreenState(ScreenState::PlayerStats);
+      }
+      else
+      {
+        nextDay();
+        Application::get().getLevel().pushTenant(*m_currentTenant);
+      }
+
+      break;
+    }
+    case ScreenState::KickTenant:
+    {
+      Application::get().getLevel().install(std::make_unique<TenantKickScreen>());
+      break;
+    }
+    case ScreenState::DenyTenant:
+    {
+//      Application::get().getLevel().install(std::make_unique<DenyTenantScreen>());
+      break;
+    }
+    case ScreenState::PlayerStats:
+    {
+      calculateWeek();
+//      Application::get().getLevel().install(std::make_unique<PlayerStatsScreen>());
+      break;
+    }
+  }
 }
