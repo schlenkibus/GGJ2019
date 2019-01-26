@@ -39,7 +39,7 @@ ResourceManager::ResourceManager()
     std::cerr << "could not load font from: BitCasual.ttf" << '\n';
   }
 
-  if (!m_music.openFromFile(std::string(prefix) + std::string(audioDir) + "music.wav"))
+  if(!m_music.openFromFile(std::string(prefix) + std::string(audioDir) + "music.wav"))
   {
     std::cerr << "could not load music from: music.wav" << '\n';
   }
@@ -48,12 +48,12 @@ ResourceManager::ResourceManager()
   m_music.setVolume(20);
 }
 
-sf::Music& ResourceManager::getMusic()
+sf::Music &ResourceManager::getMusic()
 {
   return m_music;
 }
 
-sf::SoundBuffer& ResourceManager::getSoundBuffer(ResourceManager::tPath path)
+sf::SoundBuffer &ResourceManager::getSoundBuffer(ResourceManager::tPath path)
 {
   path = std::string(prefix) + std::string(audioDir) + path;
   try

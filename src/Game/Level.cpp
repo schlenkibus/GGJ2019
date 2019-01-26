@@ -42,9 +42,9 @@ Level::Level()
 
 void Level::start()
 {
- GameStateManager::get().listenForTenantChanged([](auto tenantData){
-   // push new page
- });
+  GameStateManager::get().listenForTenantChanged([](auto tenantData) {
+    // push new page
+  });
 
   ResourceManager::get().getMusic().play();
 }

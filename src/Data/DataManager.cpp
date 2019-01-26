@@ -25,7 +25,7 @@ DataManager::DataManager()
       first = false;
     }
     if(!o.empty())
-        m_names.emplace_back(o);
+      m_names.emplace_back(o);
   }
   names.close();
 
@@ -117,41 +117,47 @@ DataManager& DataManager::get()
   return mng;
 }
 
-std::string DataManager::getName() const {
+std::string DataManager::getName() const
+{
   return getRandom(m_names);
 }
 
-std::string DataManager::getRandom(const std::vector<std::string> &in) const {
+std::string DataManager::getRandom(const std::vector<std::string>& in) const
+{
   std::vector<std::string> out;
-  std::sample(in.begin(), in.end(), std::back_inserter(out),
-              1, std::mt19937{std::random_device{}()});
+  std::sample(in.begin(), in.end(), std::back_inserter(out), 1, std::mt19937{ std::random_device{}() });
   return *out.begin();
 }
 
-std::string DataManager::getProfession() const {
+std::string DataManager::getProfession() const
+{
   return getRandom(m_professions);
 }
 
-std::string DataManager::getRecommendationBad() const {
+std::string DataManager::getRecommendationBad() const
+{
   return getRandom(m_recommendationsNeg);
 }
 
-std::string DataManager::getRecommendationGood() const {
+std::string DataManager::getRecommendationGood() const
+{
   return getRandom(m_recommendationsPos);
 }
 
-std::string DataManager::getRecommendationNeural() const {
+std::string DataManager::getRecommendationNeural() const
+{
   return getRandom(m_recommendationsNeg);
 }
 
-std::string DataManager::getOutcome() const {
+std::string DataManager::getOutcome() const
+{
   return getRandom(m_outcomes);
 }
 
 static auto seed = time(0);
 
-int DataManager::getRandomNumber(int min, int max) const {
-  auto rand = std::bind(std::uniform_int_distribution<int>(min,max),
-                             std::mt19937(static_cast<unsigned long>(seed++)));
+int DataManager::getRandomNumber(int min, int max) const
+{
+  auto rand = std::bind(std::uniform_int_distribution<int>(min, max), std::mt19937(static_cast<unsigned long>(seed++)));
   return rand();
 }
