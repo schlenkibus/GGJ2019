@@ -1,7 +1,10 @@
 #pragma once
 
-#include <SFML/Graphics/Texture.hpp>
 #include "../tools/ResourceManager.h"
+
+#include <SFML/Graphics/Texture.hpp>
+
+#include <string>
 
 class AnimalData
 {
@@ -16,7 +19,7 @@ class AnimalData
 
   explicit AnimalData(AnimalType type = Bunny);
   sf::Texture& getTexture(bool isHappy);
-  sf::Texture& getSound(bool isHappy);
+  std::string getSoundName(bool isHappy);
 
  protected:
   ResourceManager::tPath prefix{};

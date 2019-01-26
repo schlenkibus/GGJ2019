@@ -30,6 +30,10 @@ class TenantData : public std::enable_shared_from_this<TenantData>
   {
     happy = h;
   }
+  AnimalData getAnimalData()
+  {
+    return animaldata;
+  }
 
  protected:
   std::string name;
