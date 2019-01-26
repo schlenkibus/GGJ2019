@@ -16,7 +16,7 @@ void YesNoMessage::draw(sf::RenderWindow &w)
   yes.draw(w);
 }
 
-void YesNoMessage::onEvent(sf::Event &e)
+bool YesNoMessage::onEvent(sf::Event &e)
 {
   yes.onEvent(e);
   no.onEvent(e);

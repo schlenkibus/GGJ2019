@@ -9,7 +9,7 @@ template <class Option> class ChooseWindow : public GenericWindow
 
   explicit ChooseWindow(tOptionTuple&& options);
   void draw(sf::RenderWindow& window) override;
-  void onEvent(sf::Event& e) override;
+  bool onEvent(sf::Event& e) override;
 
  protected:
   tOptionTuple m_options;
@@ -30,10 +30,14 @@ template <class Option> void ChooseWindow<Option>::draw(sf::RenderWindow& window
   std::get<2>(m_options).draw(window);
 }
 
-template <class Option> void ChooseWindow<Option>::onEvent(sf::Event& e)
+template <class Option> bool ChooseWindow<Option>::onEvent(sf::Event& e)
 {
-  GenericWindow::onEvent(e);
-  std::get<0>(m_options).onEvent(e);
-  std::get<1>(m_options).onEvent(e);
-  std::get<2>(m_options).onEvent(e);
+  if(std::get<0>(m_options).onEvent(e))
+    return true;
+  if(std::get<1>(m_options).onEvent(e))
+    return true;
+  if(std::get<2>(m_options).onEvent(e))
+    return true;
+
+  return GenericWindow::onEvent(e);
 }

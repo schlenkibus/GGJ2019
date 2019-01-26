@@ -7,7 +7,7 @@ class YesNoMessage : public GenericWindow
   typedef std::function<void(void)> tAction;
   YesNoMessage(tAction yes, tAction no, const std::string &message);
   void draw(sf::RenderWindow &w) override;
-  void onEvent(sf::Event &e) override;
+  bool onEvent(sf::Event &e) override;
 
  protected:
   Button yes;

@@ -32,11 +32,11 @@ void DrawableObject::draw(sf::RenderWindow &window)
   window.draw(sprite);
 }
 
-void DrawableObject::onEvent(sf::Event &e)
+bool DrawableObject::onEvent(sf::Event &e)
 {
   if(onEventCB)
   {
-    onEventCB(e, *this);
+    return onEventCB(e, *this);
   }
 }
 

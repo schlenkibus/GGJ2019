@@ -43,6 +43,6 @@ void GenericWindow::draw(sf::RenderWindow &window)
   window.draw(m_message);
 }
 
-void GenericWindow::onEvent(sf::Event &e)
+bool GenericWindow::onEvent(sf::Event &e)
 {
 }
