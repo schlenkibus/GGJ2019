@@ -15,9 +15,9 @@ void GameStateManager::acceptTenant()
   {
     auto it = std::next(m_acceptedTenants.begin());
 
-    std::move(m_acceptedTenants.begin(), it, std::back_inserter(m_thrownOutTenants));
+    std::move(m_acceptedTenants.begin(), std::next(m_acceptedTenants.begin()), std::back_inserter(m_thrownOutTenants));
 
-    m_acceptedTenants.erase(it);
+    m_acceptedTenants.erase(m_acceptedTenants.begin());
   }
 
   m_acceptedTenants.push_back(m_currentTenant);
