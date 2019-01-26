@@ -7,6 +7,7 @@
 #include "../UI/GameStuff/TenantKickScreen.h"
 #include "../UI/GameStuff/PlayerStatsScreen.h"
 #include "../UI/GameStuff/DenyTenantScreen.h"
+#include <random>
 #include <assert.h>
 
 GameStateManager::GameStateManager()
@@ -55,7 +56,9 @@ void GameStateManager::kickTenant(TenantData* tenant)
 
 std::array<TenantData*, 3> GameStateManager::getKickCandidates()
 {
-  return { m_acceptedTenants[0].get(), m_acceptedTenants[1].get(), m_acceptedTenants[2].get() };
+  std::vector<std::shared_ptr<TenantData>> out;
+  std::sample(m_acceptedTenants.begin(), m_acceptedTenants.end(), std::back_inserter(out), 3, std::mt19937{ std::random_device{}() });
+  return { out[0].get(), out[1].get(), out[2].get() };
 }
 
 size_t GameStateManager::nextDay()
