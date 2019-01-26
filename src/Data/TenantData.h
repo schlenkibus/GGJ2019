@@ -8,7 +8,8 @@ class TenantData
  public:
   TenantData() = default;
   std::string toString() const;
- protected:
+  const std::string& getOutcome() const;
+protected:
   std::string name;
   std::string profession;
   int age{};

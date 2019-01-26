@@ -11,3 +11,7 @@ std::string TenantData::toString() const {
     ss << "Reccomendation:\n" << reccomendation << '\n';
     return ss.str();
 }
+
+const std::string& TenantData::getOutcome() const {
+    return outcome;
+}
