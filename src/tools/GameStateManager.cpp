@@ -12,9 +12,9 @@ GameStateManager &GameStateManager::get()
 
 void GameStateManager::acceptTenant()
 {
-    //get Audio of Tenant(true)
   AudioOneShotEngine::get().play("happyTenant.wav");
-  if(!m_acceptedTenants.empty())
+
+  if (m_acceptedTenants.size() >= maxAmountOfTenants)
   {
     auto it = std::next(m_acceptedTenants.begin());
 

@@ -44,6 +44,7 @@ class GameStateManager
   void start();
 
  private:
+  const size_t maxAmountOfTenants = 10;
   const size_t newTenantCost = 100;
 
   void nextDay();
