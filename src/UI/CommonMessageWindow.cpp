@@ -15,8 +15,9 @@ void CommonMessageWindow::draw(sf::RenderWindow &window)
   ok.draw(window);
 }
 
-void CommonMessageWindow::onEvent(sf::Event &e)
+bool CommonMessageWindow::onEvent(sf::Event &e)
 {
-  ok.onEvent(e);
-  GenericWindow::onEvent(e);
+  if(ok.onEvent(e))
+    return true;
+  return GenericWindow::onEvent(e);
 }

@@ -51,12 +51,15 @@ void Level::update(float delta)
 
 void Level::onEvent(sf::Event &e)
 {
+  if(m_message)
+    if(m_message->onEvent(e))
+      return;
+
   for(auto &obj : m_objects)
   {
-    obj->onEvent(e);
+    if(obj->onEvent(e))
+      break;
   }
-  if(m_message)
-    m_message->onEvent(e);
 }
 
 void Level::draw(sf::RenderWindow &w)
@@ -100,7 +103,9 @@ void Level::testChoose()
                                        if(clickedOnDrawable(e, me))
                                        {
                                          Application::get().getLevel().pushMessage("Selected Choice 1");
+                                         return true;
                                        }
+                                       return false;
                                      },
                                      nullptr),
                       DrawableObject(rs.getTexture("faces/face2.png"), mid + sf::Vector2f(-100, 200),
@@ -108,7 +113,9 @@ void Level::testChoose()
                                        if(clickedOnDrawable(e, me))
                                        {
                                          Application::get().getLevel().pushMessage("Selected Choice 2");
+                                         return true;
                                        }
+                                       return false;
                                      },
                                      nullptr),
                       DrawableObject(rs.getTexture("faces/face3.png"), mid + sf::Vector2f(200, 200),
@@ -116,7 +123,9 @@ void Level::testChoose()
                                        if(clickedOnDrawable(e, me))
                                        {
                                          Application::get().getLevel().pushMessage("Selected Choice 3");
+                                         return true;
                                        }
+                                       return false;
                                      },
                                      nullptr)));
 }

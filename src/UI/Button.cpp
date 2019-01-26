@@ -23,8 +23,9 @@ void Button::draw(sf::RenderWindow &window)
   window.draw(m_text);
 }
 
-void Button::onEvent(sf::Event &e)
+bool Button::onEvent(sf::Event &e)
 {
+  bool ret = false;
   auto mousePos = Application::get().getMouse();
 
   if(e.type == sf::Event::MouseMoved)
@@ -33,11 +34,13 @@ void Button::onEvent(sf::Event &e)
     {
       sprite.setScale(1.1, 1.1);
       m_text.setCharacterSize(45);
+      ret = true;
     }
     else
     {
       m_text.setCharacterSize(40);
       sprite.setScale(1, 1);
+      ret = true;
     }
   }
   if(e.type == sf::Event::MouseButtonReleased && e.mouseButton.button == sf::Mouse::Button::Left)
@@ -45,6 +48,7 @@ void Button::onEvent(sf::Event &e)
     if(sprite.getGlobalBounds().contains(mousePos.x, mousePos.y))
     {
       m_action();
+      ret = true;
     }
     sprite.setColor(sf::Color::White);
   }
@@ -54,6 +58,8 @@ void Button::onEvent(sf::Event &e)
     if(sprite.getGlobalBounds().contains(mousePos.x, mousePos.y))
     {
       sprite.setColor(sf::Color::Green);
+      ret = true;
     }
   }
+  return ret;
 }
