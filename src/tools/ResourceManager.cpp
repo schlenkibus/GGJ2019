@@ -36,7 +36,7 @@ ResourceManager::ResourceManager()
 {
   if(!m_font.loadFromFile(std::string(prefix) + "BitCasual.ttf"))
   {
-    std::cerr << "could not load font from: BitCasual.ttf" << '\n';
+    std::cerr << "could not load font" << '\n';
   }
 
   if(!m_music.openFromFile(std::string(prefix) + std::string(audioDir) + "music.wav"))
