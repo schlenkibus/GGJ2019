@@ -10,6 +10,7 @@ class TenantData
   TenantData() = default;
   std::string toString() const;
   const std::string& getOutcome() const;
+  std::string getStats() const;
   sf::Texture& getTexture();
 
  protected:

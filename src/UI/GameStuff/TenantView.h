@@ -8,6 +8,7 @@ class TenantView : public YesNoMessage
  public:
   TenantView(TenantData& ref);
   void draw(sf::RenderWindow& window) override;
-protected:
-    DrawableObject picture;
+
+ protected:
+  DrawableObject picture;
 };

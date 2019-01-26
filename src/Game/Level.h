@@ -21,6 +21,7 @@ class Level
   void testChoose();
   void pushTenant(TenantData &data);
   void pushGenericMessage(std::string message, std::function<void(void)> okayAction);
+  void install(std::unique_ptr<GenericWindow> &&window);
 
  protected:
   std::vector<std::unique_ptr<DrawableObject>> m_objects;

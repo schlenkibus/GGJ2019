@@ -8,6 +8,8 @@ class ResourceManager
 {
  public:
   const char *prefix = "../resources/";
+  const char *imgPrefix = "images/";
+  const char *fonPrefix = "fonts/";
   const char *audioDir = "audio/";
   typedef std::string tPath;
   static ResourceManager &get();

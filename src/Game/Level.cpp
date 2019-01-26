@@ -3,14 +3,15 @@
 #include "../tools/ResourceManager.h"
 #include "../UI/generic/Button.h"
 #include <iostream>
-#include "../UI/GameStuff/ChooseWindow.h"
+#include "../UI/GameStuff/TenantKickScreen.h"
 #include "../Data/TenantData.h"
 #include "../Data/TenantFactory.h"
 #include "GameStateManager.h"
 #include "../UI/generic/GenericOkayWindowWithCallback.h"
 #include "../UI/GameStuff/TenantView.h"
 
-Level::Level() : firstUpdate {true}
+Level::Level()
+    : firstUpdate{ true }
 {
   auto &rm = ResourceManager::get();
   auto &testTexture = rm.getTexture("test.png");
@@ -47,17 +48,17 @@ Level::Level() : firstUpdate {true}
 void Level::start()
 {
   ResourceManager::get().getMusic().play();
-
 }
 
 void Level::update(float delta)
 {
-    if (firstUpdate) {
-      firstUpdate = false;
-      auto &element = m_objects.front();
-      auto refButton = dynamic_cast<Button*>(element.get());
-      refButton->setPos(Application::get().getMidPoint());
-    }
+  if(firstUpdate)
+  {
+    firstUpdate = false;
+    auto &element = m_objects.front();
+    auto refButton = dynamic_cast<Button *>(element.get());
+    refButton->setPos(Application::get().getMidPoint());
+  }
   for(auto &obj : m_objects)
   {
     obj->update(delta);
@@ -113,38 +114,6 @@ void Level::testChoose()
     return e.type == sf::Event::MouseButtonReleased && e.mouseButton.button == sf::Mouse::Left
         && o.contains(Application::get().getMouse());
   };
-
-  m_message = std::make_unique<ChooseWindow<DrawableObject>>(
-      std::make_tuple(DrawableObject(rs.getTexture("faces/face1.png"), mid + sf::Vector2f(-400, 200),
-                                     [=](sf::Event &e, DrawableObject &me) {
-                                       if(clickedOnDrawable(e, me))
-                                       {
-                                         Application::get().getLevel().pushMessage("Selected Choice 1");
-                                         return true;
-                                       }
-                                       return false;
-                                     },
-                                     nullptr),
-                      DrawableObject(rs.getTexture("faces/face2.png"), mid + sf::Vector2f(-100, 200),
-                                     [=](sf::Event &e, DrawableObject &me) {
-                                       if(clickedOnDrawable(e, me))
-                                       {
-                                         Application::get().getLevel().pushMessage("Selected Choice 2");
-                                         return true;
-                                       }
-                                       return false;
-                                     },
-                                     nullptr),
-                      DrawableObject(rs.getTexture("faces/face3.png"), mid + sf::Vector2f(200, 200),
-                                     [=](sf::Event &e, DrawableObject &me) {
-                                       if(clickedOnDrawable(e, me))
-                                       {
-                                         Application::get().getLevel().pushMessage("Selected Choice 3");
-                                         return true;
-                                       }
-                                       return false;
-                                     },
-                                     nullptr)));
 }
 
 void Level::pushTenant(TenantData &data)
@@ -155,4 +124,9 @@ void Level::pushTenant(TenantData &data)
 void Level::pushGenericMessage(std::string message, std::function<void(void)> okayAction)
 {
   m_message = std::make_unique<GenericOkayWindowWithCallback>(message, "okay", std::move(okayAction));
+}
+
+void Level::install(std::unique_ptr<GenericWindow> &&window)
+{
+  m_message.reset(window.release());
 }

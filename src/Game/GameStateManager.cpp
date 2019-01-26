@@ -3,8 +3,9 @@
 #include "../Data/TenantFactory.h"
 #include "../Application.h"
 #include "../tools/AudioOneShotEngine.h"
+#include "../UI/GameStuff/TenantKickScreen.h"
 
-GameStateManager &GameStateManager::get()
+GameStateManager& GameStateManager::get()
 {
   static GameStateManager gameStateManager;
   return gameStateManager;
@@ -12,7 +13,7 @@ GameStateManager &GameStateManager::get()
 
 void GameStateManager::acceptTenant()
 {
-    //get Audio of Tenant(true)
+  //get Audio of Tenant(true)
   AudioOneShotEngine::get().play("happyTenant.wav");
   if(!m_acceptedTenants.empty())
   {
@@ -24,6 +25,9 @@ void GameStateManager::acceptTenant()
   }
 
   m_acceptedTenants.push_back(m_currentTenant);
+
+  Application::get().getLevel().install(std::make_unique<TenantKickScreen>());
+
   newTenantFee();
   nextDay();
 }
@@ -34,6 +38,18 @@ void GameStateManager::declineTenant()
   AudioOneShotEngine::get().play("sadTenant.wav");
   m_declinedTenants.push_back(m_currentTenant);
   nextDay();
+}
+
+void GameStateManager::kickTenant(TenantData* tenant)
+{
+}
+
+std::array<TenantData*, 3> GameStateManager::getKickCandidates() const
+{
+  return
+  {
+    m_acceptedTenants[0].get(), m_acceptedTenants[1].get(), m_acceptedTenants[2].get()
+  };
 }
 
 void GameStateManager::nextDay()

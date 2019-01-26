@@ -12,11 +12,12 @@ class GameStateManager
 {
  public:
   using TenantChangedCallback = std::function<void(std::shared_ptr<TenantData>)>;
-  static GameStateManager &get();
+  static GameStateManager& get();
 
   void acceptTenant();
   void declineTenant();
-
+  void kickTenant(TenantData* tenant);
+  std::array<TenantData*, 3> getKickCandidates() const;
   void listenForTenantChanged(TenantChangedCallback);
   std::shared_ptr<TenantData> getTenant();
   size_t getDay()

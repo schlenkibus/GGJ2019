@@ -49,10 +49,10 @@ void DrawableObject::update(float delta)
   }
 }
 
-void DrawableObject::scale(float scale) {
+void DrawableObject::scale(float scale)
+{
   sprite.setScale(scale, scale);
 }
-
 
 bool DrawableObject::contains(sf::Vector2i pos) const
 {

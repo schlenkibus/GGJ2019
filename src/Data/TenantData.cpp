@@ -17,6 +17,12 @@ const std::string& TenantData::getOutcome() const
   return outcome;
 }
 
-sf::Texture &TenantData::getTexture() {
+sf::Texture& TenantData::getTexture()
+{
   return animaldata.getTexture(happy);
+}
+
+std::string TenantData::getStats() const
+{
+  return std::string("STATS:\n") + std::to_string(salary) + " " + reccomendation;
 }

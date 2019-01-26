@@ -1,4 +1,6 @@
 #include "ResourceManager.h"
+#include "../UI/GameStuff/TenantKickScreen.h"
+
 #include <iostream>
 
 ResourceManager &ResourceManager::get()
@@ -9,7 +11,7 @@ ResourceManager &ResourceManager::get()
 
 sf::Texture &ResourceManager::getTexture(tPath path)
 {
-  path = prefix + path;
+  path = prefix + std::string(imgPrefix) + path;
   try
   {
     return m_texture.at(path);
@@ -34,7 +36,7 @@ sf::Font &ResourceManager::getFont()
 
 ResourceManager::ResourceManager()
 {
-  if(!m_font.loadFromFile(std::string(prefix) + "BitCasual.ttf"))
+  if(!m_font.loadFromFile(std::string(prefix) + fonPrefix + "BitCasual.ttf"))
   {
     std::cerr << "could not load font" << '\n';
   }
