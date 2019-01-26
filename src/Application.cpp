@@ -1,7 +1,9 @@
 #include "Application.h"
 #include "Game/Level.h"
 #include "Data/DataManager.h"
+#include "Data/TenantFactory.h"
 #include <SFML/Window/Event.hpp>
+#include <iostream>
 
 Application &Application::get()
 {
@@ -13,6 +15,10 @@ Application::Application()
     : window{ sf::VideoMode(1200, 650), "GGJ19", sf::Style::Close }
     , level{}
 {
+
+  for(int i = 0; i < 100; i++) {
+    std::cout << TenantFactory::getTenant().toString() << "\n";
+  }
 }
 
 void Application::run()
