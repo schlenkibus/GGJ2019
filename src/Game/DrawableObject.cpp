@@ -48,6 +48,11 @@ void DrawableObject::update(float delta)
   }
 }
 
-bool DrawableObject::contains(sf::Vector2i pos) const {
-    return sprite.getGlobalBounds().contains(pos.x, pos.y);
+bool DrawableObject::contains(sf::Vector2i pos) const
+{
+  return sprite.getGlobalBounds().contains(pos.x, pos.y);
+}
+
+void DrawableObject::setPos(sf::Vector2f pos) {
+    sprite.setPosition(pos);
 }

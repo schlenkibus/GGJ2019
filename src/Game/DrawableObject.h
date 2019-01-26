@@ -18,6 +18,7 @@ class DrawableObject
   virtual void update(float delta);
 
   bool contains(sf::Vector2i pos) const;
+  void setPos(sf::Vector2f pos);
 
  protected:
   sf::Sprite sprite;

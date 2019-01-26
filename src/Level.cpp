@@ -34,7 +34,10 @@ Level::Level()
                                "Yes Or No?"));
 
   m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(300, 600), []() { Application::get().quit(); }, "Quit"));
-  m_objects.emplace_back(std::make_unique<DrawableObject>(testTexture, sf::Vector2f(300, 100)));
+  m_objects.emplace_back(std::make_unique<DrawableObject>(testTexture, sf::Vector2f(300, 100), nullptr,
+                                                          [](float delta, DrawableObject &o) {
+                                                            o.setPos(sf::Vector2f(delta, delta));
+                                                          }));
 }
 
 void Level::update(float delta)
@@ -87,30 +90,34 @@ void Level::testChoose()
   auto &rs = ResourceManager::get();
   auto mid = Application::get().getMidPoint();
 
-  auto clickedOnDrawable = [](sf::Event& e, DrawableObject& o) -> bool {
-          return e.type == sf::Event::MouseButtonReleased && e.mouseButton.button == sf::Mouse::Left && o.contains(Application::get().getMouse());
+  auto clickedOnDrawable = [](sf::Event &e, DrawableObject &o) -> bool {
+    return e.type == sf::Event::MouseButtonReleased && e.mouseButton.button == sf::Mouse::Left
+        && o.contains(Application::get().getMouse());
   };
 
   m_message = std::make_unique<ChooseWindow<DrawableObject>>(
       std::make_tuple(DrawableObject(rs.getTexture("faces/face1.png"), mid + sf::Vector2f(-400, 200),
                                      [=](sf::Event &e, DrawableObject &me) {
-                                      if(clickedOnDrawable(e, me)) {
-                                          Application::get().getLevel().pushMessage("Selected Choice 1");
-                                      }
+                                       if(clickedOnDrawable(e, me))
+                                       {
+                                         Application::get().getLevel().pushMessage("Selected Choice 1");
+                                       }
                                      },
                                      nullptr),
                       DrawableObject(rs.getTexture("faces/face2.png"), mid + sf::Vector2f(-100, 200),
                                      [=](sf::Event &e, DrawableObject &me) {
-                                         if(clickedOnDrawable(e, me)) {
-                                             Application::get().getLevel().pushMessage("Selected Choice 2");
-                                         }
+                                       if(clickedOnDrawable(e, me))
+                                       {
+                                         Application::get().getLevel().pushMessage("Selected Choice 2");
+                                       }
                                      },
                                      nullptr),
                       DrawableObject(rs.getTexture("faces/face3.png"), mid + sf::Vector2f(200, 200),
                                      [=](sf::Event &e, DrawableObject &me) {
-                                         if(clickedOnDrawable(e, me)) {
-                                             Application::get().getLevel().pushMessage("Selected Choice 3");
-                                         }
+                                       if(clickedOnDrawable(e, me))
+                                       {
+                                         Application::get().getLevel().pushMessage("Selected Choice 3");
+                                       }
                                      },
                                      nullptr)));
 }
