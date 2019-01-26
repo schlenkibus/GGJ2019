@@ -77,6 +77,7 @@ std::shared_ptr<TenantData> GameStateManager::getTenant()
 
 void GameStateManager::start()
 {
+    Application::get().getLevel().setGameScene();
   listenForTenantChanged([](std::shared_ptr<TenantData> ptr) { Application::get().getLevel().pushTenant(*ptr.get()); });
   nextDay();
 }
