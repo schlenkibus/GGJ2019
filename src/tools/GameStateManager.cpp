@@ -41,9 +41,9 @@ void GameStateManager::listenForTenantChanged(TenantChangedCallback function)
     m_tenantChangedCallback = function;
 }
 
-void GameStateManager::payNewTenantFee()
+void GameStateManager::newTenantFee()
 {
-    changeCurrentMoney(newTenantFee);
+    changeCurrentMoney(newTenantCost);
 }
 
 void GameStateManager::changeCurrentMoney(int amount)

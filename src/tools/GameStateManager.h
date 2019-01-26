@@ -24,11 +24,11 @@ public:
 
 
 private:
-    const size_t newTenantFee = 100;
+    const size_t newTenantCost = 100;
 
     void nextDay();
     void generateNewTenant();
-    void payNewTenantFee();
+    void newTenantFee();
 
     void changeCurrentMoney(int amount);
 
