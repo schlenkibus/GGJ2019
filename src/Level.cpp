@@ -34,10 +34,9 @@ Level::Level()
                                "Yes Or No?"));
 
   m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(300, 600), []() { Application::get().quit(); }, "Quit"));
-  m_objects.emplace_back(std::make_unique<DrawableObject>(testTexture, sf::Vector2f(300, 100), nullptr,
-                                                          [](float delta, DrawableObject &o) {
-                                                            o.setPos(sf::Vector2f(delta, delta));
-                                                          }));
+  m_objects.emplace_back(
+      std::make_unique<DrawableObject>(testTexture, sf::Vector2f(300, 100), nullptr,
+                                       [](float delta, DrawableObject &o) { o.setPos(sf::Vector2f(delta, delta)); }));
 }
 
 void Level::update(float delta)
