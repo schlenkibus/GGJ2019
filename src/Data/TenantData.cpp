@@ -16,3 +16,7 @@ const std::string& TenantData::getOutcome() const
 {
   return outcome;
 }
+
+sf::Texture &TenantData::getTexture() {
+  return animaldata.getTexture(happy);
+}

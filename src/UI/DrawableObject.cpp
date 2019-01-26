@@ -49,6 +49,11 @@ void DrawableObject::update(float delta)
   }
 }
 
+void DrawableObject::scale(float scale) {
+  sprite.setScale(scale, scale);
+}
+
+
 bool DrawableObject::contains(sf::Vector2i pos) const
 {
   return sprite.getGlobalBounds().contains(pos.x, pos.y);

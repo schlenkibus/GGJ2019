@@ -16,6 +16,7 @@ class DrawableObject
   virtual void draw(sf::RenderWindow &window);
   virtual bool onEvent(sf::Event &e);
   virtual void update(float delta);
+  void scale(float scale);
 
   bool contains(sf::Vector2i pos) const;
   void setPos(sf::Vector2f pos);
