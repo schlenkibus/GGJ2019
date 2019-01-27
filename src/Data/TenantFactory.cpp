@@ -14,7 +14,7 @@ TenantData TenantFactory::getTenant()
   tenant.profession = dm.getProfession();
   tenant.reason = " NONE ";
   tenant.type = []() {
-    auto rand = std::rand() % 3;
+    auto rand = std::rand() % 4;
     switch(rand)
     {
       case 0:
@@ -22,6 +22,8 @@ TenantData TenantFactory::getTenant()
       case 1:
         return TenantData::Snake;
       case 2:
+        return TenantData::Dog;
+      case 3:
       default:
         return TenantData::Bunny;
     }
@@ -51,11 +53,11 @@ TenantData TenantFactory::getTenant()
   tenant.recommendationRating = recommendationRating;
 
   Salary salaryRating;
-  if (tenant.salary > 2500)
+  if(tenant.salary > 2500)
   {
     salaryRating = Salary::High;
   }
-  else if (tenant.salary > 1500)
+  else if(tenant.salary > 1500)
   {
     salaryRating = Salary::Medium;
   }

@@ -2,9 +2,8 @@
 
 #include "../generic/GenericOkayWindowWithCallback.h"
 
-class GameOverScreen : public GenericOkayWindowWithCallback {
-public:
-    GameOverScreen();
+class GameOverScreen : public GenericOkayWindowWithCallback
+{
+ public:
+  GameOverScreen();
 };
-
-

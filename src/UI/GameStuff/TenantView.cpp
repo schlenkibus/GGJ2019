@@ -16,9 +16,9 @@ TenantView::TenantView(TenantData& ref)
           ref.toString())
     , picture{ ref.getTexture(), Application::get().getMidPoint() + sf::Vector2f(-400, 0) }
 {
-    AudioOneShotEngine::get().play("new2.wav");
+  AudioOneShotEngine::get().play("new2.wav");
 
-    picture.scale(0.5);
+  picture.scale(0.5);
 }
 
 void TenantView::draw(sf::RenderWindow& window)

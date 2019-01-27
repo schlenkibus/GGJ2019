@@ -30,7 +30,7 @@ class GameStateManager
   using TenantChangedCallback = std::function<void(std::shared_ptr<TenantData>)>;
   using MoneyChangedCallback = std::function<void(int)>;
   using DayChangedCallback = std::function<void(int)>;
-    static GameStateManager& get();
+  static GameStateManager& get();
 
   void init();
 
@@ -94,7 +94,7 @@ class GameStateManager
 
   MoneyChangedCallback m_moneyChanged;
   TenantChangedCallback m_tenantChangedCallback;
-    DayChangedCallback m_dayChangedCallback;
+  DayChangedCallback m_dayChangedCallback;
 
   size_t m_days = 0;
   size_t lastCalculatedDay = 0;

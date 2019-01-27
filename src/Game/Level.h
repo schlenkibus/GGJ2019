@@ -31,5 +31,5 @@ class Level
   std::unique_ptr<DrawableObject> m_desk;
   std::unique_ptr<DrawableObject> m_background;
   CashView m_cash;
-    DayCounter m_dayCounter;
+  DayCounter m_dayCounter;
 };

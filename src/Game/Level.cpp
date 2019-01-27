@@ -92,13 +92,13 @@ void Level::install(std::unique_ptr<GenericWindow> &&window)
 
 void Level::setMenuScene()
 {
-    m_objects.clear();
-    m_cash.setString("");
-    m_dayCounter.setString("");
-    Application::get().getLevel().closeMessage();
+  m_objects.clear();
+  m_cash.setString("");
+  m_dayCounter.setString("");
+  Application::get().getLevel().closeMessage();
 
-  m_objects.emplace_back(std::make_unique<DrawableObject>(ResourceManager::get().getTexture("decals_images.png"), sf::Vector2f(670, 400)));
-
+  m_objects.emplace_back(
+      std::make_unique<DrawableObject>(ResourceManager::get().getTexture("decals_images.png"), sf::Vector2f(670, 400)));
 
   m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(600, 325),
                                                   [&]() {
@@ -106,7 +106,6 @@ void Level::setMenuScene()
                                                     GameStateManager::get().start();
                                                   },
                                                   "Start"));
-
 }
 
 void Level::setGameScene()
@@ -129,7 +128,6 @@ void Level::setGameScene()
   GameStateManager::get().init();
   m_cash.setPosition(1200 - m_cash.getGlobalBounds().width, 0);
   m_cash.setCash(GameStateManager::get().getCurrentMoney());
-
 
   auto &element = m_objects.front();
   auto refButton = dynamic_cast<Button *>(element.get());

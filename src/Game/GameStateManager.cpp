@@ -25,7 +25,8 @@ GameStateManager::GameStateManager()
   }
 }
 
-void GameStateManager::init() {
+void GameStateManager::init()
+{
   m_days = 0;
   setMoney(5000);
   m_tenantsKickedOut = 0;
@@ -84,13 +85,13 @@ std::string GameStateManager::getWeeklyReport()
   return ss.str();
 }
 
-std::string GameStateManager::getGameOverMessage() {
+std::string GameStateManager::getGameOverMessage()
+{
   std::stringstream ss;
   ss << "Lifes Destroyed: " << m_lifesDestroyed << '\n';
   ss << "Are you happy now?";
   return ss.str();
 }
-
 
 std::array<TenantData*, 3> GameStateManager::getKickCandidates()
 {
@@ -274,10 +275,11 @@ void GameStateManager::setScreenState(ScreenState newScreenState)
       Application::get().getLevel().install(std::make_unique<PlayerStatsScreen>());
       break;
     }
-      case ScreenState::GameOver: {
-        Application::get().getLevel().install(std::make_unique<GameOverScreen>());
-        break;
-      }
+    case ScreenState::GameOver:
+    {
+      Application::get().getLevel().install(std::make_unique<GameOverScreen>());
+      break;
+    }
   }
 }
 
@@ -286,6 +288,7 @@ std::shared_ptr<TenantData> GameStateManager::getKickedTenant()
   return m_currentTenant;
 }
 
-void GameStateManager::listenForDayChange(GameStateManager::DayChangedCallback cb) {
+void GameStateManager::listenForDayChange(GameStateManager::DayChangedCallback cb)
+{
   m_dayChangedCallback = std::move(cb);
 }

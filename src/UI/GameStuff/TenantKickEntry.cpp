@@ -19,13 +19,9 @@ TenantKickEntry::TenantKickEntry(TenantData *data, sf::Vector2f pos)
 
   kick.sprite.setColor(sf::Color::Transparent);
 
-  kick.listenToOnHoverStart([](Button& b){
-      b.sprite.setColor(sf::Color::White);
-  });
+  kick.listenToOnHoverStart([](Button &b) { b.sprite.setColor(sf::Color::White); });
 
-  kick.listenToOnHoverEnd([](Button& b){
-    b.sprite.setColor(sf::Color::Transparent);
-  });
+  kick.listenToOnHoverEnd([](Button &b) { b.sprite.setColor(sf::Color::Transparent); });
 
   auto proto = TenantFactory::getTenant();
   if(data == nullptr)
@@ -48,7 +44,8 @@ void TenantKickEntry::draw(sf::RenderWindow &window)
 
 bool TenantKickEntry::onEvent(sf::Event &e)
 {
-  if(kick.onEvent(e)) {
+  if(kick.onEvent(e))
+  {
     return true;
   }
 

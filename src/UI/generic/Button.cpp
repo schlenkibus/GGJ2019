@@ -9,9 +9,10 @@ Button::Button(sf::Vector2f pos, std::function<void(void)> action, const std::st
     : DrawableObject(ResourceManager::get().getTexture("button.png"), pos)
     , m_action{ std::move(action) }
 {
-  m_text.setPosition(pos.x - tex.getSize().x / 3.5f, pos.y - tex.getSize().y / 2.f);
+  m_text.setPosition(pos.x - tex.getSize().x / 2, pos.y - tex.getSize().y / 2.f);
   m_text.setString(text);
-  m_text.setCharacterSize(30);
+  while(sprite.getGlobalBounds().width < m_text.getGlobalBounds().width)
+    m_text.setCharacterSize(m_text.getCharacterSize() - 1);
   m_text.setFillColor(sf::Color::White);
   m_text.setOutlineThickness(2);
   m_text.setOutlineColor(sf::Color::Black);
@@ -73,10 +74,12 @@ bool Button::onEvent(sf::Event &e)
   return ret;
 }
 
-void Button::listenToOnHoverEnd(Button::tHoverCallBack cb) {
+void Button::listenToOnHoverEnd(Button::tHoverCallBack cb)
+{
   m_onHoverExit = std::move(cb);
 }
 
-void Button::listenToOnHoverStart(Button::tHoverCallBack cb) {
+void Button::listenToOnHoverStart(Button::tHoverCallBack cb)
+{
   m_onHoverStart = std::move(cb);
 }
