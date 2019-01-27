@@ -12,6 +12,11 @@ TenantData TenantFactory::getTenant()
   tenant.factor = dm.getRandomNumber(-1, 1);
   tenant.outcome = dm.getOutcome();
   tenant.profession = dm.getProfession();
+  tenant.type = []() {
+    std::srand(static_cast<unsigned int>(time(0)));
+    auto rand = std::rand() % 2;
+    return rand ? TenantData::AnimalType::Snake : TenantData::AnimalType::Cat;
+  }();
 
   std::string recommendation;
   Recommendation recommendationRating;

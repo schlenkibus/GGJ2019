@@ -1,11 +1,13 @@
 #include <sstream>
 #include "TenantData.h"
+#include "../tools/ResourceManager.h"
 
 std::string TenantData::toString() const
 {
   std::stringstream ss;
   ss << "Name: " << name << "\n";
   ss << "Age: " << age << "\n";
+  ss << "Kind: " << toString(type) << '\n';
   ss << "Profession: " << profession << "\n";
   ss << "Salary: " << salary << "\n";
   ss << "Recommendation:\n" << recommendation << "\n";
@@ -17,36 +19,72 @@ const std::string& TenantData::getOutcome() const
   return outcome;
 }
 
+const std::string TenantData::toString(TenantData::AnimalType type) const
+{
+  switch(type)
+  {
+    case Dog:
+      return "Dog";
+    case Cat:
+      return "Cat";
+    case Bunny:
+      return "Bunny";
+    case Snake:
+      return "Snake";
+  }
+}
+
 sf::Texture& TenantData::getTexture()
 {
-  return animaldata.getTexture(happy);
+  std::string prefix = [&](std::string s) {
+    s[0] = std::tolower(s[0]);
+    s += "_";
+    return s;
+  }(toString(type));
+  auto s = happy ? "happy" : "sad";
+  return ResourceManager::get().getTexture("faces/" + prefix + s + ".jpg");
 }
 
 std::string TenantData::getStats() const
 {
   std::string ret;
-  switch(recommendationRating) {
-      case Recommendation::High:
-        ret += ":)";
-        break;
-      case Recommendation::Medium:
-        ret += ":|";
-        break;
-      case Recommendation::Low:
-        ret += ":(";
-        break;
+  switch(recommendationRating)
+  {
+    case Recommendation::High:
+      ret += ":)";
+      break;
+    case Recommendation::Medium:
+      ret += ":|";
+      break;
+    case Recommendation::Low:
+      ret += ":(";
+      break;
   }
   ret += '\n';
-  switch(salaryRating) {
+  switch(salaryRating)
+  {
     case Salary::High:
       ret += "$$$";
-          break;
+      break;
     case Salary::Medium:
       ret += "$$";
-          break;
+      break;
     case Salary::Low:
       ret += "$";
-          break;
+      break;
   }
   return ret;
+}
+
+std::string TenantData::getSoundName()
+{
+  auto ret = std::string(happy ? "happy" : "sad") + "Tenant.wav";
+  return ret;
+  std::string prefix = [&](std::string s) {
+    s[0] = std::tolower(s[0]);
+    s += "_";
+    return s;
+  }(toString(type));
+  auto s = happy ? "happy" : "sad";
+  return std::string(prefix + s + ".wav");
 }

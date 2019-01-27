@@ -9,25 +9,25 @@ GenericWindow::GenericWindow(const std::string &message, const std::string &head
     , m_message{ message, ResourceManager::get().getFont() }
 {
 
-  auto splitStringOnAnyDelimiter = [](const std::string& s, char delimiter) -> std::vector<std::string> {
-      std::vector<std::string> strings;
-      std::string token;
-      std::istringstream tokenStream(s);
-      while(std::getline(tokenStream, token, delimiter))
+  auto splitStringOnAnyDelimiter = [](const std::string &s, char delimiter) -> std::vector<std::string> {
+    std::vector<std::string> strings;
+    std::string token;
+    std::istringstream tokenStream(s);
+    while(std::getline(tokenStream, token, delimiter))
+    {
+      std::string o{};
+      for(auto &c : token)
       {
-        std::string o{};
-        for(auto& c : token)
-        {
-            o += c;
-        }
-
-        if(*o.end() != ' ')
-          o += " ";
-
-        if(!o.empty())
-          strings.push_back(o);
+        o += c;
       }
-      return strings;
+
+      if(*o.end() != ' ')
+        o += " ";
+
+      if(!o.empty())
+        strings.push_back(o);
+    }
+    return strings;
   };
 
   m_message.setCharacterSize(20);
@@ -38,13 +38,16 @@ GenericWindow::GenericWindow(const std::string &message, const std::string &head
 
   sf::Text testText(m_message);
 
-  for(const auto &word: messageWords)
+  for(const auto &word : messageWords)
   {
     testText.setString(perm + " " + word);
-    if(testText.getGlobalBounds().width > sprite.getGlobalBounds().width * 0.7) {
+    if(testText.getGlobalBounds().width > sprite.getGlobalBounds().width * 0.7)
+    {
       perm += "\n";
       perm += word;
-    } else {
+    }
+    else
+    {
       perm += word;
     }
   }

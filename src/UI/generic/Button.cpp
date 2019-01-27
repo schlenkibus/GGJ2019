@@ -28,7 +28,7 @@ void Button::setTexture(sf::Texture &tex)
 {
   sprite.setTexture(tex);
   sprite.setOrigin(tex.getSize().x / 2.f, tex.getSize().y / 2.f);
-  sprite.setTextureRect(sf::Rect<int>(0,0, tex.getSize().x, tex.getSize().y));
+  sprite.setTextureRect(sf::Rect<int>(0, 0, tex.getSize().x, tex.getSize().y));
 }
 
 bool Button::onEvent(sf::Event &e)

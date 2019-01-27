@@ -32,14 +32,14 @@ GameStateManager& GameStateManager::get()
 
 void GameStateManager::acceptTenant()
 {
-  const auto soundName = m_currentTenant->getAnimalData().getSoundName(true);
-  AudioOneShotEngine::get().play(soundName);
+  m_currentTenant->setHappy(true);
+  AudioOneShotEngine::get().play(m_currentTenant->getSoundName());
 }
 
 void GameStateManager::declineTenant()
 {
-  const auto soundName = m_currentTenant->getAnimalData().getSoundName(false);
-  AudioOneShotEngine::get().play(soundName);
+  m_currentTenant->setHappy(false);
+  AudioOneShotEngine::get().play(m_currentTenant->getSoundName());
   m_declinedTenants.push_back(m_currentTenant);
 }
 
@@ -71,7 +71,8 @@ std::string GameStateManager::getWeeklyReport()
 std::array<TenantData*, 3> GameStateManager::getKickCandidates()
 {
   std::vector<std::shared_ptr<TenantData>> out;
-  std::sample(m_acceptedTenants.begin(), m_acceptedTenants.end(), std::back_inserter(out), 3, std::mt19937{ std::random_device{}() });
+  std::sample(m_acceptedTenants.begin(), m_acceptedTenants.end(), std::back_inserter(out), 3,
+              std::mt19937{ std::random_device{}() });
   return { out[0].get(), out[1].get(), out[2].get() };
 }
 
@@ -90,7 +91,8 @@ void GameStateManager::generateNewTenant()
   }
 }
 
-void GameStateManager::listenForMoneyChange(MoneyChangedCallback function) {
+void GameStateManager::listenForMoneyChange(MoneyChangedCallback function)
+{
   m_moneyChanged = std::move(function);
 }
 

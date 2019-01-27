@@ -2,6 +2,7 @@
 #include "../../Application.h"
 #include "../../Game/GameStateManager.h"
 #include "../../Data/TenantFactory.h"
+#include "../../tools/ResourceManager.h"
 
 TenantKickEntry::TenantKickEntry(TenantData *data, sf::Vector2f pos)
     : DrawableObject{ (data != nullptr ? data->getTexture() : TenantFactory::getTenant().getTexture()), pos }
@@ -16,7 +17,6 @@ TenantKickEntry::TenantKickEntry(TenantData *data, sf::Vector2f pos)
   auto proto = TenantFactory::getTenant();
   if(data == nullptr)
     data = &proto;
-
 
   text.setPosition(pos + sf::Vector2f(-100, 80));
   text.setString(data->getStats());
