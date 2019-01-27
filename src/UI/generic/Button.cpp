@@ -6,7 +6,7 @@
 #include <utility>
 
 Button::Button(sf::Vector2f pos, std::function<void(void)> action, const std::string &text)
-    : DrawableObject(ResourceManager::get().getTexture("button.png"), pos)
+    : DrawableObject(ResourceManager::get().getTexture("Button.png"), pos)
     , m_action{ std::move(action) }
 {
   m_text.setPosition(pos.x - tex.getSize().x / 2, pos.y - tex.getSize().y / 2.f);
