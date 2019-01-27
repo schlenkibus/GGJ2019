@@ -1,5 +1,6 @@
 #include "CashView.h"
 #include "../../tools/ResourceManager.h"
+#include "../../Game/GameStateManager.h"
 
 
 CashView::CashView() {
@@ -8,6 +9,9 @@ CashView::CashView() {
     setOutlineThickness(2);
     setOutlineColor(sf::Color::Black);
     setFont(ResourceManager::get().getFont());
+    GameStateManager::get().listenForMoneyChange([&](int money) {
+       setCash(money);
+    });
 }
 
 CashView::CashView(int initalValue, sf::Vector2f position) {

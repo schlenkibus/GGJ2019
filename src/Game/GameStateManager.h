@@ -26,6 +26,7 @@ class GameStateManager
 
  public:
   using TenantChangedCallback = std::function<void(std::shared_ptr<TenantData>)>;
+  using MoneyChangedCallback = std::function<void(int)>;
   static GameStateManager& get();
 
   void setScreenState(ScreenState);
@@ -35,6 +36,8 @@ class GameStateManager
   void kickTenant(TenantData* tenant);
   std::array<TenantData*, 3> getKickCandidates();
   void listenForTenantChanged(TenantChangedCallback);
+  void listenForMoneyChange(MoneyChangedCallback);
+
   std::string getWeeklyReport();
   std::shared_ptr<TenantData> getTenant();
   size_t getDay()
@@ -80,6 +83,7 @@ class GameStateManager
   std::vector<std::shared_ptr<TenantData>> m_declinedTenants{};
   std::vector<std::shared_ptr<TenantData>> m_thrownOutTenants{};
 
+  MoneyChangedCallback m_moneyChanged;
   TenantChangedCallback m_tenantChangedCallback;
 
   size_t m_days = 0;

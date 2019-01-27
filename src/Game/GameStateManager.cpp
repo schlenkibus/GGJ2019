@@ -88,6 +88,10 @@ void GameStateManager::generateNewTenant()
   }
 }
 
+void GameStateManager::listenForMoneyChange(MoneyChangedCallback function) {
+  m_moneyChanged = std::move(function);
+}
+
 void GameStateManager::listenForTenantChanged(TenantChangedCallback function)
 {
   m_tenantChangedCallback = std::move(function);
@@ -105,6 +109,8 @@ void GameStateManager::changeCurrentMoney(int amount)
   {
     m_totalMoneyEarned += amount;
   }
+
+  m_moneyChanged(m_currentMoneyEarned);
 }
 
 std::shared_ptr<TenantData> GameStateManager::getTenant()
