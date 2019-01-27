@@ -2,6 +2,7 @@
 #include "../generic/GenericOkayWindowWithCallback.h"
 #include "../../Game/GameStateManager.h"
 #include "../../Application.h"
+#include "../../tools/AudioOneShotEngine.h"
 
 DenyTenantScreen::DenyTenantScreen()
     : GenericOkayWindowWithCallback{ GameStateManager::get().getTenant()->getOutcome(), DataManager::get().getSadOkay(),
@@ -23,6 +24,7 @@ AfterKickTenantScreem::AfterKickTenantScreem()
                                      []() { GameStateManager::get().setScreenState(ScreenState::NewTenant); } }
     , pic{ GameStateManager::get().getTenant()->getTexture(), Application::get().getMidPoint() + sf::Vector2f(400, 0) }
 {
+  AudioOneShotEngine::get().play(GameStateManager::get().getKickedTenant()->getAngryName());
   pic.scale(0.5);
 }
 

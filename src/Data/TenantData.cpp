@@ -122,3 +122,9 @@ std::string TenantData::getSoundName()
   auto s = happy ? "happy" : "sad";
   return std::string(prefix + s + ".wav");
 }
+
+std::string TenantData::getAngryName() {
+  return std::string("faces/") + [](std::string s) {
+    return static_cast<char>(std::tolower(s[0])) + s.substr(1);
+  }(toString(type)) + "_kick.wav";
+}
