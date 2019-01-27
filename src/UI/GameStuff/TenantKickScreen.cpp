@@ -13,7 +13,7 @@ TenantKickScreen::TenantKickScreen()
   for(int i = 0; i < 3; i++)
   {
     m_candidates[i] = std::make_unique<TenantKickEntry>(data[i], Application::get().getMidPoint()
-                                                            + sf::Vector2f((-300 + i * 300), 0));
+                                                            + sf::Vector2f((-350 + i * 350), 0));
     m_candidates[i]->scale(0.4);
   }
 }
