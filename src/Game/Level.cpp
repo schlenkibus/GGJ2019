@@ -9,6 +9,7 @@
 #include "GameStateManager.h"
 #include "../UI/generic/GenericOkayWindowWithCallback.h"
 #include "../UI/GameStuff/TenantView.h"
+#include "../UI/GameStuff/Title.h"
 
 Level::Level()
     : firstUpdate{ true }
@@ -96,6 +97,8 @@ void Level::setMenuScene()
   m_cash.setString("");
   m_dayCounter.setString("");
   Application::get().getLevel().closeMessage();
+
+  m_objects.emplace_back(std::make_unique<Title>(Application::get().getMidPoint() + sf::Vector2f(0, -200), "unBEARable choices"));
 
   m_objects.emplace_back(
       std::make_unique<DrawableObject>(ResourceManager::get().getTexture("decals_images.png"), sf::Vector2f(670, 400)));
