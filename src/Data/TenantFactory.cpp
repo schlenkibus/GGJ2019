@@ -39,6 +39,7 @@ TenantData TenantFactory::getTenant()
     case -1:
       recommendation = dm.getRecommendationBad();
       recommendationRating = Recommendation::Low;
+      tenant.outcome = "was bad news, Good pass!";
       break;
     case 1:
       recommendation = dm.getRecommendationGood();
