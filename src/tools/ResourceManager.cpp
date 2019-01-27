@@ -41,6 +41,10 @@ ResourceManager::ResourceManager()
     std::cerr << "could not load font" << '\n';
   }
 
+  if(!m_backgroundNoise.openFromFile(std::string(prefix) + std::string(audioDir) + "/ambient/office.wav")) {
+    std::cerr << "could not load background noise\n";
+  }
+
   if(!m_music.openFromFile(std::string(prefix) + std::string(audioDir) + "music.wav"))
   {
     std::cerr << "could not load music from: music.wav" << '\n';
