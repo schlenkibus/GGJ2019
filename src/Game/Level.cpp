@@ -112,7 +112,7 @@ void Level::setGameScene()
   auto &rm = ResourceManager::get();
   auto &exitTexture = rm.getTexture("exitbutton.png");
 
-  m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(100, 100),
+  m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(35, 35),
                                                   [&]() {
                                                     m_objects.clear();
                                                     m_cash.setString("");
