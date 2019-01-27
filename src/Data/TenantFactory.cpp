@@ -7,8 +7,8 @@ TenantData TenantFactory::getTenant()
   TenantData tenant;
   auto& dm = DataManager::get();
   tenant.name = dm.getName();
-  tenant.salary = dm.getRandomNumber(0, 3500);
-  tenant.age = dm.getRandomNumber(18, 100);
+  tenant.salary = dm.getRandomNumber(500, 3500);
+  tenant.age = dm.getRandomNumber(18, 85);
   tenant.factor = dm.getRandomNumber(-1, 1);
   tenant.outcome = dm.getOutcome();
   tenant.profession = dm.getProfession();
@@ -51,18 +51,17 @@ TenantData TenantFactory::getTenant()
   tenant.recommendationRating = recommendationRating;
 
   Salary salaryRating;
-  switch(dm.getRandomNumber(-1, 1))
+  if (tenant.salary > 2500)
   {
-    case -1:
-      salaryRating = Salary::Low;
-      break;
-    case 1:
-      salaryRating = Salary::High;
-      break;
-    case 0:
-    default:
-      salaryRating = Salary::Medium;
-      break;
+    salaryRating = Salary::High;
+  }
+  else if (tenant.salary > 1500)
+  {
+    salaryRating = Salary::Medium;
+  }
+  else
+  {
+    salaryRating = Salary::Low;
   }
 
   tenant.salaryRating = salaryRating;
