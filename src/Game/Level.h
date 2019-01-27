@@ -7,6 +7,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 #include "../UI/GameStuff/CashView.h"
+#include "../UI/GameStuff/DayCounter.h"
 
 class Level
 {
@@ -30,4 +31,5 @@ class Level
   std::unique_ptr<DrawableObject> m_desk;
   std::unique_ptr<DrawableObject> m_background;
   CashView m_cash;
+    DayCounter m_dayCounter;
 };

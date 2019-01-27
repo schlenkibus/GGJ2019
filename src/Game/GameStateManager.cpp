@@ -94,6 +94,7 @@ std::array<TenantData*, 3> GameStateManager::getKickCandidates()
 size_t GameStateManager::nextDay()
 {
   generateNewTenant();
+  m_dayChangedCallback(static_cast<int>(m_days + 1));
   return ++m_days;
 }
 
@@ -268,4 +269,8 @@ void GameStateManager::setScreenState(ScreenState newScreenState)
 std::shared_ptr<TenantData> GameStateManager::getKickedTenant()
 {
   return m_currentTenant;
+}
+
+void GameStateManager::listenForDayChange(GameStateManager::DayChangedCallback cb) {
+  m_dayChangedCallback = std::move(cb);
 }

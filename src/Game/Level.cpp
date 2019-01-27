@@ -67,6 +67,7 @@ void Level::draw(sf::RenderWindow &w)
   m_background->draw(w);
   m_desk->draw(w);
   w.draw(m_cash);
+  w.draw(m_dayCounter);
 
   for(auto &obj : m_objects)
   {
@@ -115,6 +116,7 @@ void Level::setGameScene()
                                                   [&]() {
                                                     m_objects.clear();
                                                     m_cash.setString("");
+                                                    m_dayCounter.setString("");
                                                     Application::get().getLevel().closeMessage();
                                                     Application::get().getLevel().setMenuScene();
                                                   },
