@@ -58,11 +58,11 @@ GenericWindow::GenericWindow(const std::string &message, const std::string &head
   m_message.setPosition(Application::get().getMidPoint() + sf::Vector2f(-135, -200));
 
   m_header.setOutlineThickness(1.5);
-  m_header.setOutlineColor(sf::Color::Black);
-  m_header.setFillColor(sf::Color::White);
+  m_header.setOutlineColor(sf::Color::White);
+  m_header.setFillColor(sf::Color::Black);
   m_message.setOutlineThickness(1.5);
-  m_message.setOutlineColor(sf::Color::Black);
-  m_message.setFillColor(sf::Color::White);
+  m_message.setOutlineColor(sf::Color::White);
+  m_message.setFillColor(sf::Color::Black);
 }
 
 void GenericWindow::draw(sf::RenderWindow &window)
