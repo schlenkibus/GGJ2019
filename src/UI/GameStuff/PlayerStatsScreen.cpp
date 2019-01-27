@@ -13,13 +13,17 @@ PlayerStatsScreen::PlayerStatsScreen()
                                     } }
 {
   AudioOneShotEngine::get().play("cash.wav");
-  if (GameStateManager::get().getNetIncome() <= 0)
+  if(GameStateManager::get().getNetIncome() < 0)
+  {
+    sprite.setColor(sf::Color(100, 0, 0));
+  }
+  else if(GameStateManager::get().getNetIncome() > 0)
   {
     sprite.setColor(sf::Color(0, 100, 0));
   }
   else
   {
-    sprite.setColor(sf::Color(100, 0, 0));
+    sprite.setColor(sf::Color::White);
   }
 
   auto data = GameStateManager::get().getCopyOfCurrentTenant();

@@ -27,7 +27,7 @@ TenantData TenantFactory::getTenant()
         return TenantData::Bunny;
       case 4:
       default:
-          return TenantData::Jellyfish;
+        return TenantData::Jellyfish;
     }
   }();
 

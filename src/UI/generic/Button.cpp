@@ -17,7 +17,6 @@ Button::Button(sf::Vector2f pos, std::function<void(void)> action, const std::st
   m_text.setPosition(pos.x - m_text.getGlobalBounds().width / 2, pos.y - m_text.getGlobalBounds().height / 1.5f);
   m_text.setFillColor(sf::Color::White);
   m_text.setOutlineColor(sf::Color::Black);
-
 }
 
 void Button::draw(sf::RenderWindow &window)
@@ -44,17 +43,17 @@ bool Button::onEvent(sf::Event &e)
     {
       sprite.setScale(1.1, 1.1);
       m_text.setCharacterSize(35);
-        m_text.setPosition(sprite.getPosition().x - m_text.getGlobalBounds().width / 2,
-                           sprite.getPosition().y - m_text.getGlobalBounds().height / 1.5f);
+      m_text.setPosition(sprite.getPosition().x - m_text.getGlobalBounds().width / 2,
+                         sprite.getPosition().y - m_text.getGlobalBounds().height / 1.5f);
       if(m_onHoverStart)
         m_onHoverStart(*this);
     }
     else
     {
-        sprite.setScale(1, 1);
+      sprite.setScale(1, 1);
       m_text.setCharacterSize(30);
-        m_text.setPosition(sprite.getPosition().x - m_text.getGlobalBounds().width / 2,
-                           sprite.getPosition().y - m_text.getGlobalBounds().height / 1.5f);
+      m_text.setPosition(sprite.getPosition().x - m_text.getGlobalBounds().width / 2,
+                         sprite.getPosition().y - m_text.getGlobalBounds().height / 1.5f);
       if(m_onHoverExit)
         m_onHoverExit(*this);
     }
