@@ -99,6 +99,10 @@ void Level::setMenuScene()
   Application::get().getLevel().closeMessage();
 
   m_objects.emplace_back(std::make_unique<Title>(sf::Vector2f(Application::get().getMidPoint().x, 40), "unBEARable choices"));
+  m_objects.emplace_back(std::make_unique<Title>(sf::Vector2f(Application::get().getMidPoint().x, 100), "Global Game Jam 2019"));
+
+  auto titlePtr = dynamic_cast<Title*>(m_objects.back().get());
+  titlePtr->setCharSize(25);
 
   m_objects.emplace_back(
       std::make_unique<DrawableObject>(ResourceManager::get().getTexture("decals_images.png"), sf::Vector2f(670, 400)));
