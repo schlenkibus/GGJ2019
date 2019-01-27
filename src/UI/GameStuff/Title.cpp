@@ -7,8 +7,7 @@ Title::Title(sf::Vector2f pos, const std::string &text)
     m_text.setOutlineThickness(2);
     m_text.setFont(ResourceManager::get().getFont());
     m_text.setString(text);
-    //while(sprite.getGlobalBounds().width < m_text.getGlobalBounds().width)
-    //  m_text.setCharacterSize(m_text.getCharacterSize() - 1);
+    m_text.setCharacterSize(50);
     m_text.setPosition(pos.x - m_text.getGlobalBounds().width / 2, pos.y - m_text.getGlobalBounds().height / 1.5f);
     m_text.setFillColor(sf::Color::White);
     m_text.setOutlineColor(sf::Color::Black);

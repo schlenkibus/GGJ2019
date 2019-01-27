@@ -98,12 +98,12 @@ void Level::setMenuScene()
   m_dayCounter.setString("");
   Application::get().getLevel().closeMessage();
 
-  m_objects.emplace_back(std::make_unique<Title>(Application::get().getMidPoint() + sf::Vector2f(0, -200), "unBEARable choices"));
+  m_objects.emplace_back(std::make_unique<Title>(sf::Vector2f(Application::get().getMidPoint().x, 40), "unBEARable choices"));
 
   m_objects.emplace_back(
       std::make_unique<DrawableObject>(ResourceManager::get().getTexture("decals_images.png"), sf::Vector2f(670, 400)));
 
-  m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(600, 325),
+  m_objects.emplace_back(std::make_unique<Button>(Application::get().getMidPoint(),
                                                   [&]() {
                                                     m_objects.clear();
                                                     GameStateManager::get().start();
