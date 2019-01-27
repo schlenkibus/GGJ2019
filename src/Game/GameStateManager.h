@@ -30,9 +30,11 @@ class GameStateManager
   using TenantChangedCallback = std::function<void(std::shared_ptr<TenantData>)>;
   using MoneyChangedCallback = std::function<void(int)>;
   using DayChangedCallback = std::function<void(int)>;
-    static GameStateManager& get();
+  static GameStateManager& get();
 
   void init();
+
+  void start();
 
   void setScreenState(ScreenState);
 
@@ -69,11 +71,13 @@ class GameStateManager
   {
     return m_totalKarmaEarned;
   };
-
-  void start();
+  static constexpr const size_t maxAmountOfTenants = 10;
+  std::array<std::shared_ptr<TenantData>, maxAmountOfTenants> getCopyOfCurrentTenant()
+  {
+    return m_acceptedTenants;
+  };
 
  private:
-  static constexpr const size_t maxAmountOfTenants = 10;
   const size_t monthlyExpenses = 5000;
   const size_t newTenantCost = 100;
   const size_t rentAmount = 1000;
@@ -94,7 +98,7 @@ class GameStateManager
 
   MoneyChangedCallback m_moneyChanged;
   TenantChangedCallback m_tenantChangedCallback;
-    DayChangedCallback m_dayChangedCallback;
+  DayChangedCallback m_dayChangedCallback;
 
   size_t m_days = 0;
   size_t lastCalculatedDay = 0;
