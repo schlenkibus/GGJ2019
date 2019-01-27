@@ -36,7 +36,7 @@ sf::Font &ResourceManager::getFont()
 
 ResourceManager::ResourceManager()
 {
-  if(!m_font.loadFromFile(std::string(prefix) + fonPrefix + "BitCasual.ttf"))
+  if(!m_font.loadFromFile(std::string(prefix) + fonPrefix + "Anonymous.ttf"))
   {
     std::cerr << "could not load font" << '\n';
   }

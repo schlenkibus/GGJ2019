@@ -21,7 +21,7 @@ TenantKickEntry::TenantKickEntry(TenantData *data, sf::Vector2f pos)
   text.setPosition(pos + sf::Vector2f(-100, 80));
   text.setString(data->getStats());
   text.setFont(ResourceManager::get().getFont());
-  text.setCharacterSize(50);
+  text.setCharacterSize(30);
   text.setOutlineColor(sf::Color::Black);
   text.setOutlineThickness(1.2);
 }
