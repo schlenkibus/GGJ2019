@@ -36,9 +36,9 @@ PlayerStatsScreen::PlayerStatsScreen()
 void PlayerStatsScreen::draw(sf::RenderWindow& window)
 {
   GenericWindow::draw(window);
+  GenericOkayWindowWithCallback::draw(window);
   for(auto& e : m_currentTenants)
   {
     e->draw(window);
   }
-  GenericOkayWindowWithCallback::draw(window);
 }
