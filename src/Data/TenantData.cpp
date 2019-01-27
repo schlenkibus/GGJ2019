@@ -111,16 +111,13 @@ void TenantData::setReason(std::string reason)
 
 std::string TenantData::getSoundName()
 {
-  return "drawer.wav";
-  auto ret = std::string(happy ? "happy" : "sad") + "Tenant.wav";
-  return ret;
   std::string prefix = [&](std::string s) {
     s[0] = std::tolower(s[0]);
     s += "_";
     return s;
   }(toString(type));
   auto s = happy ? "happy" : "sad";
-  return std::string(prefix + s + ".wav");
+  return std::string("faces/") + std::string(prefix + s + ".wav");
 }
 
 std::string TenantData::getAngryName() {
