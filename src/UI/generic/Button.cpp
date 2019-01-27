@@ -65,7 +65,9 @@ bool Button::onEvent(sf::Event &e)
       m_action();
       ret = true;
     }
-    sprite.setColor(sf::Color::White);
+    
+    if(sprite.getColor() != sf::Color::Transparent)
+      sprite.setColor(sf::Color::White);
   }
 
   if(e.type == sf::Event::MouseButtonPressed && e.mouseButton.button == sf::Mouse::Button::Left)
