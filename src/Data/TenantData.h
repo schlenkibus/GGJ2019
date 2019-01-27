@@ -25,6 +25,7 @@ class TenantData
   std::string getStats() const;
   sf::Texture& getTexture();
   std::string getSoundName();
+  std::string getAngryName();
   void setReason(std::string reason);
   const std::string toString(AnimalType) const;
   Recommendation getRecommendationRating()
