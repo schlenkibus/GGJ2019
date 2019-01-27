@@ -1,4 +1,5 @@
 #include "PlayerStatsScreen.h"
+#include "../../tools/AudioOneShotEngine.h"
 #include "../../tools/ResourceManager.h"
 #include "../../Game/GameStateManager.h"
 
@@ -10,5 +11,6 @@ PlayerStatsScreen::PlayerStatsScreen()
                                         GameStateManager::get().setScreenState(ScreenState::GameOver);
                                     } }
 {
+    AudioOneShotEngine::get().play("cash.wav");
   sprite.setColor(sf::Color::Red);
 }
