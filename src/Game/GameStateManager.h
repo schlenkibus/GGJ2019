@@ -34,6 +34,8 @@ class GameStateManager
 
   void init();
 
+  void start();
+
   void setScreenState(ScreenState);
 
   void acceptTenant();
@@ -69,11 +71,13 @@ class GameStateManager
   {
     return m_totalKarmaEarned;
   };
-
-  void start();
+  static constexpr const size_t maxAmountOfTenants = 10;
+  std::array<std::shared_ptr<TenantData>, maxAmountOfTenants> getCopyOfCurrentTenant()
+  {
+    return m_acceptedTenants;
+  };
 
  private:
-  static constexpr const size_t maxAmountOfTenants = 10;
   const size_t monthlyExpenses = 5000;
   const size_t newTenantCost = 100;
   const size_t rentAmount = 1000;
