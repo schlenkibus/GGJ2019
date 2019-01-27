@@ -7,18 +7,30 @@
 TenantKickEntry::TenantKickEntry(TenantData *data, sf::Vector2f pos)
     : DrawableObject{ (data != nullptr ? data->getTexture() : TenantFactory::getTenant().getTexture()), pos }
     , info{ data }
-    , kick{ pos + sf::Vector2f(0, 250),
+    , kick{ pos + sf::Vector2f(0, 50),
             [&]() {
               GameStateManager::get().kickTenant(info);
               GameStateManager::get().setScreenState(ScreenState::KickTenantAfter);
             },
-            "Throw Out!" }
+            "" }
 {
+  kick.setTexture(ResourceManager::get().getTexture("evictOverlay.png"));
+
+  kick.sprite.setColor(sf::Color::Transparent);
+
+  kick.listenToOnHoverStart([](Button& b){
+      b.sprite.setColor(sf::Color::White);
+  });
+
+  kick.listenToOnHoverEnd([](Button& b){
+    b.sprite.setColor(sf::Color::Transparent);
+  });
+
   auto proto = TenantFactory::getTenant();
   if(data == nullptr)
     data = &proto;
 
-  text.setPosition(pos + sf::Vector2f(-100, 80));
+  text.setPosition(pos + sf::Vector2f(-80, -175));
   text.setString(data->getStats());
   text.setFont(ResourceManager::get().getFont());
   text.setCharacterSize(30);
@@ -35,8 +47,9 @@ void TenantKickEntry::draw(sf::RenderWindow &window)
 
 bool TenantKickEntry::onEvent(sf::Event &e)
 {
-  if(kick.onEvent(e))
+  if(kick.onEvent(e)) {
     return true;
+  }
 
   return DrawableObject::onEvent(e);
 }

@@ -88,7 +88,7 @@ std::string TenantData::getStats() const
       ret += ":(";
       break;
   }
-  ret += '\n';
+  ret += ' ';
   switch(salaryRating)
   {
     case Salary::High:

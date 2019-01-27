@@ -21,8 +21,8 @@ class DrawableObject
   bool contains(sf::Vector2i pos) const;
   void setPos(sf::Vector2f pos);
 
- protected:
-  sf::Sprite sprite;
+    sf::Sprite sprite;
+protected:
   sf::Texture &tex;
   tUpdateCB updateCB;
   tEventCB onEventCB;

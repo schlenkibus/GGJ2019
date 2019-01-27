@@ -74,7 +74,7 @@ DataManager::DataManager()
   }
   dataFile.close();
 
-  m_sadOkays = {"awkward", "Okay :(", ":(", "Wow..", "*sniff*", "that is sad", "tragic", "unfortunate", "OK :(", "¯\\_(ツ)_/¯", "Oopsie","...", "crying"};
+  m_sadOkays = {"awkward", "Okay :(", ":(", "Wow..", "*sniff*", "that is sad", "tragic", "unfortunate", "OK :(", "Oopsie","...", "crying"};
 }
 
 DataManager& DataManager::get()
