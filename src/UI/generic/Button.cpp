@@ -9,14 +9,15 @@ Button::Button(sf::Vector2f pos, std::function<void(void)> action, const std::st
     : DrawableObject(ResourceManager::get().getTexture("Button.png"), pos)
     , m_action{ std::move(action) }
 {
-  m_text.setPosition(pos.x - tex.getSize().x / 2, pos.y - tex.getSize().y / 2.f);
-  m_text.setString(text);
-  while(sprite.getGlobalBounds().width < m_text.getGlobalBounds().width)
-    m_text.setCharacterSize(m_text.getCharacterSize() - 1);
-  m_text.setFillColor(sf::Color::White);
   m_text.setOutlineThickness(2);
-  m_text.setOutlineColor(sf::Color::Black);
   m_text.setFont(ResourceManager::get().getFont());
+  m_text.setString(text);
+  //while(sprite.getGlobalBounds().width < m_text.getGlobalBounds().width)
+  //  m_text.setCharacterSize(m_text.getCharacterSize() - 1);
+  m_text.setPosition(pos.x - m_text.getGlobalBounds().width / 2, pos.y - m_text.getGlobalBounds().height / 1.5f);
+  m_text.setFillColor(sf::Color::White);
+  m_text.setOutlineColor(sf::Color::Black);
+
 }
 
 void Button::draw(sf::RenderWindow &window)
@@ -43,13 +44,17 @@ bool Button::onEvent(sf::Event &e)
     {
       sprite.setScale(1.1, 1.1);
       m_text.setCharacterSize(35);
+        m_text.setPosition(sprite.getPosition().x - m_text.getGlobalBounds().width / 2,
+                           sprite.getPosition().y - m_text.getGlobalBounds().height / 1.5f);
       if(m_onHoverStart)
         m_onHoverStart(*this);
     }
     else
     {
-      m_text.setCharacterSize(35);
-      sprite.setScale(1, 1);
+        sprite.setScale(1, 1);
+      m_text.setCharacterSize(30);
+        m_text.setPosition(sprite.getPosition().x - m_text.getGlobalBounds().width / 2,
+                           sprite.getPosition().y - m_text.getGlobalBounds().height / 1.5f);
       if(m_onHoverExit)
         m_onHoverExit(*this);
     }
