@@ -14,7 +14,8 @@ class TenantData
     Cat,
     Dog,
     Bunny,
-    Snake
+    Snake,
+    Jellyfish
   };
 
   TenantData() = default;

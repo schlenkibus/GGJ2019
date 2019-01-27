@@ -59,6 +59,8 @@ const std::string TenantData::toString(TenantData::AnimalType type) const
       return "Bunny";
     case Snake:
       return "Snake";
+    case Jellyfish:
+      return "Jellyfish";
   }
 }
 
@@ -111,8 +113,6 @@ void TenantData::setReason(std::string reason)
 
 std::string TenantData::getSoundName()
 {
-  return "drawer.wav";
-  auto ret = std::string(happy ? "happy" : "sad") + "Tenant.wav";
   return ret;
   std::string prefix = [&](std::string s) {
     s[0] = std::tolower(s[0]);

@@ -16,18 +16,18 @@ PlayerStatsScreen::PlayerStatsScreen()
   auto data = GameStateManager::get().getCopyOfCurrentTenant();
   for(int i = 0; i < data.size(); i++)
   {
-      if (i < 5)
-      {
-          m_currentTenants[i] = std::make_unique<TenantOverview>(
-                  data[i].get(), Application::get().getMidPoint() + sf::Vector2f(-380, -200 + (100 * i)));
-          m_currentTenants[i]->scale(0.15);
-      }
-      else
-      {
-          m_currentTenants[i] = std::make_unique<TenantOverview>(
-                  data[i].get(), Application::get().getMidPoint() + sf::Vector2f(350, -200 + (100 * (i - 5))));
-          m_currentTenants[i]->scale(0.15);
-      }
+    if(i < 5)
+    {
+      m_currentTenants[i] = std::make_unique<TenantOverview>(data[i].get(), Application::get().getMidPoint()
+                                                                 + sf::Vector2f(-380, -200 + (100 * i)));
+      m_currentTenants[i]->scale(0.15);
+    }
+    else
+    {
+      m_currentTenants[i] = std::make_unique<TenantOverview>(data[i].get(), Application::get().getMidPoint()
+                                                                 + sf::Vector2f(350, -200 + (100 * (i - 5))));
+      m_currentTenants[i]->scale(0.15);
+    }
   }
 }
 

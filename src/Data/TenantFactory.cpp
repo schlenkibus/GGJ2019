@@ -14,7 +14,7 @@ TenantData TenantFactory::getTenant()
   tenant.profession = dm.getProfession();
   tenant.reason = " NONE ";
   tenant.type = []() {
-    auto rand = std::rand() % 4;
+    auto rand = std::rand() % 5;
     switch(rand)
     {
       case 0:
@@ -24,8 +24,10 @@ TenantData TenantFactory::getTenant()
       case 2:
         return TenantData::Dog;
       case 3:
-      default:
         return TenantData::Bunny;
+      case 4:
+      default:
+          return TenantData::Jellyfish;
     }
   }();
 

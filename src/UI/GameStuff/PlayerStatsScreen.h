@@ -10,10 +10,10 @@
 
 class PlayerStatsScreen : public GenericOkayWindowWithCallback
 {
-  public:
-    PlayerStatsScreen();
-    void draw(sf::RenderWindow& window) override;
+ public:
+  PlayerStatsScreen();
+  void draw(sf::RenderWindow& window) override;
 
-  private:
-    std::array<std::unique_ptr<TenantOverview>, 10> m_currentTenants;
+ private:
+  std::array<std::unique_ptr<TenantOverview>, 10> m_currentTenants;
 };
