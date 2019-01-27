@@ -23,7 +23,7 @@ class TenantData : public std::enable_shared_from_this<TenantData>
     return shared_from_this();
   }
   std::string toString() const;
-  const std::string& getOutcome() const;
+  std::string getOutcome() const;
   std::string getStats() const;
   sf::Texture& getTexture();
   std::string getSoundName();

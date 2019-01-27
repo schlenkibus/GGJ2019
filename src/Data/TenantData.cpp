@@ -14,9 +14,15 @@ std::string TenantData::toString() const
   return ss.str();
 }
 
-const std::string& TenantData::getOutcome() const
+std::string TenantData::getOutcome() const
 {
-  return outcome;
+  auto ret = name;
+  ret += " the ";
+  ret += toString(type);
+  ret += " ";
+  ret += static_cast<char>(std::tolower(static_cast<int>(outcome[0])));
+  ret += outcome.substr(1);
+  return ret;
 }
 
 const std::string TenantData::toString(TenantData::AnimalType type) const

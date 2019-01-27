@@ -5,8 +5,8 @@
 
 YesNoMessage::YesNoMessage(YesNoMessage::tAction yes, YesNoMessage::tAction no, const std::string &message)
     : GenericWindow(message, "Decide!", ResourceManager::get().getTexture("Paper.png"))
-    , yes{ Application::get().getMidPoint() + sf::Vector2f(0, 200), std::move(yes), "" }
-    , no{ Application::get().getMidPoint() + sf::Vector2f(0, 270), std::move(no), "" }
+    , yes{ Application::get().getMidPoint() + sf::Vector2f(-70, 270), std::move(yes), "" }
+    , no{ Application::get().getMidPoint() + sf::Vector2f(70, 270), std::move(no), "" }
 {
   this->yes.setTexture(ResourceManager::get().getTexture("green_button01.png"));
   this->no.setTexture(ResourceManager::get().getTexture("red_button01.png"));
