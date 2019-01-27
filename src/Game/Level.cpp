@@ -121,7 +121,7 @@ void Level::setGameScene()
                                                   ""));
 
   GameStateManager::get().init();
-  m_cash.setPosition(1000, 0);
+  m_cash.setPosition(1200 - m_cash.getGlobalBounds().width, 0);
   m_cash.setCash(GameStateManager::get().getCurrentMoney());
 
 

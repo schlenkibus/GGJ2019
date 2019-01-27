@@ -73,6 +73,8 @@ DataManager::DataManager()
       m_recommendationsNeutral.emplace_back(strings[4]);
   }
   dataFile.close();
+
+  m_sadOkays = {"awkward", "Okay :(", ":(", "Wow..", "*sniff*", "that is sad", "tragic", "unfortunate", "OK :(", "¯\\_(ツ)_/¯", "Oopsie","...", "crying"};
 }
 
 DataManager& DataManager::get()
@@ -151,4 +153,11 @@ int DataManager::getRandomNumber(int min, int max) const
 {
   auto rand = std::bind(std::uniform_int_distribution<int>(min, max), std::mt19937(static_cast<unsigned long>(seed++)));
   return rand();
+}
+
+std::string DataManager::getSadOkay() {
+  if(m_sadOkayDepleting.size() <= 0) {
+    m_sadOkayDepleting.insert(m_sadOkays.begin(), m_sadOkays.end());
+  }
+  return getRandomDeleting(m_sadOkayDepleting);
 }

@@ -6,7 +6,7 @@
 #include "../UI/generic/GenericWindow.h"
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
-#include "../UI/generic/CashView.h"
+#include "../UI/GameStuff/CashView.h"
 
 class Level
 {
