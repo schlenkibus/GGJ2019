@@ -4,7 +4,7 @@
 
 PlayerStatsScreen::PlayerStatsScreen()
     : GenericOkayWindowWithCallback{ "Weekly Roundup \n" + GameStateManager::get().getWeeklyReport(), "Okay",
-                                     [] { GameStateManager::get().setScreenState(ScreenState::NewTenant); } }
+                                     [] { if(GameStateManager::get().getCurrentMoney() > 0) GameStateManager::get().setScreenState(ScreenState::NewTenant); else GameStateManager::get().setScreenState(ScreenState::GameOver); } }
 {
     sprite.setColor(sf::Color::Red);
 }

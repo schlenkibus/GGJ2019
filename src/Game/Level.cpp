@@ -33,13 +33,6 @@ void Level::start()
 
 void Level::update(float delta)
 {
-  if(firstUpdate)
-  {
-    firstUpdate = false;
-    auto &element = m_objects.front();
-    auto refButton = dynamic_cast<Button *>(element.get());
-    refButton->setPos(Application::get().getMidPoint());
-  }
   for(auto &obj : m_objects)
   {
     obj->update(delta);
@@ -99,16 +92,27 @@ void Level::install(std::unique_ptr<GenericWindow> &&window)
 
 void Level::setMenuScene()
 {
+    m_objects.clear();
+    m_cash.setString("");
+    m_dayCounter.setString("");
+    Application::get().getLevel().closeMessage();
+
+  m_objects.emplace_back(std::make_unique<DrawableObject>(ResourceManager::get().getTexture("decals_images.png"), sf::Vector2f(670, 400)));
+
+
   m_objects.emplace_back(std::make_unique<Button>(sf::Vector2f(600, 325),
                                                   [&]() {
                                                     m_objects.clear();
                                                     GameStateManager::get().start();
                                                   },
                                                   "Start"));
+
 }
 
 void Level::setGameScene()
 {
+  m_objects.clear();
+
   auto &rm = ResourceManager::get();
   auto &exitTexture = rm.getTexture("exitbutton.png");
 

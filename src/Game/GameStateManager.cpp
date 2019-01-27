@@ -7,6 +7,7 @@
 #include "../UI/GameStuff/TenantKickScreen.h"
 #include "../UI/GameStuff/PlayerStatsScreen.h"
 #include "../UI/GameStuff/DenyTenantScreen.h"
+#include "../UI/GameStuff/GameOverScreen.h"
 #include <random>
 #include <assert.h>
 #include <sstream>
@@ -82,6 +83,14 @@ std::string GameStateManager::getWeeklyReport()
   m_tenantsKickedOut = 0;
   return ss.str();
 }
+
+std::string GameStateManager::getGameOverMessage() {
+  std::stringstream ss;
+  ss << "Lifes Destroyed: " << m_lifesDestroyed << '\n';
+  ss << "Are you happy now?";
+  return ss.str();
+}
+
 
 std::array<TenantData*, 3> GameStateManager::getKickCandidates()
 {
@@ -242,6 +251,7 @@ void GameStateManager::setScreenState(ScreenState newScreenState)
     case ScreenState::KickTenant:
     {
       m_tenantsKickedOut++;
+      m_lifesDestroyed++;
       Application::get().getLevel().install(std::make_unique<TenantKickScreen>());
       break;
     }
@@ -252,6 +262,7 @@ void GameStateManager::setScreenState(ScreenState newScreenState)
     }
     case ScreenState::DenyTenant:
     {
+      m_lifesDestroyed++;
       m_currentTenant->setHappy(false);
       Application::get().getLevel().install(std::make_unique<DenyTenantScreen>());
       break;
@@ -263,6 +274,10 @@ void GameStateManager::setScreenState(ScreenState newScreenState)
       Application::get().getLevel().install(std::make_unique<PlayerStatsScreen>());
       break;
     }
+      case ScreenState::GameOver: {
+        Application::get().getLevel().install(std::make_unique<GameOverScreen>());
+        break;
+      }
   }
 }
 

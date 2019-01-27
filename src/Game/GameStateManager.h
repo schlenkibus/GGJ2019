@@ -17,7 +17,8 @@ enum class ScreenState
   KickTenant,
   KickTenantAfter,
   DenyTenant,
-  PlayerStats
+  PlayerStats,
+  GameOver
 };
 
 class GameStateManager
@@ -43,6 +44,7 @@ class GameStateManager
   void listenForMoneyChange(MoneyChangedCallback);
   void listenForDayChange(DayChangedCallback);
 
+  std::string getGameOverMessage();
   std::string getWeeklyReport();
   std::shared_ptr<TenantData> getTenant();
   std::shared_ptr<TenantData> getKickedTenant();
@@ -104,5 +106,6 @@ class GameStateManager
 
   // Weekly roundup data
   int m_netIncome = 0;
+  int m_lifesDestroyed = 0;
   size_t m_tenantsKickedOut = 0;
 };
