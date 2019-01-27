@@ -1,11 +1,11 @@
 #include "TenantKickScreen.h"
 
 TenantKickScreen::TenantKickScreen()
-    : GenericWindow("You have to throw one Tenant out to make room for the new one!", "Applicant:",
+    : GenericWindow("You have to throw one current Tenant out to make room for the new one!", "Select whomst to evict",
                     ResourceManager::get().getTexture("Paper3x.png"))
 {
-  m_header.move(static_cast<float>(-sprite.getGlobalBounds().width / 3), 0);
-  m_message.move(static_cast<float>(-sprite.getGlobalBounds().width / 3), 0);
+  m_header.move(static_cast<float>(-sprite.getGlobalBounds().width / 4), -60);
+  m_message.move(static_cast<float>(-sprite.getGlobalBounds().width / 4), -60);
 
   sprite.scale(0.8, 0.8);
 
