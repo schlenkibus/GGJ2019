@@ -25,6 +25,8 @@ TenantData TenantFactory::getTenant()
         return TenantData::Dog;
       case 3:
         return TenantData::Bunny;
+      case 5:
+        return TenantData::Bear;
       case 4:
       default:
         return TenantData::Jellyfish;

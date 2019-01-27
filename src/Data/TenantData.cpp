@@ -61,6 +61,8 @@ const std::string TenantData::toString(TenantData::AnimalType type) const
       return "Snake";
     case Jellyfish:
       return "Jellyfish";
+    case Bear:
+      return "Bear";
   }
 }
 

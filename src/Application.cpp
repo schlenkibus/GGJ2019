@@ -12,7 +12,7 @@ Application &Application::get()
 }
 
 Application::Application()
-    : window{ sf::VideoMode(1200, 650), "GGJ19", sf::Style::Close }
+    : window{ sf::VideoMode(1200, 650), "GGJ19", sf::Style::Fullscreen }
     , level{}
 {
 }
