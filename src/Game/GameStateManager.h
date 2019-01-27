@@ -30,6 +30,8 @@ class GameStateManager
   using MoneyChangedCallback = std::function<void(int)>;
   static GameStateManager& get();
 
+  void init();
+
   void setScreenState(ScreenState);
 
   void acceptTenant();
@@ -77,6 +79,7 @@ class GameStateManager
   void newTenantFee();
   void calculateWeek();
 
+  void setMoney(int amount);
   void changeCurrentMoney(int amount);
   size_t calculateTenantPayment(std::shared_ptr<TenantData>);
 

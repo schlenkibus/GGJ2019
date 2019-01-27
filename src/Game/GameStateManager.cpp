@@ -24,6 +24,15 @@ GameStateManager::GameStateManager()
   }
 }
 
+void GameStateManager::init() {
+  m_days = 0;
+  setMoney(5000);
+  m_tenantsKickedOut = 0;
+  m_currentKarmaEarned = 0;
+  m_totalMoneyEarned = 0;
+  m_totalKarmaEarned = 0;
+}
+
 GameStateManager& GameStateManager::get()
 {
   static GameStateManager gameStateManager;
@@ -110,6 +119,12 @@ void GameStateManager::listenForTenantChanged(TenantChangedCallback function)
 void GameStateManager::newTenantFee()
 {
   changeCurrentMoney(static_cast<int>(-newTenantCost));
+}
+
+void GameStateManager::setMoney(int money)
+{
+  m_currentMoneyEarned = money;
+  m_moneyChanged(m_currentMoneyEarned);
 }
 
 void GameStateManager::changeCurrentMoney(int amount)

@@ -119,8 +119,11 @@ void Level::setGameScene()
                                                     Application::get().getLevel().setMenuScene();
                                                   },
                                                   ""));
+
+  GameStateManager::get().init();
   m_cash.setPosition(1000, 0);
   m_cash.setCash(GameStateManager::get().getCurrentMoney());
+
 
   auto &element = m_objects.front();
   auto refButton = dynamic_cast<Button *>(element.get());
