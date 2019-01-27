@@ -23,5 +23,6 @@ class ResourceManager
   std::unordered_map<tPath, sf::Texture> m_texture;
   std::unordered_map<tPath, sf::SoundBuffer> m_soundBuffer;
   sf::Music m_music;
+  sf::Music m_backgroundNoise;
   sf::Font m_font;
 };

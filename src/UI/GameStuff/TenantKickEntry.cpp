@@ -3,6 +3,7 @@
 #include "../../Game/GameStateManager.h"
 #include "../../Data/TenantFactory.h"
 #include "../../tools/ResourceManager.h"
+#include "../../tools/AudioOneShotEngine.h"
 
 TenantKickEntry::TenantKickEntry(TenantData *data, sf::Vector2f pos)
     : DrawableObject{ (data != nullptr ? data->getTexture() : TenantFactory::getTenant().getTexture()), pos }
