@@ -80,7 +80,6 @@ std::string GameStateManager::getWeeklyReport()
   ss << "Net Income: " << m_netIncome - static_cast<int>(m_tenantsKickedOut * newTenantCost) << '\n';
   ss << "Tenants Replaced: " << m_tenantsKickedOut << '\n';
   ss << "Total Money: " << m_currentMoneyEarned << '\n';
-  m_netIncome = 0;
   m_tenantsKickedOut = 0;
   return ss.str();
 }

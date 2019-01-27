@@ -12,8 +12,15 @@ PlayerStatsScreen::PlayerStatsScreen()
                                         GameStateManager::get().setScreenState(ScreenState::GameOver);
                                     } }
 {
-    AudioOneShotEngine::get().play("cash.wav");
-  sprite.setColor(sf::Color::Red);
+  AudioOneShotEngine::get().play("cash.wav");
+  if (GameStateManager::get().getNetIncome() <= 0)
+  {
+    sprite.setColor(sf::Color::Red);
+  }
+  else
+  {
+    sprite.setColor(sf::Color::Green);
+  }
 
   auto data = GameStateManager::get().getCopyOfCurrentTenant();
   for(int i = 0; i < data.size(); i++)

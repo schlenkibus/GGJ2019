@@ -76,6 +76,10 @@ class GameStateManager
   {
     return m_acceptedTenants;
   };
+  int getNetIncome()
+  {
+    return m_netIncome;
+  };
 
  private:
   const size_t monthlyExpenses = 5000;
