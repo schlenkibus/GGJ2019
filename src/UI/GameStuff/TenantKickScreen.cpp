@@ -6,12 +6,15 @@ TenantKickScreen::TenantKickScreen()
 {
   m_header.move(static_cast<float>(-sprite.getGlobalBounds().width / 3), 0);
   m_message.move(static_cast<float>(-sprite.getGlobalBounds().width / 3), 0);
+
+  sprite.scale(0.8, 0.8);
+
   auto data = GameStateManager::get().getKickCandidates();
   for(int i = 0; i < 3; i++)
   {
     m_candidates[i] = std::make_unique<TenantKickEntry>(data[i], Application::get().getMidPoint()
                                                             + sf::Vector2f((-300 + i * 300), 0));
-    m_candidates[i]->scale(0.35);
+    m_candidates[i]->scale(0.4);
   }
 }
 

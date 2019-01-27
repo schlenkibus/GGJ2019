@@ -4,9 +4,9 @@
 
 
 CashView::CashView() {
-    setCharacterSize(40);
+    setCharacterSize(30);
     setFillColor(sf::Color::White);
-    setOutlineThickness(2);
+    setOutlineThickness(1.2);
     setOutlineColor(sf::Color::Black);
     setFont(ResourceManager::get().getFont());
     GameStateManager::get().listenForMoneyChange([&](int money) {
