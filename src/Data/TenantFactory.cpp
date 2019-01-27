@@ -14,7 +14,7 @@ TenantData TenantFactory::getTenant()
   tenant.profession = dm.getProfession();
   tenant.reason = " NONE ";
   tenant.type = []() {
-    auto rand = std::rand() % 5;
+    auto rand = std::rand() % 6;
     switch(rand)
     {
       case 0:
