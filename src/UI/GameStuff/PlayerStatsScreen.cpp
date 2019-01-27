@@ -28,7 +28,7 @@ PlayerStatsScreen::PlayerStatsScreen()
     if(i < 5)
     {
       m_currentTenants[i] = std::make_unique<TenantOverview>(data[i].get(), Application::get().getMidPoint()
-                                                                 + sf::Vector2f(-380, -200 + (100 * i)));
+                                                                 + sf::Vector2f(-400, -200 + (100 * i)));
       m_currentTenants[i]->scale(0.15);
     }
     else
