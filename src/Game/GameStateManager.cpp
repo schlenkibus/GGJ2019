@@ -32,12 +32,14 @@ GameStateManager& GameStateManager::get()
 
 void GameStateManager::acceptTenant()
 {
-  AudioOneShotEngine::get().play("happyTenant.wav");
+  const auto soundName = m_currentTenant->getAnimalData().getSoundName(true);
+  AudioOneShotEngine::get().play(soundName);
 }
 
 void GameStateManager::declineTenant()
 {
-  AudioOneShotEngine::get().play("sadTenant.wav");
+  const auto soundName = m_currentTenant->getAnimalData().getSoundName(false);
+  AudioOneShotEngine::get().play(soundName);
   m_declinedTenants.push_back(m_currentTenant);
 }
 

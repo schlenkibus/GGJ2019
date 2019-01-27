@@ -27,8 +27,8 @@ sf::Texture& AnimalData::getTexture(bool isHappy)
   return ResourceManager::get().getTexture(prefix + s + ".jpg");
 }
 
-sf::Texture& AnimalData::getSound(bool isHappy)
+std::string AnimalData::getSoundName(bool isHappy)
 {
   auto s = isHappy ? "happy" : "sad";
-  return ResourceManager::get().getTexture(prefix + s + ".wav");
+  return std::string(prefix + s + ".wav");
 }
