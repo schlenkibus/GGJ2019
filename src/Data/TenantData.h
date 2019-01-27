@@ -6,7 +6,7 @@
 #include <memory>
 #include <SFML/Graphics/Texture.hpp>
 
-class TenantData : public std::enable_shared_from_this<TenantData>
+class TenantData
 {
  public:
   enum AnimalType
@@ -18,15 +18,13 @@ class TenantData : public std::enable_shared_from_this<TenantData>
   };
 
   TenantData() = default;
-  std::shared_ptr<TenantData> shared()
-  {
-    return shared_from_this();
-  }
+  TenantData(const TenantData& other);
   std::string toString() const;
   std::string getOutcome() const;
   std::string getStats() const;
   sf::Texture& getTexture();
   std::string getSoundName();
+  void setReason(std::string reason);
   const std::string toString(AnimalType) const;
   Recommendation getRecommendationRating()
   {
@@ -44,6 +42,7 @@ class TenantData : public std::enable_shared_from_this<TenantData>
  protected:
   std::string name;
   std::string profession;
+  std::string reason;
   int age{};
   int factor{};
   Recommendation recommendationRating{};

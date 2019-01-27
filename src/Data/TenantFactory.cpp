@@ -12,16 +12,18 @@ TenantData TenantFactory::getTenant()
   tenant.factor = dm.getRandomNumber(-1, 1);
   tenant.outcome = dm.getOutcome();
   tenant.profession = dm.getProfession();
+  tenant.reason = " NONE ";
   tenant.type = []() {
     auto rand = std::rand() % 3;
-    switch(rand) {
-        case 0:
-          return TenantData::Cat;
-        case 1:
-          return TenantData::Snake;
-        case 2:
-        default:
-          return TenantData::Bunny;
+    switch(rand)
+    {
+      case 0:
+        return TenantData::Cat;
+      case 1:
+        return TenantData::Snake;
+      case 2:
+      default:
+        return TenantData::Bunny;
     }
   }();
 

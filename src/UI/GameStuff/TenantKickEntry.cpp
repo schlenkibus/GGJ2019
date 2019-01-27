@@ -9,8 +9,8 @@ TenantKickEntry::TenantKickEntry(TenantData *data, sf::Vector2f pos)
     , info{ data }
     , kick{ pos + sf::Vector2f(0, 250),
             [&]() {
-              GameStateManager::get().kickTenant(data);
-              GameStateManager::get().setScreenState(ScreenState::NewTenant);
+              GameStateManager::get().kickTenant(info);
+              GameStateManager::get().setScreenState(ScreenState::KickTenantAfter);
             },
             "Throw Out!" }
 {

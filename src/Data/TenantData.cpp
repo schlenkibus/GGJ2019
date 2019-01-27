@@ -1,6 +1,23 @@
+#include <utility>
 #include <sstream>
 #include "TenantData.h"
 #include "../tools/ResourceManager.h"
+
+TenantData::TenantData(const TenantData& other)
+{
+  name = other.name;
+  reason = other.reason;
+  age = other.age;
+  type = other.type;
+  profession = other.profession;
+  salary = other.salary;
+  salaryRating = other.salaryRating;
+  recommendationRating = other.recommendationRating;
+  recommendation = other.recommendation;
+  happy = other.happy;
+  outcome = other.outcome;
+  factor = other.factor;
+}
 
 std::string TenantData::toString() const
 {
@@ -16,9 +33,14 @@ std::string TenantData::toString() const
 
 std::string TenantData::getOutcome() const
 {
-  auto ret = name;
+  std::string ret{};
+  ret += "Because you";
+  ret += reason;
+  ret += name;
   ret += " the ";
   ret += toString(type);
+  ret += ":\n\n";
+  ret += name;
   ret += " ";
   ret += static_cast<char>(std::tolower(static_cast<int>(outcome[0])));
   ret += outcome.substr(1);
@@ -80,6 +102,11 @@ std::string TenantData::getStats() const
       break;
   }
   return ret;
+}
+
+void TenantData::setReason(std::string reason)
+{
+  this->reason = std::move(reason);
 }
 
 std::string TenantData::getSoundName()

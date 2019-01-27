@@ -39,21 +39,27 @@ void GameStateManager::acceptTenant()
 void GameStateManager::declineTenant()
 {
   m_currentTenant->setHappy(false);
+  m_currentTenant->setReason(" declined ");
   AudioOneShotEngine::get().play(m_currentTenant->getSoundName());
   m_declinedTenants.push_back(m_currentTenant);
 }
 
 void GameStateManager::kickTenant(TenantData* tenant)
 {
+  auto backup = std::make_shared<TenantData>(*tenant);
+
   for(auto& e : m_acceptedTenants)
   {
     if(e.get() == tenant)
     {
-      e.reset(m_currentTenant.get());
+      e = std::make_shared<TenantData>(*m_currentTenant.get());
       break;
     }
   }
 
+  backup->setReason(" kicked out ");
+  backup->setHappy(false);
+  m_currentTenant = std::make_shared<TenantData>(*backup.get());
   newTenantFee();
 }
 
@@ -223,6 +229,11 @@ void GameStateManager::setScreenState(ScreenState newScreenState)
       Application::get().getLevel().install(std::make_unique<TenantKickScreen>());
       break;
     }
+    case ScreenState::KickTenantAfter:
+    {
+      Application::get().getLevel().install(std::make_unique<AfterKickTenantScreem>());
+      break;
+    }
     case ScreenState::DenyTenant:
     {
       m_currentTenant->setHappy(false);
@@ -237,4 +248,9 @@ void GameStateManager::setScreenState(ScreenState newScreenState)
       break;
     }
   }
+}
+
+std::shared_ptr<TenantData> GameStateManager::getKickedTenant()
+{
+  return m_currentTenant;
 }

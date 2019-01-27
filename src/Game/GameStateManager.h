@@ -15,6 +15,7 @@ enum class ScreenState
   Start,
   NewTenant,
   KickTenant,
+  KickTenantAfter,
   DenyTenant,
   PlayerStats
 };
@@ -40,6 +41,7 @@ class GameStateManager
 
   std::string getWeeklyReport();
   std::shared_ptr<TenantData> getTenant();
+  std::shared_ptr<TenantData> getKickedTenant();
   size_t getDay()
   {
     return m_days;
